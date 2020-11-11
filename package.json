@@ -3,13 +3,33 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "node server.js",
     "build": "next build",
-    "start": "next start"
+    "start": "cross-env NODE_ENV=production node server.js"
   },
   "dependencies": {
+    "@apollo/client": "^3.2.5",
+    "@material-ui/core": "^4.11.0",
+    "apollo-boost": "^0.4.9",
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.2",
+    "express": "^4.17.1",
+    "express-graphql": "^0.11.0",
+    "graphql": "^15.4.0",
+    "graphql-iso-date": "^3.6.1",
+    "graphql-tag": "^2.11.0",
+    "jalali-moment": "^3.3.8",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.10.13",
+    "mongoose-autopopulate": "^0.12.3",
     "next": "10.0.1",
     "react": "17.0.1",
+    "react-apollo": "^3.1.5",
     "react-dom": "17.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
   }
 }
