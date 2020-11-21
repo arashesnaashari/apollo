@@ -66,7 +66,7 @@ input PostInput {
 
 type rootQuery {
     books:[Book!]
-    book(id:String!):Book
+    book(_id:ID!):Book
     login(username:String!,password:String!):AuthData
 }
 type rootMutation {

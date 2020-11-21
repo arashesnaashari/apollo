@@ -5,10 +5,11 @@ const Comment = require("../models/comment");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const moment = require("jalali-moment");
-const {GraphQLDateTime} = require('graphql-iso-date')
+const Dataloader = require("dataloader");
+const { GraphQLDateTime } = require("graphql-iso-date");
 
 const customScalarResolver = {
-  Date: GraphQLDateTime
+  Date: GraphQLDateTime,
 };
 
 // const books = async (bookId) => {
@@ -59,7 +60,9 @@ const customScalarResolver = {
 //     console.log(err);
 //   }
 // };
-
+// const loader = new Dataloader((id) => {
+//   return booksFunc(id)
+// })
 module.exports = {
   customScalarResolver,
   //Query
@@ -78,7 +81,7 @@ module.exports = {
   },
   book: async (args) => {
     try {
-      const book = await Book.findById(args.id);
+      const book = await Book.findOne({ _id: args._id });
       return {
         ...book._doc,
         _id: book.id,

@@ -2,6 +2,7 @@ import Link from "next/link";
 import Form from "./Form";
 import { useState } from "react";
 import AuthContext from "../../context/auth-context";
+import Search from "./Search/Search";
 const Navbar = () => {
   const [Modal, SetModal] = useState(false);
   return (
@@ -10,6 +11,7 @@ const Navbar = () => {
         return (
           <nav>
             <div>
+              <Search />
               <Link href="/">
                 <a>Home</a>
               </Link>
