@@ -15,6 +15,7 @@ const Navbar = () => {
               <Link href="/">
                 <a>Home</a>
               </Link>
+              {/* {console.log(context.userId)} */}
               {!context.token && (
                 <button type="button" onClick={() => SetModal(!Modal)}>
                   Login

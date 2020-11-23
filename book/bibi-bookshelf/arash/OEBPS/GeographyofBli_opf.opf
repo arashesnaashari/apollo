@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?><package xmlns="http://www.idpf.org/2007/opf" version="2.0" unique-identifier="a9780446511070">
+<metadata xmlns:opf="http://www.idpf.org/2007/opf" xmlns:dc="http://purl.org/dc/elements/1.1/">
+<dc:title>The Geography of Bliss: One Grump's Search for the Happiest Places in the World</dc:title>
+<dc:creator opf:role="aut" opf:file-as="WEINER, ERIC">Eric Weiner</dc:creator>
+<dc:publisher>Twelve</dc:publisher>
+<dc:date>2008-01-03</dc:date>
+<dc:subject>TRV000000</dc:subject>
+<dc:description>Part foreign affairs discourse, part humor, and part twisted self-help guide, The Geography of Bliss takes the reader from America to Iceland to India in search of happiness, or, in the crabby author's case, moments of 'un-unhappiness.' The book uses a beguiling mixture of travel, psychology, science and humor to investigate not what happiness is, but where it is. Are people in Switzerland happier because it is the most democratic country in the world? Do citizens of Singapore benefit psychologically by having their options limited by the government? Is the King of Bhutan a visionary for his initiative to calculate Gross National Happiness? Why is Asheville, North Carolina so damn happy? With engaging wit and surprising insights, Eric Weiner answers those questions and many others, offering travelers of all moods some interesting new ideas for sunnier destinations and dispositions.</dc:description>
+<dc:rights>WORLD ALL LANGUAGES</dc:rights>
+<dc:identifier id="a9780446511070" opf:scheme="ISBN">9780446511070</dc:identifier>
+<dc:language>en-US</dc:language>
+<meta name="cover" content="cover-image"/>
+</metadata>
+<manifest>
+<item href="images/GeographyofBli-cover.jpg" id="cover-image" media-type="image/jpeg"/>
+<item id="cover" href="cover.xml" media-type="application/xhtml+xml"/>
+<item id="style" href="css/GeographyofBli_style.css" media-type="text/css"/>
+<item id="toc" href="GeographyofBli_toc.html" media-type="application/xhtml+xml"/>
+<item id="Art_P333.jpg" href="images/Art_P333.jpg" media-type="image/jpeg"/>
+<item id="copyright" href="GeographyofBli_copyright.html" media-type="application/xhtml+xml"/>
+<item id="ncx" href="GeographyofBli.ncx" media-type="application/x-dtbncx+xml"/>
+<item id="book" href="GeographyofBli_body.html" media-type="application/xhtml+xml"/>
+</manifest>
+<spine toc="ncx">
+<itemref idref="cover" linear="no"/>
+<itemref idref="copyright" linear="yes"/>
+<itemref idref="toc" linear="yes"/>
+<itemref idref="book" linear="yes"/>
+</spine>
+<guide>
+<reference type="copyright" title="Copyright Page" href="GeographyofBli_copyright.html"/>
+<reference type="toc" title="Table of Contents" href="GeographyofBli_toc.html"/>
+<reference type="cover" title="Cover Image" href="cover.xml"/>
+</guide>
+</package>

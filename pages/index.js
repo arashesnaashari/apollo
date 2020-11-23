@@ -2,7 +2,9 @@ import fetch from "isomorphic-unfetch";
 import Layout from "../components/layout/Layout";
 import Books from "../components/Book/Book_All/booksContainer";
 import Container from "../components/Home/Container";
+import { useEffect } from "react";
 export default function propssing(props) {
+
   return (
     <>
       <Layout>

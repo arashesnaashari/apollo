@@ -65,6 +65,7 @@ input PostInput {
 
 
 type rootQuery {
+    users:[User!]
     books:[Book!]
     book(_id:ID!):Book
     login(username:String!,password:String!):AuthData

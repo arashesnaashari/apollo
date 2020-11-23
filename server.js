@@ -35,6 +35,7 @@ app.prepare().then(() => {
     })
   );
   server.use(cors());
+  // server.use(isAuth)
   const isLoggedIn = (req, res, next) => {
     if (req.user) {
       next();
@@ -76,14 +77,6 @@ app.prepare().then(() => {
   server.use(bodyParser.json());
 
   server.get("/failed", (req, res) => res.send("You Failed to log in!"));
-  server.use("/xxxx", (req, res) =>
-    res.json({
-      posts: {
-        title: "first posts",
-        desc: "ramdom data uoy sholudnt access",
-      },
-    })
-  );
 
   // In this route you can see that if the user is logged in u can acess his info in: req.user
   server.get("/good", isLoggedIn, (req, res) => {
@@ -119,6 +112,8 @@ app.prepare().then(() => {
       rootValue,
     })
   );
+  server.use(express.static("book"));
+
   server.get("*", (req, res) => {
     return handle(req, res); // for all the react stuff
   });

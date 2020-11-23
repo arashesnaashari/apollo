@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import fetch from "isomorphic-unfetch";
 import { useRouter } from "next/router";
+import { use } from "passport";
 
 export default function Id(props) {
   const [text, setText] = useState("");
   const [rate, setRate] = useState(0);
+  const [comments, setComments] = useState(props.data.data.book.comments);
+
   const router = useRouter();
   const { _id } = router.query;
   const NumericRate = parseInt(rate);
@@ -16,7 +19,12 @@ export default function Id(props) {
       body: JSON.stringify({
         query: `mutation {
         createComment(input:{text:"${text}",rate:${NumericRate},book:"${_id}"}){
+          text
+          _id
           date
+          creator {
+            username
+          }
         }
       }`,
       }),
@@ -24,8 +32,9 @@ export default function Id(props) {
       .then((res) => {
         return res.json();
       })
-      .then((data) => alert("Success "));
+      .then((data) => console.log(props.data.data.book));
   }
+
   return (
     <>
       {props.data.data.book.comments.map((e) => {

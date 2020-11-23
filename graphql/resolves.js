@@ -79,6 +79,19 @@ module.exports = {
       console.log(err);
     }
   },
+  users: async () => {
+    try {
+      const books = await User.find();
+      return books.map((book) => {
+        return {
+          ...book._doc,
+          _id: book.id,
+        };
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  },
   book: async (args) => {
     try {
       const book = await Book.findOne({ _id: args._id });
@@ -116,16 +129,16 @@ module.exports = {
   signIn: async (args) => {
     try {
       const existingUser = await User.findOne({
-        phone: args.userInput.phone,
+        phone: args.input.phone,
       });
       if (existingUser) {
         throw new Error("User exists already.");
       }
-      const hashedPassword = await bcrypt.hash(args.userInput.password, 12);
+      const hashedPassword = await bcrypt.hash(args.input.password, 12);
 
       const user = new User({
-        phone: args.userInput.phone,
-        username: args.userInput.username,
+        phone: args.input.phone,
+        username: args.input.username,
         password: hashedPassword,
       });
 

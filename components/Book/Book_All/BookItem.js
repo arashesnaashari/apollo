@@ -2,7 +2,6 @@ import Link from "next/link";
 const BookItem = ({ data }) => {
   return (
     <>
-      <h6>Ss</h6>
       {data.map((item) => {
         return (
           // CARD

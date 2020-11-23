@@ -1,6 +1,4 @@
-import Head from "next/head";
-import gql from "graphql-tag";
-import { Query } from "react-apollo";
+
 
 // BookQuery($varId: String!)
 const CommentsForm = (props) => {
