@@ -1,4 +1,3 @@
-import { indigo } from "@material-ui/core/colors";
 import { useRouter } from "next/router";
 import AuthContext from "../context/auth-context";
 

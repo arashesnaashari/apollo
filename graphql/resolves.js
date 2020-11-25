@@ -1,68 +1,16 @@
 const Book = require("../models/book");
 const User = require("../models/user");
 const Post = require("../models/post");
+const View = require("../models/view");
 const Comment = require("../models/comment");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const moment = require("jalali-moment");
-const Dataloader = require("dataloader");
 const { GraphQLDateTime } = require("graphql-iso-date");
 
 const customScalarResolver = {
   Date: GraphQLDateTime,
 };
 
-// const books = async (bookId) => {
-//   try {
-//     const book = await Book.findById(bookId);
-
-//     return {
-//       ...book._doc,
-//       _id: book.id,
-//       comments: comment.bind(this, book.comments),
-//     };
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
-
-// const user = async (userId) => {
-//   try {
-//     const user0 = await User.findById(userId);
-
-//     return {
-//       ...user0._doc,
-//       _id: user0.id,
-//       comments: comment.bind(this, user0.comments),
-//     };
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
-// const comment = async (commentId) => {
-//   try {
-//     const comments0 = await Comment.find({
-//       _id: { $in: commentId },
-//     });
-//     comments0.map((comment1) => {
-//       return {
-//         ...comment1._doc,
-//         _id: comment1.id,
-//         creator: user.bind(this, comment1._doc.creator),
-//         book: books.bind(this, comment1._doc.book),
-//         date: moment(new Date(result._doc.date).toISOString(), "YYYY/MM/DD")
-//           .locale("fa")
-//           .format("YYYY/MM/DD"),
-//       };
-//     });
-//     return comments0;
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
-// const loader = new Dataloader((id) => {
-//   return booksFunc(id)
-// })
 module.exports = {
   customScalarResolver,
   //Query
@@ -73,6 +21,19 @@ module.exports = {
         return {
           ...book._doc,
           _id: book.id,
+        };
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  posts: async () => {
+    try {
+      const posts = await Post.find();
+      return posts.map((post) => {
+        return {
+          ...post._doc,
+          _id: post.id,
         };
       });
     } catch (err) {
@@ -98,6 +59,17 @@ module.exports = {
       return {
         ...book._doc,
         _id: book.id,
+      };
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  post: async (args) => {
+    try {
+      const post = await Post.findOne({ _id: args._id });
+      return {
+        ...post._doc,
+        _id: post.id,
       };
     } catch (err) {
       console.log(err);
@@ -153,11 +125,9 @@ module.exports = {
     const comment = new Comment({
       text: args.input.text,
       rate: args.input.rate,
-      creator: "5fa962dbb2e6bc4610bb1ef8",
-      book: args.input.book,
-      date: moment(new Date().toISOString(), "YYYY/MM/DD")
-        .locale("fa")
-        .format("YYYY/MM/DD"),
+      creator: args.input.userId,
+      book: args.input.bookId,
+      date: new Date(),
     });
     let createdComment;
     try {
@@ -165,14 +135,12 @@ module.exports = {
       createdComment = {
         ...result._doc,
         _id: result._doc._id,
-        book: result._doc.book,
-        creator: comment.creator,
-        date: moment(new Date().toISOString(), "YYYY/MM/DD")
-          .locale("fa")
-          .format("YYYY/MM/DD"),
+        book: result._doc.bookId,
+        creator: result._doc.creator,
+        date: result._doc.date,
       };
 
-      const book = await Book.findById(args.input.book);
+      const book = await Book.findById(args.input.bookId);
 
       book.comments.push(comment);
       await book.save();
@@ -182,4 +150,69 @@ module.exports = {
       console.log(err);
     }
   },
+
+  createView: async (args) => {
+    const view = new View({
+      text: args.input.text,
+      rate: args.input.rate,
+      creator: args.input.userId,
+      post: args.input.postId,
+      date: new Date(),
+    });
+    let createdView;
+    try {
+      const result = await view.save();
+      createdView = {
+        ...result._doc,
+        _id: result._doc._id,
+        post: result._doc.postId,
+        creator: result._doc.creator,
+        date: result._doc.date,
+      };
+
+      const post = await Post.findById(args.input.postId);
+
+      post.views.push(view);
+      await post.save();
+
+      return createdView;
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  createPost: async (args) => {
+    const post = new Post({
+      title: args.input.title,
+      body: args.input.body,
+      creator: args.input.userId,
+      image: args.input.image,
+      date: new Date(),
+    });
+    let createdPost;
+    try {
+      const result = await post.save();
+      createdPost = {
+        ...result._doc,
+        _id: result._doc._id,
+        title: result._doc.title,
+        body: result._doc.body,
+        image: result._doc.image,
+        creator: result._doc.creator,
+        date: result._doc.date,
+      };
+
+      const user = await User.findById(args.input.userId);
+
+      user.posts.push(post);
+      await user.save();
+
+      return createdPost;
+    } catch (err) {
+      console.log(err);
+    }
+  },
 };
+
+// USER = 5fba7c7f637eca2ba0e4e39e
+// BOOK = 5fa85dbeae4337bd0925c2b0
+// POST =5fbe7823ed88c62fd4859a83

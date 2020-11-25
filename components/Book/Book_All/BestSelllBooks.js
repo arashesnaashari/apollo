@@ -6,9 +6,15 @@ const Best = (props) => {
     <>
       <h1>Best</h1>
       <Link href="/bestbook">
-        <h6>All book</h6>
+        <a>All book</a>
       </Link>
-      <BookItem data={props.data} />
+      <div style={{ display: "flex" }}>
+        {props.data.map((book) => {
+          return (
+            <BookItem data={book} key={book._id}/>
+          );
+        })}
+      </div>
     </>
   );
 };

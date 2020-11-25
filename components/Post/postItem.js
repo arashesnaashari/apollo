@@ -3,8 +3,9 @@ const BookItem = ({ data }) => {
   return (
     <>
       <div style={{ background: "lightgray" }}>
-        <img src={data.image} />
-        <h2>{data.title}</h2>
+        <img src={data.image} width="50" />
+        <h1>{data.title}</h1>
+        <p>{}</p>
       </div>
     </>
   );

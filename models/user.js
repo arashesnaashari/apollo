@@ -19,6 +19,7 @@ const userSchema = new Schema({
     {
       type: Schema.Types.ObjectId,
       ref: "Post",
+      autopopulate: true,
     },
   ],
   comments: [
@@ -30,4 +31,6 @@ const userSchema = new Schema({
   ],
 });
 
-module.exports = mongoose.model("User", userSchema.plugin(autopopulate));
+module.exports =
+  mongoose.models.User ||
+  mongoose.model("User", userSchema.plugin(autopopulate));

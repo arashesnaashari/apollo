@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>I wanna hold your hand</h1>
+    <script>
+      // var dateFormat = new Intl.DateTimeFormat("fa");
+      // console.log(dateFormat.format(Date.now()));
+
+      // const faDate = new Intl.DateTimeFormat("fa", {
+      //   weekday: "long",
+      //   year: "numeric",
+      //   month: "long",
+      //   day: "numeric",
+      //   hour: "numeric",
+      //   minute: "numeric",
+      //   // timeZoneName: "short"
+      // }).format(Date.now());
+      // console.log(faDate);
+
+      ///////////////////////
+      // console.log(new Intl.NumberFormat("fa").format(123456));
+      // console.log(
+      //   new Intl.NumberFormat("fa", { useGrouping: false }).format(123456)
+      // );
+
+      //////////
+var xxx = new Date()
+      const { year, literal, month, day, weekday } = Object.fromEntries(
+        new Intl.DateTimeFormat("fa", {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        })
+          .formatToParts(xxx)
+          .map((item) => [item.type, item.value])
+      );
+      const faDate = `${weekday}${literal}${day} ${month} ${year}`;
+      console.log(faDate);
+
+      const activities = [
+        { date: new Date("2019-06-28") },
+        { date: new Date("2019-06-10") },
+        { date: new Date("2019-06-22") },
+      ];
+      const sortedActivities = activities
+        .slice()
+        .sort((a, b) => a.date - b.date);
+      console.log(sortedActivities);
+    </script>
+  </body>
+</html>

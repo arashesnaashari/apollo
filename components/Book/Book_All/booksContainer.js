@@ -8,6 +8,7 @@ const Books = (props) => {
       <Best data={props.data} />
       <Last data={props.data} />
       <Pop data={props.data} />
+     
     </>
   );
 };

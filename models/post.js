@@ -1,29 +1,39 @@
 const mongoose = require("mongoose");
-
+const autopopulate = require("mongoose-autopopulate");
 const Schema = mongoose.Schema;
 
-const postSchema = new Schema(
-  {
-    text: {
-      type: String,
-      required: true,
-    },
-    like: {
-      type: Number,
-      default: 0,
-    },
-    dislike: {
-      type: Number,
-      default: 0,
-    },
-    creator: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "User",
-      },
-    ],
+const postSchema = new Schema({
+  title: {
+    type: String,
+    required: true,
   },
-  { timestamps: true }
-);
+  body: {
+    type: String,
+    required: true,
+  },
+  image: {
+    type: String,
+    required: false,
+  },
+  creator: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    autopopulate: true,
+  },
 
-module.exports = mongoose.model("Post", postSchema);
+  views: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "View",
+      autopopulate: true,
+    },
+  ],
+  date: {
+    type: Number,
+    required: true,
+  },
+});
+
+module.exports =
+  mongoose.model.Post ||
+  mongoose.model("Post", postSchema.plugin(autopopulate));

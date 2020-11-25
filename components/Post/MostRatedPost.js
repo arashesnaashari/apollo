@@ -1,17 +1,17 @@
-import BookItem from "./BookItem";
+import PostItem from "./postItem";
 import Link from "next/link";
 
 const Best = (props) => {
   return (
     <>
-      <h1>Pop</h1>
+      <h1>MostRated</h1>
       <Link href="/bestbook">
         <a>All book</a>
       </Link>
-      <div style={{ display: "flex" }}>
-        {props.data.map((book) => {
+      <div>
+        {props.data.map((post) => {
           return (
-            <BookItem data={book} key={book._id}/>
+            <PostItem data={post} key={post._id}/>
           );
         })}
       </div>

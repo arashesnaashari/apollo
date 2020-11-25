@@ -31,7 +31,7 @@ export default function Id(props) {
       .then((res) => {
         return res.json();
       })
-      .then((data) => console.log(props.data.data.book));
+      .then((data) => console.log(props.data.data.post));
   }
 
   return (
@@ -65,20 +65,19 @@ export async function getServerSideProps({ params }) {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      query: `
-  query {
-    book(_id:"${params._id}") {
+      query: `query {
+    post(_id:"${params._id}"){
       title,
-      image,
-      group,
-      author,
-      publication
-      price
-      comments{
+      body,
+      image
+      _id,
+      creator {
+        username
+      }
+      views {
+        rate
         text
-        _id
-        date
-        creator{
+        creator {
           username
         }
       }

@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const autopopulate = require("mongoose-autopopulate");
 const Schema = mongoose.Schema;
 
-const commentSchema = new Schema({
+const viewsSchema = new Schema({
   text: {
     type: String,
     required: true,
@@ -20,13 +20,13 @@ const commentSchema = new Schema({
     type: Number,
     required: true,
   },
-  book: {
+  post: {
     type: Schema.Types.ObjectId,
-    ref: "Book",
+    ref: "Post",
     autopopulate: true,
   },
 });
 
 module.exports =
-  mongoose.model.Comment ||
-  mongoose.model("Comment", commentSchema.plugin(autopopulate));
+  mongoose.model.View ||
+  mongoose.model("View", viewsSchema.plugin(autopopulate));

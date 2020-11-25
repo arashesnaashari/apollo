@@ -27,13 +27,13 @@ const rootValue = require("./graphql/resolves");
 //server
 app.prepare().then(() => {
   const server = express();
-  server.use(
-    session({
-      secret: "keyboard cat",
-      resave: false,
-      saveUninitialized: false,
-    })
-  );
+  // server.use(
+  //   session({
+  //     secret: "keyboard cat",
+  //     resave: false,
+  //     saveUninitialized: false,
+  //   })
+  // );
   server.use(cors());
   // server.use(isAuth)
   const isLoggedIn = (req, res, next) => {
@@ -58,8 +58,8 @@ app.prepare().then(() => {
   //   }
   // },
 
-  server.use(passport.initialize());
-  server.use(passport.session());
+  // server.use(passport.initialize());
+  // server.use(passport.session());
 
   mongoose
     .connect(
