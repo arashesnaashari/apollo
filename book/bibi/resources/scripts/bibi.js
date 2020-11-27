@@ -1627,7 +1627,6 @@
             (n.push(a.value), !t || n.length !== t);
             i = !0
           );
-          
         } catch (e) {
           (r = !0), (o = e);
         } finally {
@@ -2189,7 +2188,7 @@
                 "<span>大変申し訳ありません。</span> <span>お使いのブラウザでは、</span><span>動作しません。</span>",
             }))
           );
-        H.note('<span class="non-visual">Welcome!</span>'),
+        H.note('<span className="non-visual">Welcome!</span>'),
           (U.WritingModeProperty =
             ((n = getComputedStyle(U.HTML)),
             /^(vertical|horizontal)-/.test(n["writing-mode"]) || sML.UA.Trident
@@ -2611,7 +2610,7 @@
             "<span>Please don't forget</span> <span>to create a production version</span> <span>before publishing on the Internet.</span>"
           ),
           x.createDevNote.appendParagraph(
-            '<span class="non-visual">(To create a production version, run it on terminal: `</span><code>npm run build</code><span class="non-visual">`)</span>'
+            '<span className="non-visual">(To create a production version, run it on terminal: `</span><code>npm run build</code><span className="non-visual">`)</span>'
           ),
           x.createDevNote
             .appendParagraph("<em>Close</em>", "NoLog")
@@ -3533,7 +3532,7 @@
                         .concat(A.ICBViewport.Width, ", height=")
                         .concat(A.ICBViewport.Height, '" />')
                     : "",
-                  '<img class="bibi-spine-item-image" alt="" src="'.concat(
+                  '<img className="bibi-spine-item-image" alt="" src="'.concat(
                     e.Source.URI,
                     '" />'
                   ),
@@ -6611,11 +6610,12 @@
                     return e.updateKeyParameters();
                   }),
                   e.observe(document),
-                  W.add(["bibi:touched-key", "bibi:is-holding-key"], function (
-                    t
-                  ) {
-                    return e.onKeyTouch(t);
-                  });
+                  W.add(
+                    ["bibi:touched-key", "bibi:is-holding-key"],
+                    function (t) {
+                      return e.onKeyTouch(t);
+                    }
+                  );
               }),
               W.dispatch("bibi:created-key-observer");
           }
@@ -6785,7 +6785,7 @@
               sML.create("p", {
                 id: "bibi-veil-play",
                 title: t,
-                innerHTML: '<span class="non-visual">'.concat(t, "</span>"),
+                innerHTML: '<span className="non-visual">'.concat(t, "</span>"),
                 play: function (e) {
                   return (
                     e.stopPropagation(),
@@ -6850,7 +6850,7 @@
                 "afterbegin",
                 H.distillLabels.distillLanguage({
                   default: [
-                    '<div class="pgroup" lang="en">',
+                    '<div className="pgroup" lang="en">',
                     "<p><strong>Pass Me Your EPUB File!</strong></p>",
                     "<p><em>You Can Open Your Own EPUB.</em></p>",
                     "<p><span>Please ".concat(
@@ -6863,7 +6863,7 @@
                     "</div>",
                   ].join(""),
                   ja: [
-                    '<div class="pgroup" lang="ja">',
+                    '<div className="pgroup" lang="ja">',
                     "<p><strong>EPUBファイルをここにください！</strong></p>",
                     "<p><em>お持ちの EPUB ファイルを<br />開くことができます。</em></p>",
                     "<p><span>".concat(
@@ -7045,7 +7045,7 @@
                   },
                 },
                 Help: !0,
-                Icon: '<span class="bibi-icon bibi-icon-config"></span>',
+                Icon: '<span className="bibi-icon bibi-icon-config"></span>',
               })
             );
             t.includes("ViewModeSection")
@@ -7067,8 +7067,9 @@
             t,
             n = H.Menu.Config,
             i =
-              (e = '<span class="bibi-shape bibi-shape-spread">'.concat(
-                (t = '<span class="bibi-shape bibi-shape-item"></span>') + t,
+              (e = '<span className="bibi-shape bibi-shape-spread">'.concat(
+                (t = '<span className="bibi-shape bibi-shape-item"></span>') +
+                  t,
                 "</span>"
               )) +
               e +
@@ -7087,7 +7088,7 @@
                           ja: "見開き／ページ",
                         },
                       },
-                      Icon: '<span class="bibi-icon bibi-icon-view bibi-icon-view-paged"><span class="bibi-shape bibi-shape-spreads bibi-shape-spreads-paged">'.concat(
+                      Icon: '<span className="bibi-icon bibi-icon-view bibi-icon-view-paged"><span className="bibi-shape bibi-shape-spreads bibi-shape-spreads-paged">'.concat(
                         i,
                         "</span></span>"
                       ),
@@ -7097,12 +7098,12 @@
                       Labels: {
                         default: {
                           default:
-                            '<span class="non-visual-in-label">⇄ </span>Horizontal Scroll',
+                            '<span className="non-visual-in-label">⇄ </span>Horizontal Scroll',
                           ja:
-                            '<span class="non-visual-in-label">⇄ </span>横スクロール',
+                            '<span className="non-visual-in-label">⇄ </span>横スクロール',
                         },
                       },
-                      Icon: '<span class="bibi-icon bibi-icon-view bibi-icon-view-horizontal"><span class="bibi-shape bibi-shape-spreads bibi-shape-spreads-horizontal">'.concat(
+                      Icon: '<span className="bibi-icon bibi-icon-view bibi-icon-view-horizontal"><span className="bibi-shape bibi-shape-spreads bibi-shape-spreads-horizontal">'.concat(
                         i,
                         "</span></span>"
                       ),
@@ -7112,12 +7113,12 @@
                       Labels: {
                         default: {
                           default:
-                            '<span class="non-visual-in-label">⇅ </span>Vertical Scroll',
+                            '<span className="non-visual-in-label">⇅ </span>Vertical Scroll',
                           ja:
-                            '<span class="non-visual-in-label">⇅ </span>縦スクロール',
+                            '<span className="non-visual-in-label">⇅ </span>縦スクロール',
                         },
                       },
-                      Icon: '<span class="bibi-icon bibi-icon-view bibi-icon-view-vertical"><span class="bibi-shape bibi-shape-spreads bibi-shape-spreads-vertical">'.concat(
+                      Icon: '<span className="bibi-icon bibi-icon-view bibi-icon-view-vertical"><span className="bibi-shape bibi-shape-spreads bibi-shape-spreads-vertical">'.concat(
                         i,
                         "</span></span>"
                       ),
@@ -7148,7 +7149,7 @@
                         },
                       },
                       Icon:
-                        '<span class="bibi-icon bibi-icon-full-breadth-layout"></span>',
+                        '<span className="bibi-icon bibi-icon-full-breadth-layout"></span>',
                       action: function () {
                         var e = "active" == this.UIState;
                         F.update({ "full-breadth-layout-in-scroll": e }),
@@ -7195,7 +7196,8 @@
                   ja: "あたらしいウィンドウで開く",
                 },
               },
-              Icon: '<span class="bibi-icon bibi-icon-open-newwindow"></span>',
+              Icon:
+                '<span className="bibi-icon bibi-icon-open-newwindow"></span>',
               id: "bibi-button-open-newwindow",
               href: U.RequestedURL,
               target: "_blank",
@@ -7214,7 +7216,7 @@
                 },
               },
               Icon:
-                '<span class="bibi-icon bibi-icon-toggle-fullscreen"></span>',
+                '<span className="bibi-icon bibi-icon-toggle-fullscreen"></span>',
               id: "bibi-button-toggle-fullscreen",
               action: function () {
                 U.Fullscreen
@@ -7263,7 +7265,8 @@
                     .replace(/>/gi, "&gt;"),
                 },
               },
-              Icon: '<span class="bibi-icon bibi-icon-open-newwindow"></span>',
+              Icon:
+                '<span className="bibi-icon bibi-icon-open-newwindow"></span>',
               href: F["website-href"],
               target: "_blank",
             }),
@@ -7271,7 +7274,8 @@
             n.push({
               Type: "link",
               Labels: { default: { default: "Bibi | Official Website" } },
-              Icon: '<span class="bibi-icon bibi-icon-open-newwindow"></span>',
+              Icon:
+                '<span className="bibi-icon bibi-icon-open-newwindow"></span>',
               href: x.href,
               target: "_blank",
             }),
@@ -7326,7 +7330,7 @@
                 active: { default: "Close Index", ja: "目次を閉じる" },
               },
               Help: !0,
-              Icon: '<span class="bibi-icon bibi-icon-toggle-panel">'.concat(
+              Icon: '<span className="bibi-icon bibi-icon-toggle-panel">'.concat(
                 (function (e) {
                   for (var t = 1; t <= 6; t++) e += "<span></span>";
                   return e;
@@ -7553,7 +7557,7 @@
                   },
                 },
                 Icon:
-                  '<span class="bibi-icon bibi-icon-change-fontsize"></span>',
+                  '<span className="bibi-icon bibi-icon-change-fontsize"></span>',
                 Help: !0,
               }),
               id: "bibi-subpanel_font-size",
@@ -7574,13 +7578,13 @@
                     Labels: {
                       default: {
                         default:
-                          '<span class="non-visual-in-label">Font Size:</span> Ex-Large',
+                          '<span className="non-visual-in-label">Font Size:</span> Ex-Large',
                         ja:
-                          '<span class="non-visual-in-label">文字サイズ：</span>最大',
+                          '<span className="non-visual-in-label">文字サイズ：</span>最大',
                       },
                     },
                     Icon:
-                      '<span class="bibi-icon bibi-icon-fontsize bibi-icon-fontsize-exlarge"></span>',
+                      '<span className="bibi-icon bibi-icon-fontsize bibi-icon-fontsize-exlarge"></span>',
                     action: n,
                     Step: 2,
                   },
@@ -7588,13 +7592,13 @@
                     Labels: {
                       default: {
                         default:
-                          '<span class="non-visual-in-label">Font Size:</span> Large',
+                          '<span className="non-visual-in-label">Font Size:</span> Large',
                         ja:
-                          '<span class="non-visual-in-label">文字サイズ：</span>大',
+                          '<span className="non-visual-in-label">文字サイズ：</span>大',
                       },
                     },
                     Icon:
-                      '<span class="bibi-icon bibi-icon-fontsize bibi-icon-fontsize-large"></span>',
+                      '<span className="bibi-icon bibi-icon-fontsize bibi-icon-fontsize-large"></span>',
                     action: n,
                     Step: 1,
                   },
@@ -7602,13 +7606,13 @@
                     Labels: {
                       default: {
                         default:
-                          '<span class="non-visual-in-label">Font Size:</span> Medium <small>(default)</small>',
+                          '<span className="non-visual-in-label">Font Size:</span> Medium <small>(default)</small>',
                         ja:
-                          '<span class="non-visual-in-label">文字サイズ：</span>中<small>（初期値）</small>',
+                          '<span className="non-visual-in-label">文字サイズ：</span>中<small>（初期値）</small>',
                       },
                     },
                     Icon:
-                      '<span class="bibi-icon bibi-icon-fontsize bibi-icon-fontsize-medium"></span>',
+                      '<span className="bibi-icon bibi-icon-fontsize bibi-icon-fontsize-medium"></span>',
                     action: n,
                     Step: 0,
                   },
@@ -7616,13 +7620,13 @@
                     Labels: {
                       default: {
                         default:
-                          '<span class="non-visual-in-label">Font Size:</span> Small',
+                          '<span className="non-visual-in-label">Font Size:</span> Small',
                         ja:
-                          '<span class="non-visual-in-label">文字サイズ：</span>小',
+                          '<span className="non-visual-in-label">文字サイズ：</span>小',
                       },
                     },
                     Icon:
-                      '<span class="bibi-icon bibi-icon-fontsize bibi-icon-fontsize-small"></span>',
+                      '<span className="bibi-icon bibi-icon-fontsize bibi-icon-fontsize-small"></span>',
                     action: n,
                     Step: -1,
                   },
@@ -7630,13 +7634,13 @@
                     Labels: {
                       default: {
                         default:
-                          '<span class="non-visual-in-label">Font Size:</span> Ex-Small',
+                          '<span className="non-visual-in-label">Font Size:</span> Ex-Small',
                         ja:
-                          '<span class="non-visual-in-label">文字サイズ：</span>最小',
+                          '<span className="non-visual-in-label">文字サイズ：</span>最小',
                       },
                     },
                     Icon:
-                      '<span class="bibi-icon bibi-icon-fontsize bibi-icon-fontsize-exsmall"></span>',
+                      '<span className="bibi-icon bibi-icon-fontsize bibi-icon-fontsize-exsmall"></span>',
                     action: n,
                     Step: -2,
                   },
@@ -8024,7 +8028,7 @@
                 {
                   Labels: { default: { default: "Zoom-in", ja: "拡大する" } },
                   Icon:
-                    '<span class="bibi-icon bibi-icon-loupe bibi-icon-loupe-zoomin"></span>',
+                    '<span className="bibi-icon bibi-icon-loupe bibi-icon-loupe-zoomin"></span>',
                   Help: !0,
                   action: function () {
                     return e.scale(
@@ -8050,7 +8054,7 @@
                     },
                   },
                   Icon:
-                    '<span class="bibi-icon bibi-icon-loupe bibi-icon-loupe-reset"></span>',
+                    '<span className="bibi-icon bibi-icon-loupe bibi-icon-loupe-reset"></span>',
                   Help: !0,
                   action: function () {
                     return e.scale(1);
@@ -8069,7 +8073,7 @@
                 {
                   Labels: { default: { default: "Zoom-out", ja: "縮小する" } },
                   Icon:
-                    '<span class="bibi-icon bibi-icon-loupe bibi-icon-loupe-zoomout"></span>',
+                    '<span className="bibi-icon bibi-icon-loupe bibi-icon-loupe-zoomout"></span>',
                   Help: !0,
                   action: function () {
                     return e.scale(
@@ -8141,13 +8145,14 @@
                       o = Math.floor((r / _.Pages.length) * 100);
                     (e.Current.innerHTML =
                       ((n = i),
-                      i != r && (n += '<span class="delimiter">-</span>' + r),
+                      i != r &&
+                        (n += '<span className="delimiter">-</span>' + r),
                       n)),
                       (e.Delimiter.innerHTML = "/"),
                       (e.Total.innerHTML = _.Pages.length),
                       (e.Percent.innerHTML = "(".concat(
                         o,
-                        '<span class="unit">%</span>)'
+                        '<span className="unit">%</span>)'
                       )),
                       e.show(),
                       "active" != H.Slider.UIState &&
@@ -8301,7 +8306,8 @@
                         },
                       },
                       Help: !1,
-                      Icon: '<span class="bibi-icon bibi-icon-history"></span>',
+                      Icon:
+                        '<span className="bibi-icon bibi-icon-history"></span>',
                       action: function () {
                         return H.History.back();
                       },
@@ -8636,7 +8642,7 @@
                       },
                     },
                     Icon:
-                      '<span class="bibi-icon bibi-icon-manage-bookmarks"></span>',
+                      '<span className="bibi-icon bibi-icon-manage-bookmarks"></span>',
                     Help: !0,
                   }),
                   Position: "left",
@@ -8739,36 +8745,36 @@
                                 A.Package.Metadata["rendition:layout"] &&
                               (d = Math.floor(a.IIPP) + 1),
                           d &&
-                            ((s += '<span class="'
-                              .concat(l, '-page"><span class="')
-                              .concat(l, '-unit">P.</span><span class="')
+                            ((s += '<span className="'
+                              .concat(l, '-page"><span className="')
+                              .concat(l, '-unit">P.</span><span className="')
                               .concat(l, '-number">')
                               .concat(d, "</span></span>")),
                             _.Pages.length))
                         ) {
                           if (d > _.Pages.length) return "continue";
-                          (s += '<span class="'
-                            .concat(l, '-total-pages">/<span class="')
+                          (s += '<span className="'
+                            .concat(l, '-total-pages">/<span className="')
                             .concat(l, '-number">')
                             .concat(_.Pages.length, "</span></span>")),
                             (a["%"] = Math.floor((d / _.Pages.length) * 100));
                         }
                         "number" == typeof a["%"] &&
                           (s += s
-                            ? ' <span class="'
-                                .concat(l, '-percent"><span class="')
+                            ? ' <span className="'
+                                .concat(l, '-percent"><span className="')
                                 .concat(
                                   l,
-                                  '-parenthesis">(</span><span class="'
+                                  '-parenthesis">(</span><span className="'
                                 )
                                 .concat(l, '-number">')
-                                .concat(a["%"], '</span><span class="')
-                                .concat(l, '-unit">%</span><span class="')
+                                .concat(a["%"], '</span><span className="')
+                                .concat(l, '-unit">%</span><span className="')
                                 .concat(l, '-parenthesis">)</span></span>')
-                            : '<span class="'.concat(l, '-percent">') +
-                              '<span class="'
+                            : '<span className="'.concat(l, '-percent">') +
+                              '<span className="'
                                 .concat(l, '-number">')
-                                .concat(a["%"], '</span><span class="')
+                                .concat(a["%"], '</span><span className="')
                                 .concat(l, '-unit">%</span>') +
                               "</span>");
                         var p = s
@@ -8784,11 +8790,11 @@
                         }, !1) &&
                           (i.push(a),
                           (c = "bibi-button-bookmark-is-current"),
-                          (p.default.default += ' <span class="'.concat(
+                          (p.default.default += ' <span className="'.concat(
                             l,
                             '-is-current"></span>'
                           )),
-                          (p.default.ja += ' <span class="'
+                          (p.default.ja += ' <span className="'
                             .concat(l, "-is-current ")
                             .concat(l, '-is-current-ja"></span>')));
                         var f = e.ButtonGroup.addButton({
@@ -8796,7 +8802,7 @@
                             Type: "normal",
                             Labels: p,
                             Icon:
-                              '<span class="bibi-icon bibi-icon-bookmark bibi-icon-a-bookmark"></span>',
+                              '<span className="bibi-icon bibi-icon-bookmark bibi-icon-a-bookmark"></span>',
                             Bookmark: a,
                             action: function () {
                               return k.Opened
@@ -8874,7 +8880,7 @@
                       },
                     },
                     Icon:
-                      '<span class="bibi-icon bibi-icon-bookmark bibi-icon-add-a-bookmark"></span>',
+                      '<span className="bibi-icon bibi-icon-bookmark bibi-icon-add-a-bookmark"></span>',
                     action: function () {
                       return !!n.length && e.add(n[0]);
                     },
@@ -11103,125 +11109,70 @@
 //wait for page
 setTimeout(() => {
   //get all iframe
-  let iframes = document.querySelectorAll('iframe');
+  let iframes = document.querySelectorAll("iframe");
   //create new btn
-  const parent = document.querySelector('#bibi-menu-r')
-  const btn = document.createElement('ul')
-  btn.classList.add('bibi-buttongroup')
-  btn.innerHTML = "<li class='bibi-buttonbox bibi-buttonbox-toggle' style='background-color: khaki;'><span class='bibi-button bibi-button-toggle default' title='Configure Setting' style='background-color: khaki;'><span class='bibi-button-iconbox' style='background-color: khaki;'><span class='bibi-icon bibi-icon-config' style='background-color: khaki;'></span></span><span class='bibi-button-label' style='background-color: khaki;'>Configure Setting</span></span></li>";
-  parent.appendChild(btn)
- 
- 
+  const parent = document.querySelector("#bibi-menu-r");
+  const btn = document.createElement("ul");
+  btn.classList.add("bibi-buttongroup");
+  btn.innerHTML =
+    "<li class='bibi-buttonbox bibi-buttonbox-toggle' style='background-color: khaki;'><span class='bibi-button bibi-button-toggle default' title='Configure Setting' style='background-color: khaki;'><span class='bibi-button-iconbox' style='background-color: khaki;'><span class='bibi-icon bibi-icon-config' style='background-color: khaki;'></span></span><span class='bibi-button-label' style='background-color: khaki;'>Configure Setting</span></span></li>";
+  parent.appendChild(btn);
 
- // loop through all ifram
- 
+  // loop through all ifram
+
   for (let i = 0; i < iframes.length; i++) {
     //get elements from iframe
-   let pes = iframes[i].contentWindow.document.querySelectorAll('p');
-   let body = iframes[i].contentWindow.document.querySelectorAll('div');
-   let all = document.querySelectorAll('*')
-  
+    let pes = iframes[i].contentWindow.document.querySelectorAll("p");
+    let body = iframes[i].contentWindow.document.querySelectorAll("div");
+    let all = document.querySelectorAll("*");
 
-   // change theme by click btn
-   btn.addEventListener('click',(e) => {
-     e.preventDefault()
-    document.body.style.filter = "grayscale(0%)";
-    
+    // change theme by click btn
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      document.body.style.filter = "grayscale(0%)";
+
+      for (let i = 0; i < all.length; i++) {
+        all[i].style.backgroundColor = "#121212";
+      }
+      for (let i = 0; i < body.length; i++) {
+        body[i].style.color = "white";
+        body[i].style.borderColor = "gray";
+        body[i].style.direction = "rtl";
+      }
+    });
     for (let i = 0; i < all.length; i++) {
-     all[i].style.backgroundColor = '#121212';
- 
-     
-   }
-   for (let i = 0; i < body.length; i++) {
-     body[i].style.color = 'white';
-     body[i].style.borderColor = 'gray';
-     body[i].style.direction = 'rtl';
-   }
- 
- 
- 
- 
- 
- 
-   })
-   for (let i = 0; i < all.length; i++) {
-     all[i].style.backgroundColor = 'khaki';
- 
-     
-   }
+      all[i].style.backgroundColor = "khaki";
+    }
 
-   // rtl after change font
-   let radios = document.querySelectorAll('.bibi-buttonbox-radio');
-   for (let i = 0; i < radios.length; i++) {
-    
-    radios[i].addEventListener('click',() => {
-      setTimeout(() => {
-        for (let i = 0; i < body.length; i++) {
-       body[i].style.direction = 'rtl';
-       
-     }
-      },1000)
-    })
-     
-     
-   }
+    // rtl after change font
+    let radios = document.querySelectorAll(".bibi-buttonbox-radio");
+    for (let i = 0; i < radios.length; i++) {
+      radios[i].addEventListener("click", () => {
+        setTimeout(() => {
+          for (let i = 0; i < body.length; i++) {
+            body[i].style.direction = "rtl";
+          }
+        }, 1000);
+      });
+    }
 
-   // rtl after change zoom
-   
+    // rtl after change zoom
 
-    
-    window.addEventListener('resize', function() {
-      
-        for (let i = 0; i < pes.length; i++) {
-          pes[i].style.direction = 'rtl';
-     }
-      
+    window.addEventListener("resize", function () {
+      for (let i = 0; i < pes.length; i++) {
+        pes[i].style.direction = "rtl";
+      }
+    });
 
-    })
-     
-     
-   
-
-
-   //deafult   rtl color  lineHight
-   for (let i = 0; i < body.length; i++) {
-     body[i].style.direction = 'rtl';
-     body[i].style.color = 'brown';
-     body[i].style.fontFamily = 'system-ui'
-     
-   }  
-   for (let i = 0; i < pes.length; i++) {
-   
-     pes[i].style.lineHeight  = '3';
-     //pes[i].style.fontSize  = '100px';
- 
- 
-     
-   }
+    //deafult   rtl color  lineHight
+    for (let i = 0; i < body.length; i++) {
+      body[i].style.direction = "rtl";
+      body[i].style.color = "brown";
+      body[i].style.fontFamily = "system-ui";
+    }
+    for (let i = 0; i < pes.length; i++) {
+      pes[i].style.lineHeight = "3";
+      //pes[i].style.fontSize  = '100px';
+    }
   }
- 
-  
-  
-   
- 
- 
- 
- 
- 
- 
- 
- 
- 
- },2000)
-
-
-
-
-
-
-
-
-
-
-
- 
+}, 2000);

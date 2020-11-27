@@ -1,0 +1,13 @@
+/* font converted using font-converter.net. thank you! */
+@font-face {
+  font-family: "AIranianSans";
+  src: url("./IranianSans.eot"); /* IE9 Compat Modes */
+  src: url("./IranianSans.eot?#iefix") format("embedded-opentype"),
+    /* IE6-IE8 */ url("./IranianSans.otf") format("opentype"),
+    /* Open Type Font */ url("./IranianSans.svg") format("svg"),
+    /* Legacy iOS */ url("./IranianSans.ttf") format("truetype"),
+    /* Safari, Android, iOS */ url("./IranianSans.woff") format("woff"),
+    /* Modern Browsers */ url("./IranianSans.woff2") format("woff2"); /* Modern Browsers */
+  font-weight: normal;
+  font-style: normal;
+}

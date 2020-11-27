@@ -3,13 +3,19 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 
 const Layout = (props) => (
-  <div>
+  <div className="container">
     <Head>
-      <title>bookgram</title>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>BookGram</title>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+        rel="stylesheet"
+      />
+      <link rel="stylesheet" href="../../css/style.css" />
     </Head>
     <Navbar />
-    <hr></hr>
-    <div className="container">{props.children}</div>
+    <div>{props.children}</div>
     <Footer />
   </div>
 );

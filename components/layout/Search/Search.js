@@ -53,12 +53,29 @@ const Search = () => {
 
   return (
     <>
-      {!data && <input placeholder="searching .... " disabled />}{" "}
+      {!data && (
+        <div className="search-box">
+          <input placeholder="searching .... " disabled id="search" />
+          <a href="#">
+            <svg className="icon icon-search">
+              <use xlinkHref="img/symbol-defs.svg#icon-search"></use>
+            </svg>
+          </a>
+        </div>
+      )}{" "}
       {data && (
-        <input
-          placeholder="searching .... "
-          onInput={(e) => inputEvent(e.target.value)}
-        />
+        <div className="search-box">
+          <input
+            placeholder="searching .... "
+            onInput={(e) => inputEvent(e.target.value)}
+            id="search"
+          />
+          <a href="#">
+            <svg className="icon icon-search">
+              <use xlinkHref="img/symbol-defs.svg#icon-search"></use>
+            </svg>
+          </a>
+        </div>
       )}
       {html}
     </>

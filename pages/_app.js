@@ -1,3 +1,4 @@
+import '../css/style.css'
 import AuthContext from "../context/auth-context";
 import { useState, useEffect, useContext } from "react";
 function MyApp({ Component, pageProps }) {

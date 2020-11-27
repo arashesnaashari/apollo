@@ -74,33 +74,55 @@ function Form() {
   console.log(context);
 
   return (
-    <div>
-      {!clozeModal && (
-        <form onSubmit={handleSubmit}>
-          <input
-            onChange={(event) => setUser(event.target.value)}
-            placeholder="user"
-            type="text"
-          />
-          {!isLogin && (
-            <input
-              onChange={() => setphone(event.target.value)}
-              placeholder="phone"
-              type="text"
-            />
+    <div className="sign-up">
+      <div className="sign-up--container">
+        <div className="form-group">
+          <h3 className="logo">BookGram.io</h3>
+          <h1 className="form-group--title">شروع کنیم</h1>
+          <div className="login-link">
+            {!isLogin ? (
+              <>
+                <span className="login-text">حساب کاربری ندارید؟</span>
+                <a onClick={() => setisLogin(!isLogin)}>ثبت نام</a>
+              </>
+            ) : (
+              <>
+                <span className="login-text">حساب کاربری دارید؟</span>
+                <a onClick={() => setisLogin(!isLogin)}>ورود</a>
+              </>
+            )}
+          </div>
+          {!clozeModal && (
+            <form onSubmit={handleSubmit}>
+              <input
+                onChange={(event) => setUser(event.target.value)}
+                placeholder="نام"
+                type="text"
+              />
+              {isLogin && (
+                <input
+                  onChange={(event) => setphone(event.target.value)}
+                  placeholder="شماره همراه"
+                  type="text"
+                />
+              )}
+              <input
+                onChange={(event) => setPass(event.target.value)}
+                placeholder="رمز عبور"
+                type="password"
+              />
+              <button type="submit">ثبت</button>
+
+              {err && <span>{err}</span>}
+            </form>
           )}
-          <input
-            onChange={(event) => setPass(event.target.value)}
-            placeholder="pass"
-            type="password"
-          />
-          <button type="submit">Submit</button>
-          <button type="button" onClick={() => setisLogin(!isLogin)}>
-            Go to {isLogin ? "Signup" : "Login"}
-          </button>{" "}
-          {err && <span>{err}</span>}
-        </form>
-      )}
+        </div>
+
+        <div className="sign-up--image">
+          <img src="img/signup-image.png" alt="Trulli" />
+          <div className="sign-up--image__caption">کتابخانه خودت را بساز</div>
+        </div>
+      </div>
     </div>
   );
 }

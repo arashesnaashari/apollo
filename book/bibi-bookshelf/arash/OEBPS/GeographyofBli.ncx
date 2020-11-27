@@ -11,14 +11,14 @@
 <docTitle><text>The Geography of Bliss</text></docTitle>
 <docAuthor><text>Eric Weiner</text></docAuthor>
 <navMap>
-<navPoint playOrder="1" class="fmh" id="contents_1"><navLabel><text>Contents</text></navLabel><content src="GeographyofBli_body.html#contents_1"/>
+<navPoint playOrder="1" className="fmh" id="contents_1"><navLabel><text>Contents</text></navLabel><content src="GeographyofBli_body.html#contents_1"/>
 </navPoint>
 
-<navPoint playOrder="2" class="fmh" id="introduction_1"><navLabel><text>Introduction</text></navLabel><content src="GeographyofBli_body.html#introduction_1"/>
+<navPoint playOrder="2" className="fmh" id="introduction_1"><navLabel><text>Introduction</text></navLabel><content src="GeographyofBli_body.html#introduction_1"/>
 </navPoint>
 
 
-<navPoint playOrder="3" class="ct" id="chapter_1"><navLabel><text>Chapter 1: THE NETHERLANDS: Happiness Is a Number</text></navLabel><content src="GeographyofBli_body.html#chapter_1"/>
+<navPoint playOrder="3" className="ct" id="chapter_1"><navLabel><text>Chapter 1: THE NETHERLANDS: Happiness Is a Number</text></navLabel><content src="GeographyofBli_body.html#chapter_1"/>
 </navPoint>
 
 </navMap>
