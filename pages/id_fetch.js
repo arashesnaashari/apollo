@@ -10,7 +10,7 @@ export default function Id(props) {
   const NumericRate = parseInt(rate);
   async function handleSubmit(event) {
     event.preventDefault();
-    fetch("http://localhost:3000/graphql", {
+    fetch("http://localhost:3000/api/graphql", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -53,7 +53,7 @@ export default function Id(props) {
 }
 
 export async function getServerSideProps({ params }) {
-  const res = await fetch("http://localhost:3000/graphql", {
+  const res = await fetch("http://localhost:3000/api/graphql", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({

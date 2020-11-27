@@ -4,7 +4,6 @@ import Books from "../components/Book/Book_All/booksContainer";
 import Container from "../components/Home/Container";
 import { useEffect } from "react";
 export default function propssing(props) {
-
   return (
     <>
       <Layout>
@@ -16,7 +15,7 @@ export default function propssing(props) {
 }
 
 export async function getStaticProps(context) {
-  const res = await fetch("http://localhost:3000/graphql", {
+  const res = await fetch("http://localhost:3000/api/graphql", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -38,7 +37,7 @@ export async function getStaticProps(context) {
 }
 
 // export async function getStaticProps(context) {
-//   const res = await fetch("http://localhost:3000/graphql", {
+//   const res = await fetch("http://localhost:3000/api/graphql", {
 //     method: "POST",
 //     headers: { "Content-Type": "application/json" },
 //     body: JSON.stringify({

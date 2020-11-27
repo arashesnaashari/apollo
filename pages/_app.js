@@ -5,8 +5,8 @@ function MyApp({ Component, pageProps }) {
   let storagedUserId;
 
   if (typeof window !== "undefined") {
-     storagedToken = localStorage.getItem("token");
-     storagedUserId = localStorage.getItem("userId");
+    storagedToken = localStorage.getItem("token");
+    storagedUserId = localStorage.getItem("userId");
   }
 
   const [token, setToken] = useState(null || storagedToken);

@@ -29,11 +29,17 @@ const postSchema = new Schema({
     },
   ],
   date: {
-    type: Number,
+    type: Date,
     required: true,
   },
 });
 
-module.exports =
-  mongoose.model.Post ||
-  mongoose.model("Post", postSchema.plugin(autopopulate));
+var Post;
+
+if (mongoose.models.Post) {
+  Post = mongoose.model("Post");
+} else {
+  Post = mongoose.model("Post", postSchema.plugin(autopopulate));
+}
+
+module.exports = Post;

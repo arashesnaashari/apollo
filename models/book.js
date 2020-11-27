@@ -38,4 +38,12 @@ const bookSchema = new Schema({
   ],
 });
 
-module.exports =mongoose.model.Book ||  mongoose.model("Book", bookSchema.plugin(autopopulate));
+var Book;
+
+if (mongoose.models.Book) {
+  Book = mongoose.model("Book");
+} else {
+  Book = mongoose.model("Book", bookSchema.plugin(autopopulate));
+}
+
+module.exports = Book;

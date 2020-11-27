@@ -27,6 +27,13 @@ const commentSchema = new Schema({
   },
 });
 
-module.exports =
-  mongoose.model.Comment ||
-  mongoose.model("Comment", commentSchema.plugin(autopopulate));
+
+var Comment;
+
+if (mongoose.models.Comment) {
+  Comment = mongoose.model("Comment");
+} else {
+  Comment = mongoose.model("Comment", commentSchema.plugin(autopopulate));
+}
+
+module.exports = Comment;

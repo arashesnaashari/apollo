@@ -31,6 +31,12 @@ const userSchema = new Schema({
   ],
 });
 
-module.exports =
-  mongoose.models.User ||
-  mongoose.model("User", userSchema.plugin(autopopulate));
+var User;
+
+if (mongoose.models.User) {
+  User = mongoose.model("User");
+} else {
+  User = mongoose.model("User", userSchema.plugin(autopopulate));
+}
+
+module.exports = User;

@@ -27,6 +27,12 @@ const viewsSchema = new Schema({
   },
 });
 
-module.exports =
-  mongoose.model.View ||
-  mongoose.model("View", viewsSchema.plugin(autopopulate));
+var View;
+
+if (mongoose.models.View) {
+  View = mongoose.model("View");
+} else {
+  View = mongoose.model("View", viewsSchema.plugin(autopopulate));
+}
+
+module.exports = View;

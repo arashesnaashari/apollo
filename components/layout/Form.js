@@ -18,7 +18,7 @@ function Form() {
     if (isLogin == false) {
       //signUp
       try {
-        const res = await fetch("http://localhost:3000/graphql", {
+        const res = await fetch("http://localhost:3000/api/graphql", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -40,7 +40,7 @@ function Form() {
     }
     if (isLogin == true) {
       try {
-        const res = await fetch("http://localhost:3000/graphql", {
+        const res = await fetch("http://localhost:3000/api/graphql", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -64,10 +64,10 @@ function Form() {
             data11.data.login.tokenExpire
           );
         }
-        
+
         return data11;
       } catch (error) {
-        setErr('erroooor');
+        setErr("erroooor");
       }
     }
   }
