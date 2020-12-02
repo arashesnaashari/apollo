@@ -1,13 +1,14 @@
 import Link from "next/link";
+import PostItem from "./postItem";
 
 const Popular = (props) => {
   return (
     <>
-      <h1>Popular</h1>
-      <Link href="/popbook">
-        <h6>All book</h6>
-      </Link>
-      
+      <section class="blog-post2">
+        {props.data.map((post) => {
+          return <PostItem data={post} key={post._id} />;
+        })}
+      </section>
     </>
   );
 };

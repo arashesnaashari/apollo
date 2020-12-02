@@ -1,0 +1,73 @@
+@namespace h "http://www.w3.org/1999/xhtml";
+.aye {
+    color: red;
+    font-weight: normal;
+    line-height: 23px
+    }
+.calibre {
+    background-color: #fff;
+    background-image: none;
+    color: #016123;
+    direction: rtl;
+    display: block;
+    font-family: "tahoma";
+    font-size: 1em;
+    line-height: 20px;
+    margin-bottom: 0;
+    margin-left: 5pt;
+    margin-right: 5pt;
+    margin-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+    text-align: Justify;
+    width: auto
+    }
+.calibre1 {
+    color: inherit;
+    cursor: inherit;
+    text-decoration: inherit
+    }
+.calibre2 {
+    display: block;
+    margin-bottom: 1em;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 1em;
+    text-align: right
+    }
+.calibre3 {
+    color: #00c;
+    font-family: Traditional Arabic, Times New Roman, Tahoma, Arial;
+    font-size: 1em;
+    font-weight: bold
+    }
+.calibre4 {
+    color: blue;
+    cursor: pointer;
+    text-decoration: underline
+    }
+.calibre5 {
+    display: block;
+    margin-bottom: 1em;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 1em;
+    text-align: center
+    }
+.calibre6 {
+    display: block;
+    margin-bottom: 1em;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 1em
+    }
+.calibre7 {
+    display: block
+    }
+.tarjome {
+    color: #36c;
+    font-family: tahoma;
+    font-size: 1em;
+    font-weight: normal;
+    text-align: right
+    }

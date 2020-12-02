@@ -21,6 +21,7 @@ export async function getStaticProps(context) {
         posts{
           title,
           body,
+          date,
           image
           _id,
           creator {

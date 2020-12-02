@@ -1,12 +1,14 @@
 import Link from "next/link";
+import PostItem from "./postItem";
 
 const Last = (props) => {
   return (
     <>
-      <h1>Last</h1>
-      <Link href="/lastbook">
-        <h6>All book</h6>
-      </Link>
+      <section class="blog-latest-post2">
+        {props.data.map((post) => {
+          return <PostItem data={post} key={post._id} />;
+        })}
+      </section>
     </>
   );
 };

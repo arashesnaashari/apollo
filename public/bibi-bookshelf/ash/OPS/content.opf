@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<package version="2.0" xmlns="http://www.idpf.org/2007/opf" unique-identifier="BookId">
+  <metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opf="http://www.idpf.org/2007/opf">
+   <dc:title>زیارت عاشورا</dc:title>
+   <dc:creator>مفاتیح</dc:creator>
+   <dc:date>2011-11-28</dc:date>
+   <dc:subject>General Nonfiction</dc:subject>
+   <dc:language>en</dc:language>
+   <dc:publisher>Web Books Publishing</dc:publisher>
+   <dc:identifier id="BookId">web-books-46225110251</dc:identifier>
+ </metadata>
+ <manifest>
+     <item id="ncx" href="toc.ncx" media-type="application/x-dtbncx+xml" />
+ 	 <item id="W000Title" href="000Title.html" media-type="application/xhtml+xml" />
+ 	 <item id="W01MB46225110251" href="01MB46225110251.html" media-type="application/xhtml+xml" />
+    <item id="style" href="style.css" media-type="text/css" />
+    <item id="cover" href="cover.jpg" media-type="image/jpeg" />
+ </manifest>
+  <spine toc="ncx">
+    <itemref idref="W000Title" />
+    <itemref idref="W01MB46225110251" />
+ </spine>
+</package>

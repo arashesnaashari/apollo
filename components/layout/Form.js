@@ -82,16 +82,17 @@ function Form() {
           <div className="login-link">
             {!isLogin ? (
               <>
-                <span className="login-text">حساب کاربری ندارید؟</span>
-                <a onClick={() => setisLogin(!isLogin)}>ثبت نام</a>
-              </>
-            ) : (
-              <>
                 <span className="login-text">حساب کاربری دارید؟</span>
                 <a onClick={() => setisLogin(!isLogin)}>ورود</a>
               </>
+            ) : (
+              <>
+                <span className="login-text">حساب کاربری ندارید؟</span>
+                <a onClick={() => setisLogin(!isLogin)}>ثبت نام</a>
+              </>
             )}
           </div>
+          {console.log(isLogin)}
           {!clozeModal && (
             <form onSubmit={handleSubmit}>
               <input
@@ -99,7 +100,7 @@ function Form() {
                 placeholder="نام"
                 type="text"
               />
-              {isLogin && (
+              {!isLogin && (
                 <input
                   onChange={(event) => setphone(event.target.value)}
                   placeholder="شماره همراه"

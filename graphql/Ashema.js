@@ -10,6 +10,7 @@ const typeDefs = gql`
     image: String!
     price: Int!
     comments: [Comment!]
+    owner: [User!]
   }
   type User {
     _id: ID!
@@ -18,6 +19,8 @@ const typeDefs = gql`
     phone: String!
     posts: [Post!]
     comments: [Comment!]
+    books: [Book!]
+    reader: [Reader!]
   }
   type Comment {
     _id: ID!
@@ -43,6 +46,14 @@ const typeDefs = gql`
     views: [View!]
     date: String!
     image: String!
+  }
+  type Reader {
+    _id: ID!
+    userId: User!
+    book: Book!
+    pages: Int!
+    date: String!
+    time: Int!
   }
   type AuthData {
     userId: ID!
@@ -73,6 +84,16 @@ const typeDefs = gql`
     body: String!
     image: String!
   }
+  input ReadInput {
+    userId: String!
+    book: String!
+    pages: Int!
+    time: Int!
+  }
+  input addToShelfInput {
+    userId: String!
+    book: String!
+  }
 
   type Query {
     users: [User!]
@@ -87,6 +108,8 @@ const typeDefs = gql`
     createComment(input: CommentInput): Comment
     createPost(input: PostInput): Post
     createView(input: viewsToPost): View
+    read(input: ReadInput): Reader
+    addToShelf(input: addToShelfInput): User
   }
 `;
 

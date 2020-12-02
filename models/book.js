@@ -36,6 +36,13 @@ const bookSchema = new Schema({
       autopopulate: true,
     },
   ],
+  owner: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+      autopopulate: true,
+    },
+  ],
 });
 
 var Book;

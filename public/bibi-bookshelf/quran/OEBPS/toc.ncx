@@ -1,0 +1,707 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE ncx PUBLIC "-//NISO//DTD ncx 2005-1//EN"
+   "http://www.daisy.org/z3986/2005/ncx-2005-1.dtd">
+
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1">
+    <head>
+        <meta name="dtb:uid" content="537c7d69-ca59-4914-8718-377a57aaf427"/>
+        <meta name="dtb:depth" content="2"/>
+        <meta name="dtb:totalPageCount" content="0"/>
+        <meta name="dtb:maxPageNumber" content="0"/>
+    </head>
+    <docTitle>
+        <text>quran karim</text>
+    </docTitle>
+    <navMap>
+        <navPoint id="navPoint-1" playOrder="1">
+            <navLabel>
+                <text>قرآن کریم</text>
+            </navLabel>
+            <content src="Text/quran_karim_split_000.htm"/>
+            <navPoint id="navPoint-2" playOrder="2">
+                <navLabel>
+                    <text>▲</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_000.htm#heading_id_3"/>
+            </navPoint>
+            <navPoint id="navPoint-3" playOrder="3">
+                <navLabel>
+                    <text>[1] سوره حمد</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_000.htm#heading_id_4"/>
+            </navPoint>
+            <navPoint id="navPoint-4" playOrder="4">
+                <navLabel>
+                    <text>[2] سوره بقره</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_000.htm#heading_id_5"/>
+            </navPoint>
+            <navPoint id="navPoint-5" playOrder="5">
+                <navLabel>
+                    <text>[3] سوره آل عمران</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_001.htm#heading_id_2"/>
+            </navPoint>
+            <navPoint id="navPoint-6" playOrder="6">
+                <navLabel>
+                    <text>[4] سوره نساء</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_002.htm#heading_id_2"/>
+            </navPoint>
+            <navPoint id="navPoint-7" playOrder="7">
+                <navLabel>
+                    <text>[5] سوره مائده</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_003.htm#heading_id_2"/>
+            </navPoint>
+            <navPoint id="navPoint-8" playOrder="8">
+                <navLabel>
+                    <text>[6] سوره انعام</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_003.htm#heading_id_3"/>
+            </navPoint>
+            <navPoint id="navPoint-9" playOrder="9">
+                <navLabel>
+                    <text>[7] سوره اعراف</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_004.htm#heading_id_2"/>
+            </navPoint>
+            <navPoint id="navPoint-10" playOrder="10">
+                <navLabel>
+                    <text>[8] سوره انفال</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_005.htm#heading_id_2"/>
+            </navPoint>
+            <navPoint id="navPoint-11" playOrder="11">
+                <navLabel>
+                    <text>[9] سوره توبه</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_005.htm#heading_id_3"/>
+            </navPoint>
+            <navPoint id="navPoint-12" playOrder="12">
+                <navLabel>
+                    <text>[10] سوره یونس</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_006.htm"/>
+            </navPoint>
+            <navPoint id="navPoint-13" playOrder="13">
+                <navLabel>
+                    <text>[11] سوره هود</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_006.htm#heading_id_3"/>
+            </navPoint>
+            <navPoint id="navPoint-14" playOrder="14">
+                <navLabel>
+                    <text>[12] سوره یوسف</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_007.htm"/>
+            </navPoint>
+            <navPoint id="navPoint-15" playOrder="15">
+                <navLabel>
+                    <text>[13] سوره رعد</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_007.htm#heading_id_3"/>
+            </navPoint>
+            <navPoint id="navPoint-16" playOrder="16">
+                <navLabel>
+                    <text>[14] سوره ابراهیم</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_007.htm#heading_id_4"/>
+            </navPoint>
+            <navPoint id="navPoint-17" playOrder="17">
+                <navLabel>
+                    <text>[15] سوره حجر</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_008.htm"/>
+            </navPoint>
+            <navPoint id="navPoint-18" playOrder="18">
+                <navLabel>
+                    <text>[16] سوره نحل</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_008.htm#heading_id_3"/>
+            </navPoint>
+            <navPoint id="navPoint-19" playOrder="19">
+                <navLabel>
+                    <text>[17] سوره اسراء</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_009.htm"/>
+            </navPoint>
+            <navPoint id="navPoint-20" playOrder="20">
+                <navLabel>
+                    <text>[18] سوره کهف</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_009.htm#heading_id_3"/>
+            </navPoint>
+            <navPoint id="navPoint-21" playOrder="21">
+                <navLabel>
+                    <text>[19] سوره مریم</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_010.htm"/>
+            </navPoint>
+            <navPoint id="navPoint-22" playOrder="22">
+                <navLabel>
+                    <text>[20] سوره طه</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_010.htm#heading_id_3"/>
+            </navPoint>
+            <navPoint id="navPoint-23" playOrder="23">
+                <navLabel>
+                    <text>[21] سوره انبیاء</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_011.htm"/>
+            </navPoint>
+            <navPoint id="navPoint-24" playOrder="24">
+                <navLabel>
+                    <text>[22] سوره حج</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_011.htm#heading_id_3"/>
+            </navPoint>
+            <navPoint id="navPoint-25" playOrder="25">
+                <navLabel>
+                    <text>[23] سوره مومنون</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_011.htm#heading_id_4"/>
+            </navPoint>
+            <navPoint id="navPoint-26" playOrder="26">
+                <navLabel>
+                    <text>[24] سوره نور</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_012.htm"/>
+            </navPoint>
+            <navPoint id="navPoint-27" playOrder="27">
+                <navLabel>
+                    <text>[25] سوره فرقان</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_012.htm#heading_id_3"/>
+            </navPoint>
+            <navPoint id="navPoint-28" playOrder="28">
+                <navLabel>
+                    <text>[26] سوره شعرا</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_012.htm#heading_id_4"/>
+            </navPoint>
+            <navPoint id="navPoint-29" playOrder="29">
+                <navLabel>
+                    <text>[27] سوره نمل</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_012.htm#heading_id_5"/>
+            </navPoint>
+            <navPoint id="navPoint-30" playOrder="30">
+                <navLabel>
+                    <text>[28] سوره قصص</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_013.htm"/>
+            </navPoint>
+            <navPoint id="navPoint-31" playOrder="31">
+                <navLabel>
+                    <text>[29] سوره عنكبوت</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_013.htm#heading_id_3"/>
+            </navPoint>
+            <navPoint id="navPoint-32" playOrder="32">
+                <navLabel>
+                    <text>[30] سوره روم</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_013.htm#heading_id_4"/>
+            </navPoint>
+            <navPoint id="navPoint-33" playOrder="33">
+                <navLabel>
+                    <text>[31] سوره لقمان</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_014.htm"/>
+            </navPoint>
+            <navPoint id="navPoint-34" playOrder="34">
+                <navLabel>
+                    <text>[32] سوره سجده</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_014.htm#heading_id_3"/>
+            </navPoint>
+            <navPoint id="navPoint-35" playOrder="35">
+                <navLabel>
+                    <text>[33] سوره احزاب</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_014.htm#heading_id_4"/>
+            </navPoint>
+            <navPoint id="navPoint-36" playOrder="36">
+                <navLabel>
+                    <text>[34] سوره سبا</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_014.htm#heading_id_5"/>
+            </navPoint>
+            <navPoint id="navPoint-37" playOrder="37">
+                <navLabel>
+                    <text>[35] سوره فاطر</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_014.htm#heading_id_6"/>
+            </navPoint>
+            <navPoint id="navPoint-38" playOrder="38">
+                <navLabel>
+                    <text>[36] سوره يس</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_015.htm"/>
+            </navPoint>
+            <navPoint id="navPoint-39" playOrder="39">
+                <navLabel>
+                    <text>[37] سوره صافات</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_015.htm#heading_id_3"/>
+            </navPoint>
+            <navPoint id="navPoint-40" playOrder="40">
+                <navLabel>
+                    <text>[38] سوره ص</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_015.htm#heading_id_4"/>
+            </navPoint>
+            <navPoint id="navPoint-41" playOrder="41">
+                <navLabel>
+                    <text>[39] سوره زمر</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_015.htm#heading_id_5"/>
+            </navPoint>
+            <navPoint id="navPoint-42" playOrder="42">
+                <navLabel>
+                    <text>[40] سوره غافر</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_016.htm"/>
+            </navPoint>
+            <navPoint id="navPoint-43" playOrder="43">
+                <navLabel>
+                    <text>[41] سوره فصلت</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_016.htm#heading_id_3"/>
+            </navPoint>
+            <navPoint id="navPoint-44" playOrder="44">
+                <navLabel>
+                    <text>[42] سوره شورى</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_016.htm#heading_id_4"/>
+            </navPoint>
+            <navPoint id="navPoint-45" playOrder="45">
+                <navLabel>
+                    <text>[43] سوره زخرف</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_016.htm#heading_id_5"/>
+            </navPoint>
+            <navPoint id="navPoint-46" playOrder="46">
+                <navLabel>
+                    <text>[44] سوره دخان</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_017.htm"/>
+            </navPoint>
+            <navPoint id="navPoint-47" playOrder="47">
+                <navLabel>
+                    <text>[45] سوره جاثيه</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_017.htm#heading_id_3"/>
+            </navPoint>
+            <navPoint id="navPoint-48" playOrder="48">
+                <navLabel>
+                    <text>[46] سوره احقاف</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_017.htm#heading_id_4"/>
+            </navPoint>
+            <navPoint id="navPoint-49" playOrder="49">
+                <navLabel>
+                    <text>[47] سوره محمد</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_017.htm#heading_id_5"/>
+            </navPoint>
+            <navPoint id="navPoint-50" playOrder="50">
+                <navLabel>
+                    <text>[48] سوره فتح</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_017.htm#heading_id_6"/>
+            </navPoint>
+            <navPoint id="navPoint-51" playOrder="51">
+                <navLabel>
+                    <text>[49] سوره حجرات</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_017.htm#heading_id_7"/>
+            </navPoint>
+            <navPoint id="navPoint-52" playOrder="52">
+                <navLabel>
+                    <text>[50] سوره ق</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_017.htm#heading_id_8"/>
+            </navPoint>
+            <navPoint id="navPoint-53" playOrder="53">
+                <navLabel>
+                    <text>[51] سوره ذاريات</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_017.htm#heading_id_9"/>
+            </navPoint>
+            <navPoint id="navPoint-54" playOrder="54">
+                <navLabel>
+                    <text>[52] سوره طور</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_018.htm"/>
+            </navPoint>
+            <navPoint id="navPoint-55" playOrder="55">
+                <navLabel>
+                    <text>[53] سوره نجم</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_018.htm#heading_id_3"/>
+            </navPoint>
+            <navPoint id="navPoint-56" playOrder="56">
+                <navLabel>
+                    <text>[54] سوره قمر</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_018.htm#heading_id_4"/>
+            </navPoint>
+            <navPoint id="navPoint-57" playOrder="57">
+                <navLabel>
+                    <text>[55] سوره الرحمن</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_018.htm#heading_id_5"/>
+            </navPoint>
+            <navPoint id="navPoint-58" playOrder="58">
+                <navLabel>
+                    <text>[56] سوره واقعه</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_018.htm#heading_id_6"/>
+            </navPoint>
+            <navPoint id="navPoint-59" playOrder="59">
+                <navLabel>
+                    <text>[58] سوره مجادله</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_019.htm#heading_id_2"/>
+            </navPoint>
+            <navPoint id="navPoint-60" playOrder="60">
+                <navLabel>
+                    <text>[59] سوره حشر</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_019.htm#heading_id_3"/>
+            </navPoint>
+            <navPoint id="navPoint-61" playOrder="61">
+                <navLabel>
+                    <text>[60] سوره ممتحنه</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_019.htm#heading_id_4"/>
+            </navPoint>
+            <navPoint id="navPoint-62" playOrder="62">
+                <navLabel>
+                    <text>[61] سوره صف</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_019.htm#heading_id_5"/>
+            </navPoint>
+            <navPoint id="navPoint-63" playOrder="63">
+                <navLabel>
+                    <text>[62] سوره جمعه</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_019.htm#heading_id_6"/>
+            </navPoint>
+            <navPoint id="navPoint-64" playOrder="64">
+                <navLabel>
+                    <text>[63] سوره منافقون</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_019.htm#heading_id_7"/>
+            </navPoint>
+            <navPoint id="navPoint-65" playOrder="65">
+                <navLabel>
+                    <text>[64] سوره تغابن</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_019.htm#heading_id_8"/>
+            </navPoint>
+            <navPoint id="navPoint-66" playOrder="66">
+                <navLabel>
+                    <text>[65] سوره طلاق</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_019.htm#heading_id_9"/>
+            </navPoint>
+            <navPoint id="navPoint-67" playOrder="67">
+                <navLabel>
+                    <text>[66] سوره تحريم</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_019.htm#heading_id_10"/>
+            </navPoint>
+            <navPoint id="navPoint-68" playOrder="68">
+                <navLabel>
+                    <text>[67] سوره ملك</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_019.htm#heading_id_11"/>
+            </navPoint>
+            <navPoint id="navPoint-69" playOrder="69">
+                <navLabel>
+                    <text>[68] سوره قلم</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_019.htm#heading_id_12"/>
+            </navPoint>
+            <navPoint id="navPoint-70" playOrder="70">
+                <navLabel>
+                    <text>[69] سوره حاقه</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_019.htm#heading_id_13"/>
+            </navPoint>
+            <navPoint id="navPoint-71" playOrder="71">
+                <navLabel>
+                    <text>[70] سوره معراج</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_020.htm"/>
+            </navPoint>
+            <navPoint id="navPoint-72" playOrder="72">
+                <navLabel>
+                    <text>[71] سوره نوح</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_020.htm#heading_id_3"/>
+            </navPoint>
+            <navPoint id="navPoint-73" playOrder="73">
+                <navLabel>
+                    <text>[72] سوره جن</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_020.htm#heading_id_4"/>
+            </navPoint>
+            <navPoint id="navPoint-74" playOrder="74">
+                <navLabel>
+                    <text>[73] سوره مزمل</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_020.htm#heading_id_5"/>
+            </navPoint>
+            <navPoint id="navPoint-75" playOrder="75">
+                <navLabel>
+                    <text>[74] سوره مدثر</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_020.htm#heading_id_6"/>
+            </navPoint>
+            <navPoint id="navPoint-76" playOrder="76">
+                <navLabel>
+                    <text>[75] سوره قيامه</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_020.htm#heading_id_7"/>
+            </navPoint>
+            <navPoint id="navPoint-77" playOrder="77">
+                <navLabel>
+                    <text>[76] سوره انسان</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_020.htm#heading_id_8"/>
+            </navPoint>
+            <navPoint id="navPoint-78" playOrder="78">
+                <navLabel>
+                    <text>[77] سوره مرسلات</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_020.htm#heading_id_9"/>
+            </navPoint>
+            <navPoint id="navPoint-79" playOrder="79">
+                <navLabel>
+                    <text>[78] سوره نبا</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_021.htm"/>
+            </navPoint>
+            <navPoint id="navPoint-80" playOrder="80">
+                <navLabel>
+                    <text>[79] سوره نازعات</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_021.htm#heading_id_3"/>
+            </navPoint>
+            <navPoint id="navPoint-81" playOrder="81">
+                <navLabel>
+                    <text>[80] سوره عبس</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_021.htm#heading_id_4"/>
+            </navPoint>
+            <navPoint id="navPoint-82" playOrder="82">
+                <navLabel>
+                    <text>[81] سوره تكوير</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_021.htm#heading_id_5"/>
+            </navPoint>
+            <navPoint id="navPoint-83" playOrder="83">
+                <navLabel>
+                    <text>[82] سوره انفطار</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_021.htm#heading_id_6"/>
+            </navPoint>
+            <navPoint id="navPoint-84" playOrder="84">
+                <navLabel>
+                    <text>[83] سوره مطففين</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_021.htm#heading_id_7"/>
+            </navPoint>
+            <navPoint id="navPoint-85" playOrder="85">
+                <navLabel>
+                    <text>[84] سوره انشقاق</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_021.htm#heading_id_8"/>
+            </navPoint>
+            <navPoint id="navPoint-86" playOrder="86">
+                <navLabel>
+                    <text>[85] سوره بروج</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_021.htm#heading_id_9"/>
+            </navPoint>
+            <navPoint id="navPoint-87" playOrder="87">
+                <navLabel>
+                    <text>[86] سوره طارق</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_021.htm#heading_id_10"/>
+            </navPoint>
+            <navPoint id="navPoint-88" playOrder="88">
+                <navLabel>
+                    <text>[87] سوره اعلى</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_021.htm#heading_id_11"/>
+            </navPoint>
+            <navPoint id="navPoint-89" playOrder="89">
+                <navLabel>
+                    <text>[88] سوره غاشيه</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_021.htm#heading_id_12"/>
+            </navPoint>
+            <navPoint id="navPoint-90" playOrder="90">
+                <navLabel>
+                    <text>[89] سوره فجر</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_021.htm#heading_id_13"/>
+            </navPoint>
+            <navPoint id="navPoint-91" playOrder="91">
+                <navLabel>
+                    <text>[90] سوره بلد</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_021.htm#heading_id_14"/>
+            </navPoint>
+            <navPoint id="navPoint-92" playOrder="92">
+                <navLabel>
+                    <text>[91] سوره شمس</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_021.htm#heading_id_15"/>
+            </navPoint>
+            <navPoint id="navPoint-93" playOrder="93">
+                <navLabel>
+                    <text>[92] سوره ليل</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_021.htm#heading_id_16"/>
+            </navPoint>
+            <navPoint id="navPoint-94" playOrder="94">
+                <navLabel>
+                    <text>[93] سوره ضحى</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_021.htm#heading_id_17"/>
+            </navPoint>
+            <navPoint id="navPoint-95" playOrder="95">
+                <navLabel>
+                    <text>[94] سوره شرح</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_021.htm#heading_id_18"/>
+            </navPoint>
+            <navPoint id="navPoint-96" playOrder="96">
+                <navLabel>
+                    <text>[95] سوره تين</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_021.htm#heading_id_19"/>
+            </navPoint>
+            <navPoint id="navPoint-97" playOrder="97">
+                <navLabel>
+                    <text>[96] سوره علق</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_021.htm#heading_id_20"/>
+            </navPoint>
+            <navPoint id="navPoint-98" playOrder="98">
+                <navLabel>
+                    <text>[97] سوره قدر</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_021.htm#heading_id_21"/>
+            </navPoint>
+            <navPoint id="navPoint-99" playOrder="99">
+                <navLabel>
+                    <text>[98] سوره بينه</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_021.htm#heading_id_22"/>
+            </navPoint>
+            <navPoint id="navPoint-100" playOrder="100">
+                <navLabel>
+                    <text>[99] سوره زلزله</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_021.htm#heading_id_23"/>
+            </navPoint>
+            <navPoint id="navPoint-101" playOrder="101">
+                <navLabel>
+                    <text>[100] سوره عاديات</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_021.htm#heading_id_24"/>
+            </navPoint>
+            <navPoint id="navPoint-102" playOrder="102">
+                <navLabel>
+                    <text>[101] سوره قارعه</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_021.htm#heading_id_25"/>
+            </navPoint>
+            <navPoint id="navPoint-103" playOrder="103">
+                <navLabel>
+                    <text>[102] سوره تكاثر</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_021.htm#heading_id_26"/>
+            </navPoint>
+            <navPoint id="navPoint-104" playOrder="104">
+                <navLabel>
+                    <text>[103] سوره عصر</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_021.htm#heading_id_27"/>
+            </navPoint>
+            <navPoint id="navPoint-105" playOrder="105">
+                <navLabel>
+                    <text>[104] سوره همزه</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_021.htm#heading_id_28"/>
+            </navPoint>
+            <navPoint id="navPoint-106" playOrder="106">
+                <navLabel>
+                    <text>[105] سوره فيل</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_021.htm#heading_id_29"/>
+            </navPoint>
+            <navPoint id="navPoint-107" playOrder="107">
+                <navLabel>
+                    <text>[106] سوره قريش</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_021.htm#heading_id_30"/>
+            </navPoint>
+            <navPoint id="navPoint-108" playOrder="108">
+                <navLabel>
+                    <text>[107] سوره ماعون</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_021.htm#heading_id_31"/>
+            </navPoint>
+            <navPoint id="navPoint-109" playOrder="109">
+                <navLabel>
+                    <text>[108] سوره كوثر</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_021.htm#heading_id_32"/>
+            </navPoint>
+            <navPoint id="navPoint-110" playOrder="110">
+                <navLabel>
+                    <text>[109] سوره كافرون</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_021.htm#heading_id_33"/>
+            </navPoint>
+            <navPoint id="navPoint-111" playOrder="111">
+                <navLabel>
+                    <text>[110] سوره نصر</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_021.htm#heading_id_34"/>
+            </navPoint>
+            <navPoint id="navPoint-112" playOrder="112">
+                <navLabel>
+                    <text>[111] سوره مسد</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_021.htm#heading_id_35"/>
+            </navPoint>
+            <navPoint id="navPoint-113" playOrder="113">
+                <navLabel>
+                    <text>[112] سوره اخلاص</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_021.htm#heading_id_36"/>
+            </navPoint>
+            <navPoint id="navPoint-114" playOrder="114">
+                <navLabel>
+                    <text>[113] سوره فلق</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_021.htm#heading_id_37"/>
+            </navPoint>
+            <navPoint id="navPoint-115" playOrder="115">
+                <navLabel>
+                    <text>[114] سوره ناس</text>
+                </navLabel>
+                <content src="Text/quran_karim_split_021.htm#heading_id_38"/>
+            </navPoint>
+        </navPoint>
+    </navMap>
+</ncx>

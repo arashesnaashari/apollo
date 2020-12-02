@@ -1,12 +1,27 @@
+import Reader from "../models/reader";
 import dbConnect from "../utils/dbConnect";
 const Book = require("../models/book");
 const User = require("../models/user");
 const Post = require("../models/post");
 const View = require("../models/view");
+const Read = require("../models/reader");
 const Comment = require("../models/comment");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 dbConnect();
+
+var xxx = new Date();
+const { year, literal, month, day, weekday } = Object.fromEntries(
+  new Intl.DateTimeFormat("fa", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  })
+    .formatToParts(xxx)
+    .map((item) => [item.type, item.value])
+);
+const faDate = `${weekday}${literal}${day} ${month} ${year}`;
 
 const resolvers = {
   Query: {
@@ -95,7 +110,7 @@ const resolvers = {
     },
   },
   Mutation: {
-    signIn: async (parent,args) => {
+    signIn: async (parent, args) => {
       try {
         const existingUser = await User.findOne({
           phone: args.input.phone,
@@ -118,13 +133,13 @@ const resolvers = {
         throw error;
       }
     },
-    createComment: async (parent,args) => {
+    createComment: async (parent, args) => {
       const comment = new Comment({
         text: args.input.text,
         rate: args.input.rate,
         creator: args.input.userId,
         book: args.input.bookId,
-        date: new Date(),
+        date: faDate,
       });
       let createdComment;
       try {
@@ -147,14 +162,13 @@ const resolvers = {
         console.log(err);
       }
     },
-
-    createView: async (parent,args) => {
+    createView: async (parent, args) => {
       const view = new View({
         text: args.input.text,
         rate: args.input.rate,
         creator: args.input.userId,
         post: args.input.postId,
-        date: new Date(),
+        date: faDate,
       });
       let createdView;
       try {
@@ -177,13 +191,13 @@ const resolvers = {
         console.log(err);
       }
     },
-    createPost: async (parent,args) => {
+    createPost: async (parent, args) => {
       const post = new Post({
         title: args.input.title,
         body: args.input.body,
         creator: args.input.userId,
         image: args.input.image,
-        date: new Date().toISOString(),
+        date: faDate,
       });
       let createdPost;
       try {
@@ -208,12 +222,65 @@ const resolvers = {
         console.log(err);
       }
     },
+    addToShelf: async (parent, args) => {
+      try {
+        const user = await User.findOne({ _id: args.input.userId });
+        await user.books.push(args.input.book);
+        await user.save();
+        return user;
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    read: async (parent, args) => {
+      const createdEvent = await Reader.findOne({
+        userId: args.input.userId,
+        date: faDate,
+        book: args.input.book,
+      });
+      if (createdEvent) {
+        try {
+          //Update
+          createdEvent.pages = args.input.pages;
+          createdEvent.time = args.input.time;
+          createdEvent.save();
+          return createdEvent;
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        const read = new Read({
+          pages: args.input.pages,
+          time: args.input.time,
+          date: faDate,
+          userId: args.input.userId,
+          book: args.input.book,
+        });
+        let createdRead;
+        try {
+          const result = await read.save();
+          createdRead = {
+            ...result._doc,
+            _id: result._doc._id,
+            book: result._doc.book,
+            userId: result._doc.userId,
+          };
+
+          const user = await User.findById(args.input.userId);
+
+          user.reader.push(read);
+          await user.save();
+
+          return createdRead;
+        } catch (err) {
+          console.log(err);
+        }
+      }
+    },
   },
 };
 module.exports = [resolvers];
 
-
-
 // USER = 5fba7c7f637eca2ba0e4e39e
-// BOOK = 5fa85dbeae4337bd0925c2b0
+// BOOK = 5fa85dbeae4337bd0925c2b0   5fa85dbeae4337bd0925c2b5
 // POST =5fbe7823ed88c62fd4859a83

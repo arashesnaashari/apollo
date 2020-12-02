@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="BookID" version="2.0">
+    <metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opf="http://www.idpf.org/2007/opf">
+        <dc:title>quran karim</dc:title>
+        <dc:subject>قرآن کریم</dc:subject>
+        <dc:creator opf:role="aut" opf:file-as="مکارم شیرازی, ناصر">ناصر مکارم شیرازی</dc:creator>
+        <dc:contributor opf:role="bkp">calibre (0.8.27) [http://calibre-ebook.com]</dc:contributor>
+        <dc:description>&lt;p&gt;http://persian.makarem.ir/&lt;/p&gt;</dc:description>
+        <dc:publisher>احمد امامی</dc:publisher>
+        <dc:language>fa</dc:language>
+        <dc:identifier id="BookID" opf:scheme="UUID">urn:uuid:537c7d69-ca59-4914-8718-377a57aaf427</dc:identifier>
+        <meta name="cover" content="cover.jpeg"/>
+        <meta name="Sigil version" content="0.3.2"/>
+    </metadata>
+    <manifest>
+        <item id="ncx" href="toc.ncx" media-type="application/x-dtbncx+xml"/>
+        <item id="cover.jpeg" href="Images/cover.jpeg" media-type="image/jpeg"/>
+        <item id="stylesheet.css" href="Styles/stylesheet.css" media-type="text/css"/>
+        <item id="quran_karim_split_000.htm" href="Text/quran_karim_split_000.htm" media-type="application/xhtml+xml"/>
+        <item id="quran_karim_split_001.htm" href="Text/quran_karim_split_001.htm" media-type="application/xhtml+xml"/>
+        <item id="quran_karim_split_002.htm" href="Text/quran_karim_split_002.htm" media-type="application/xhtml+xml"/>
+        <item id="quran_karim_split_003.htm" href="Text/quran_karim_split_003.htm" media-type="application/xhtml+xml"/>
+        <item id="quran_karim_split_004.htm" href="Text/quran_karim_split_004.htm" media-type="application/xhtml+xml"/>
+        <item id="quran_karim_split_005.htm" href="Text/quran_karim_split_005.htm" media-type="application/xhtml+xml"/>
+        <item id="quran_karim_split_006.htm" href="Text/quran_karim_split_006.htm" media-type="application/xhtml+xml"/>
+        <item id="quran_karim_split_007.htm" href="Text/quran_karim_split_007.htm" media-type="application/xhtml+xml"/>
+        <item id="quran_karim_split_008.htm" href="Text/quran_karim_split_008.htm" media-type="application/xhtml+xml"/>
+        <item id="quran_karim_split_009.htm" href="Text/quran_karim_split_009.htm" media-type="application/xhtml+xml"/>
+        <item id="quran_karim_split_010.htm" href="Text/quran_karim_split_010.htm" media-type="application/xhtml+xml"/>
+        <item id="quran_karim_split_011.htm" href="Text/quran_karim_split_011.htm" media-type="application/xhtml+xml"/>
+        <item id="quran_karim_split_012.htm" href="Text/quran_karim_split_012.htm" media-type="application/xhtml+xml"/>
+        <item id="quran_karim_split_013.htm" href="Text/quran_karim_split_013.htm" media-type="application/xhtml+xml"/>
+        <item id="quran_karim_split_014.htm" href="Text/quran_karim_split_014.htm" media-type="application/xhtml+xml"/>
+        <item id="quran_karim_split_015.htm" href="Text/quran_karim_split_015.htm" media-type="application/xhtml+xml"/>
+        <item id="quran_karim_split_016.htm" href="Text/quran_karim_split_016.htm" media-type="application/xhtml+xml"/>
+        <item id="quran_karim_split_017.htm" href="Text/quran_karim_split_017.htm" media-type="application/xhtml+xml"/>
+        <item id="quran_karim_split_018.htm" href="Text/quran_karim_split_018.htm" media-type="application/xhtml+xml"/>
+        <item id="quran_karim_split_019.htm" href="Text/quran_karim_split_019.htm" media-type="application/xhtml+xml"/>
+        <item id="quran_karim_split_020.htm" href="Text/quran_karim_split_020.htm" media-type="application/xhtml+xml"/>
+        <item id="quran_karim_split_021.htm" href="Text/quran_karim_split_021.htm" media-type="application/xhtml+xml"/>
+        <item id="titlepage.xhtml" href="Text/titlepage.xhtml" media-type="application/xhtml+xml"/>
+    </manifest>
+    <spine toc="ncx">
+        <itemref idref="titlepage.xhtml"/>
+        <itemref idref="quran_karim_split_000.htm"/>
+        <itemref idref="quran_karim_split_001.htm"/>
+        <itemref idref="quran_karim_split_002.htm"/>
+        <itemref idref="quran_karim_split_003.htm"/>
+        <itemref idref="quran_karim_split_004.htm"/>
+        <itemref idref="quran_karim_split_005.htm"/>
+        <itemref idref="quran_karim_split_006.htm"/>
+        <itemref idref="quran_karim_split_007.htm"/>
+        <itemref idref="quran_karim_split_008.htm"/>
+        <itemref idref="quran_karim_split_009.htm"/>
+        <itemref idref="quran_karim_split_010.htm"/>
+        <itemref idref="quran_karim_split_011.htm"/>
+        <itemref idref="quran_karim_split_012.htm"/>
+        <itemref idref="quran_karim_split_013.htm"/>
+        <itemref idref="quran_karim_split_014.htm"/>
+        <itemref idref="quran_karim_split_015.htm"/>
+        <itemref idref="quran_karim_split_016.htm"/>
+        <itemref idref="quran_karim_split_017.htm"/>
+        <itemref idref="quran_karim_split_018.htm"/>
+        <itemref idref="quran_karim_split_019.htm"/>
+        <itemref idref="quran_karim_split_020.htm"/>
+        <itemref idref="quran_karim_split_021.htm"/>
+    </spine>
+    <guide>
+        <reference type="cover" title="Cover" href="Text/titlepage.xhtml"/>
+    </guide>
+</package>

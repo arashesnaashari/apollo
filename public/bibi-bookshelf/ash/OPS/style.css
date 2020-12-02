@@ -1,0 +1,40 @@
+div.header { color: green; margin-top: 1.5em; margin-bottom: 1.5em; border-bottom: 1px solid red;  text-align: center; }
+a { text-decoration: none }
+p { text-indent: 4% }
+p.noindent { text-indent: 0% }
+h4 { color: green; font-size: large; font-weight: bold; margin-left: 3%; margin-top: 2em; margin-bottom: 1.5em;}
+h5 { font-size: large;  margin-left: 3%; margin-top: 1.5em; margin-bottom: 1.5em; }
+h6 { font-weight: bold;  margin-left: 3%; margin-top: 1.5em; margin-bottom: 1.5em; }
+.CENTER { text-align: center;  text-indent: 0em; }
+.RIGHT { text-align: right; }
+.center { text-align: center;  text-indent: 0em; }
+.right { text-align: right; }
+.small { font-size: small; }
+.large { font-size: large; }
+.xlarge { font-size: x-large; }
+    .smcap    { font-variant: small-caps;}
+    .figcenter   {	text-align: center;  margin-top: 2em; margin-bottom: 2em;  text-indent: 0em;}
+    .figcenter p  {  text-indent: 0%;}
+    .caption { text-indent: 0%; text-align: left ; margin-left: 6%; margin-right: 6%; }
+    .footnote { font-size: small;  text-indent: 0%; margin-left: 6%; margin-right: 6%; margin-bottom: 2em;}
+    hr { width: 33%; margin-left: auto; margin-right: auto;   margin-top: 2em; margin-bottom: 2em;  }
+table.cell {
+	border-width: 3px;
+	border-style: outset;
+	border-color: green;
+	border-collapse: collapse;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 1.5em;
+	margin-bottom: 1.5em;
+}
+table.cell td {
+	border-width: 1px;
+	padding: 10px;
+	border-style: inset;
+	border-color: red;
+	text-align: center;
+}
+
+
+

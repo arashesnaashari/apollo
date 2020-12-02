@@ -29,6 +29,20 @@ const userSchema = new Schema({
       autopopulate: true,
     },
   ],
+  reader: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Reader",
+      autopopulate: true,
+    },
+  ],
+  books: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Book",
+      autopopulate: true,
+    },
+  ],
 });
 
 var User;
