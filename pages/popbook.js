@@ -32,7 +32,7 @@ export async function getServerSideProps(context) {
   return {
     props: { data: data11 },
   };
-// }
+}
 // export async function getStaticProps(context) {
 //   const res = await fetch(`${BaseUrl}/api/graphql`, {
 //     method: "POST",
