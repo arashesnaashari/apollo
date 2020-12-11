@@ -1,5 +1,7 @@
 import fetch from "isomorphic-unfetch";
 import Layout from "../components/layout/Layout";
+import BaseUrl from "../url";
+
 import Books from "../components/Book/Book_All/PopularBooks";
 export default function propssing(props) {
   return (

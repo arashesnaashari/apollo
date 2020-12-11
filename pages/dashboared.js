@@ -2,6 +2,8 @@ import AuthContext from "../context/auth-context";
 import React, { useState, useEffect, useContext } from "react";
 import useSWR from "swr";
 import fetch from "isomorphic-unfetch";
+import BaseUrl from "../url";
+
 
 
 const fetcher = (query) =>
