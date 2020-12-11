@@ -1,5 +1,5 @@
 const baseUrl =
   process.env.NODE_ENV === "production"
-    ? "https://bookgram-jtviq0oxm.vercel.app"
+    ? "https://bookgram-jtviq0doxm.vercel.app"
     : "http://localhost:3000";
 export default baseUrl;
