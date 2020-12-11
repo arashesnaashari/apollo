@@ -20,7 +20,7 @@ export default function Id(props) {
   async function handleSubmit(event) {
     event.preventDefault();
     try {
-      const res = await fetch("http://localhost:3000/api/graphql", {
+      const res = await fetch(`${BaseUrl}/api/graphql`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -182,7 +182,7 @@ export default function Id(props) {
 
 // Call an external API endpoint to get posts
 // export async function getStaticPaths() {
-//   //   const res = await fetch("http://localhost:3000/api/graphql", {
+//   //   const res = await fetch(`${BaseUrl}/api/graphql`, {
 //   //     method: "POST",
 //   //     headers: { "Content-Type": "application/json" },
 //   //     body: JSON.stringify({
@@ -238,7 +238,7 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async ({ params: { _id } }) => {
-  const res = await fetch("http://localhost:3000/api/graphql", {
+  const res = await fetch(`${BaseUrl}/api/graphql`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({

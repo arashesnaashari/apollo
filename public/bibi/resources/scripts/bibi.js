@@ -11176,7 +11176,7 @@ setTimeout(() => {
     var url = new URL(url_string);
     var book = url.searchParams.get("bookId");
     var userId = url.searchParams.get("userId");
-    const res = await fetch("http://localhost:3000/api/graphql", {
+    const res = await fetch(`${BaseUrl}/api/graphql`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
