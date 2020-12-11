@@ -12,28 +12,7 @@ export default function propssing(props) {
     </>
   );
 }
-export async function getServerSideProps(context) {
-  const res = await fetch(`${BaseUrl}/api/graphql`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      query: `
-  query {
-    books {
-             title
-             image
-             _id
-         }
-  }`,
-    }),
-  });
-  const data11 = await res.json();
-
-  return {
-    props: { data: data11 },
-  };
-}
-// export async function getStaticProps(context) {
+// export async function getServerSideProps(context) {
 //   const res = await fetch(`${BaseUrl}/api/graphql`, {
 //     method: "POST",
 //     headers: { "Content-Type": "application/json" },
@@ -54,3 +33,24 @@ export async function getServerSideProps(context) {
 //     props: { data: data11 },
 //   };
 // }
+export async function getStaticProps(context) {
+  const res = await fetch(`${BaseUrl}/api/graphql`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      query: `
+  query {
+    books {
+             title
+             image
+             _id
+         }
+  }`,
+    }),
+  });
+  const data11 = await res.json();
+
+  return {
+    props: { data: data11 },
+  };
+}
