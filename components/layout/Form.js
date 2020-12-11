@@ -17,23 +17,38 @@ function Form() {
     setErr(null);
     if (isLogin == false) {
       //signUp
+      const body = {
+        username: username,
+        phone: phone,
+        password: password,
+      };
       try {
-        const res = await fetch("http://localhost:3000/api/graphql", {
+        console.log("client" + JSON.stringify(body));
+        // const res = await fetch("http://localhost:3000/api/graphql", {
+        //   method: "POST",
+        //   headers: { "Content-Type": "application/json" },
+        //   body: JSON.stringify({
+        //     query: `mutation {
+        //       signIn(input:{username:"${username}",password:"${password}",phone:"${phone}"}){
+        //        username,
+        //         phone
+        //       }
+        //     }`,
+        //   }),
+        // });
+        // const data11 = await res.json();
+        // setisLogin(!isLogin);
+        // console.log(data11);
+        // return data11;
+        const res = await fetch("http://localhost:3000/api/signUp", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            query: `mutation {
-              signIn(input:{username:"${username}",password:"${password}",phone:"${phone}"}){
-               username,
-                phone
-              }
-            }`,
-          }),
+          body: JSON.stringify(body),
         });
-        const data11 = await res.json();
-        setisLogin(!isLogin);
-        console.log(data11);
-        return data11;
+        const data = await res.json();
+
+        console.log(data);
+        return data;
       } catch (error) {
         alert(error);
       }

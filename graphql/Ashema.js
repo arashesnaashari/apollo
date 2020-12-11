@@ -8,6 +8,7 @@ const typeDefs = gql`
     author: String!
     publication: String!
     image: String!
+    ratingStar:Int!
     price: Int!
     comments: [Comment!]
     owner: [User!]
@@ -101,6 +102,7 @@ const typeDefs = gql`
     posts: [Post!]
     book(_id: ID!): Book
     post(_id: ID!): Post
+    user(_id:ID!):User
     login(username: String!, password: String!): AuthData
   }
   type Mutation {

@@ -1,6 +1,7 @@
 import fetch from "isomorphic-unfetch";
 import Layout from "../../components/layout/Layout";
 import Books from "../../components/Book/Book_All/booksContainer";
+import BaseUrl from '../../url'
 export default function propssing(props) {
   return (
     <>
@@ -12,7 +13,7 @@ export default function propssing(props) {
 }
 
 export async function getStaticProps(context) {
-  const res = await fetch("http://localhost:3000/api/graphql", {
+  const res = await fetch(`${BaseUrl}/api/graphql`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -32,3 +33,4 @@ export async function getStaticProps(context) {
     props: { data: data11 },
   };
 }
+//https://bookgram-7jwu2afy9.vercel.app/

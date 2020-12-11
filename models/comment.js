@@ -17,7 +17,7 @@ const commentSchema = new Schema({
     autopopulate: true,
   },
   date: {
-    type: Number,
+    type: String,
     required: true,
   },
   book: {
@@ -26,7 +26,6 @@ const commentSchema = new Schema({
     autopopulate: true,
   },
 });
-
 
 var Comment;
 

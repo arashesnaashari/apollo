@@ -10,13 +10,15 @@ const { GraphQLDateTime } = require("graphql-iso-date");
 const customScalarResolver = {
   Date: GraphQLDateTime,
 };
-
+console.log("ssssss");
 module.exports = {
   customScalarResolver,
   //Query
+
   books: async () => {
     try {
       const books = await Book.find();
+      
       return books.map((book) => {
         return {
           ...book._doc,

@@ -11135,13 +11135,9 @@ setTimeout(() => {
   let date = new Date();
   date.setTime(date.getTime() + (24 - date.getHours()) * 3600 * 1000);
 
-  if (!state) {
-    setTimeout(() => {
-      alert("نمی خوای زمان سج رو روشن کنی ؟");
-    }, 20000);
-  }
-
   btnTime.addEventListener("click", (e) => {
+    document.cookie = "times=0";
+
     e.preventDefault();
     if (!state) {
       confirm("شروع / ادامه خواندن ؟");
@@ -11165,7 +11161,11 @@ setTimeout(() => {
       state = null;
     }
   });
-
+  if (!state) {
+    setTimeout(() => {
+      alert("نمی خوای زمان سج رو روشن کنی ؟");
+    }, 20000);
+  }
   btnSave.addEventListener("click", async (e) => {
     e.preventDefault();
     let percent = document.querySelector(

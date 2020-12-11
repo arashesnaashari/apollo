@@ -55,7 +55,7 @@ const Search = () => {
     <>
       {!data && (
         <div className="search-box">
-          <input placeholder="searching .... " disabled id="search" />
+          <input placeholder="جستوجو کنید ...  " disabled id="search" />
           <a href="#">
             <svg className="icon icon-search">
               <use xlinkHref="img/symbol-defs.svg#icon-search"></use>
@@ -66,7 +66,7 @@ const Search = () => {
       {data && (
         <div className="search-box">
           <input
-            placeholder="searching .... "
+            placeholder="جستوجو کنید ...  "
             onInput={(e) => inputEvent(e.target.value)}
             id="search"
           />

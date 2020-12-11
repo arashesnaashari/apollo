@@ -29,9 +29,23 @@ const resolvers = {
       try {
         const books = await Book.find();
         return books.map((book) => {
+          let ratingStarFunc = book.comments.map((e) => {
+            if (e.rate) {
+              return e.rate;
+            }
+          });
+          if (ratingStarFunc.length == 0) {
+            ratingStarFunc.push(5);
+          }
+
+          let average = (array) =>
+            array.reduce((a, b) => {
+              return a + b;
+            }, 0) / array.length;
           return {
             ...book._doc,
             _id: book.id,
+            ratingStar: Math.round(average(ratingStarFunc)),
           };
         });
       } catch (err) {
@@ -67,9 +81,23 @@ const resolvers = {
     async book(parent, args) {
       try {
         const book = await Book.findOne({ _id: args._id });
+        let ratingStarFunc = book.comments.map((e) => {
+          if (e.rate) {
+            return e.rate;
+          }
+        });
+        if (ratingStarFunc.length == 0) {
+          ratingStarFunc.push(5);
+        }
+
+        let average = (array) =>
+          array.reduce((a, b) => {
+            return a + b;
+          }, 0) / array.length;
         return {
           ...book._doc,
           _id: book.id,
+          ratingStar: Math.round(average(ratingStarFunc)),
         };
       } catch (err) {
         console.log(err);
@@ -81,6 +109,17 @@ const resolvers = {
         return {
           ...post._doc,
           _id: post.id,
+        };
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    async user(parent, args) {
+      try {
+        const user = await User.findOne({ _id: args._id });
+        return {
+          ...user._doc,
+          _id: user.id,
         };
       } catch (err) {
         console.log(err);

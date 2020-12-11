@@ -3,6 +3,8 @@ import fetch from "isomorphic-unfetch";
 import { useRouter } from "next/router";
 import AuthContext from "../../context/auth-context";
 import Layout from "../../components/layout/Layout";
+import BaseUrl from "../../url";
+
 export default function Id(props) {
   const context = useContext(AuthContext);
   const [text, setText] = useState("");
@@ -11,30 +13,57 @@ export default function Id(props) {
   const router = useRouter();
   const { _id } = router.query;
   const NumericRate = parseInt(rate);
+  const array = [];
+  for (let i = 0; i < props.data.data.book.ratingStar; i++) {
+    array.push(<span key={props.data.data.book._id}>&#9734;</span>);
+  }
   async function handleSubmit(event) {
     event.preventDefault();
-    fetch("http://localhost:3000/api/graphql", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        query: `mutation {
-        createComment(input:{text:"${text}",rate:${NumericRate},book:"${_id}"}){
-          text
-          _id
-          date
-          creator {
-            username
+    try {
+      const res = await fetch("http://localhost:3000/api/graphql", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          query: `
+          mutation {
+            createComment(input:
+              {bookId:"${_id}",
+                userId:"${context.userId}",
+                rate:${NumericRate},text:"${text}"}){
+                  text
+                  _id
+                  date
+                  rate
+                  creator{
+                    username
+                  }
+            }
           }
-        }
-      }`,
-      }),
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => console.log(props.data.data.book));
-  }
+          `,
+        }),
+      });
+      const data = await res.json();
+      const newComment = {
+        text: text,
+        rate: NumericRate,
+        date: data.date,
+        _id: data._id,
+        creator: {
+          username: data.creator.username,
+        },
+      };
+      setComments([...comments, newComment]);
+      console.log(data);
+      console.log(comments);
 
+      // console.log(data.createComment);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  if (router.isFallback) {
+    return <div>Loading...</div>;
+  }
   return (
     <Layout>
       <main className="ebook-landing-grid">
@@ -46,13 +75,7 @@ export default function Id(props) {
               <br />
             </h1>
             <span className="author"> {props.data.data.book.author}</span>
-            <div className="book-rating">
-              <span>&#9733;</span>
-              <span>&#9733;</span>
-              <span>&#9733;</span>
-              <span>&#9733;</span>
-              <span>&#9734;</span>
-            </div>
+            <div className="card--rating">{array}</div>
             <div className="add-book">
               <div className="add-book--box">
                 <a href="#">افزودن به کتابخانه</a>
@@ -122,27 +145,33 @@ export default function Id(props) {
           <h1 className="comments--title">نظرهای کاربران</h1>
           <div className="comments--right">
             <div className="comment">
-              {props.data.data.book.comments.map((e) => {
+              {comments.map((comment) => {
                 return (
-                  <div key={e._id}>
+                  <div key={comment._id}>
                     <div className="comment--title">
                       <div className="comment--title__content">
                         <img src="../img/comment-3.png" alt="comment" />
                         <div className="comment--title__text">
-                          <h1>{e.creator.username}</h1>
-                          <span className="time">{e.date}</span>
+                          <h1>{comment.creator.username}</h1>
+                          <span className="time">{comment.date}</span>
                         </div>
                       </div>
 
                       {/* <svg className="icon-comments">
                         <use xlinkHref="../img/symbol-defs.svg#icon-comments"></use>
                       </svg> */}
-                      <span>{e.rate}</span>
+                      <span>{comment.rate}</span>
                     </div>
-                    <p className="comment--text">{e.text}</p>
+                    <p className="comment--text">{comment.text}</p>
                   </div>
                 );
               })}
+
+              {/* {props.data.data.book.comments.map((e) => {
+              //   return (
+
+              //   );
+              // })} */}
             </div>
           </div>
         </section>
@@ -151,20 +180,78 @@ export default function Id(props) {
   );
 }
 
-export async function getServerSideProps({ params }) {
+// Call an external API endpoint to get posts
+// export async function getStaticPaths() {
+//   //   const res = await fetch("http://localhost:3000/api/graphql", {
+//   //     method: "POST",
+//   //     headers: { "Content-Type": "application/json" },
+//   //     body: JSON.stringify({
+//   //       query: `
+//   //     query {
+//   //     books{
+//   //      _id
+
+//   //   }
+//   // }`,
+//   //     }),
+//   //   });
+//   //   const data11 = await res.json();
+//   return {
+//     paths: [
+//       { params: { _id: "5fccf9191ef7dc210c8205b6" } },
+//       { params: { _id: "5fa85dbeae4337bd0925c2b5" } },
+//       { params: { _id: "5fa85dbeae4337bd0925c2b3" } },
+//       { params: { _id: "5fa85dbeae4337bd0925c2b0" } },
+//     ],
+//     fallback: true, // See the "fallback" section below
+//   };
+// }
+export const getStaticPaths = async () => {
+  const res = await fetch(`${BaseUrl}/api/graphql`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      query: `
+          query {
+          books{
+           _id
+    
+        }
+      }`,
+    }),
+  });
+  const data11 = await res.json();
+  // Get the paths we want to pre-render based on posts
+  const paths = data11.data.books.map((e) => ({
+    params: {
+      _id: e._id,
+    },
+  }));
+  // console.log(paths);
+  // const paths = data11.data.books.map((book) => `/book/${book._id}`);
+  // console.log(paths);
+  // console.log(paths);
+  // { params: { id: '5fa85dbeae4337bd0925c2b5' } },
+  // We'll pre-render only these paths at build time.
+  // { fallback: false } means other routes should 404.
+  return { paths: paths, fallback: false };
+};
+
+export const getStaticProps = async ({ params: { _id } }) => {
   const res = await fetch("http://localhost:3000/api/graphql", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       query: `
       query {
-        book(_id:"${params._id}") {
+        book(_id:"${_id}") {
           title,
       image,
       group,
       author,
       publication
       price
+      ratingStar,
       comments{
         text
         _id
@@ -183,4 +270,8 @@ export async function getServerSideProps({ params }) {
   return {
     props: { data: data11 },
   };
-}
+};
+// https://realpython.com/instagram-bot-python-instapy/
+// https://dev.to/danijelajs/javascript-instagram-bot-3nmk
+// https://medium.com/@EsteveSegura/how-to-automate-an-instagram-account-without-being-discovered-with-javascript-9f14c160dcdc
+// https://www.npmjs.com/package/tools-for-instagramd
