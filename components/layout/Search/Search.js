@@ -1,34 +1,15 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import BaseUrl from '../../../url'
-const Search = () => {
-  const [data, setData] = useState(null);
-  const [html, setHtml] = useState();
+import BaseUrl from "../../../url";
 
-  fetch(`${BaseUrl}/api/graphql`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      query: `
-  query {
-    books {
-             title
-             author
-             _id
-         }
-  }`,
-    }),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      setData(data);
-    })
-    .catch((err) => console.log(err));
+const Search = (props) => {
+  const [data, setData] = useState(props.data);
+  const [html, setHtml] = useState();
   const inputEvent = (e) => {
     let complitedResul;
 
     if (e) {
-      complitedResul = data.data.books.filter((book) => {
+      complitedResul = data.filter((book) => {
         return (
           book.title.toLowerCase().trim().includes(e) ||
           book.author.toLowerCase().trim().includes(e)

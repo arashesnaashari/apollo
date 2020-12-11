@@ -14,7 +14,7 @@ const Layout = (props) => (
       />
       <link rel="stylesheet" href="../../css/style.css" />
     </Head>
-    <Navbar />
+    <Navbar search={props.navbar}/>
     <div>{props.children}</div>
     <Footer />
   </div>

@@ -3,7 +3,7 @@ import Form from "./Form";
 import { useState, useContext } from "react";
 import AuthContext from "../../context/auth-context";
 import Search from "./Search/Search";
-const Navbar = () => {
+const Navbar = (props) => {
   const context = useContext(AuthContext);
   const [Modal, SetModal] = useState(false);
   return (
@@ -40,7 +40,7 @@ const Navbar = () => {
       </div>
 
       <div className="serach-box">
-        <Search />
+        <Search data={props.search}/>
       </div>
       <Link href="/">
         <a href="#" className="logo">

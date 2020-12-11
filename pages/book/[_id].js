@@ -4,18 +4,18 @@ import { useRouter } from "next/router";
 import AuthContext from "../../context/auth-context";
 import Layout from "../../components/layout/Layout";
 import BaseUrl from "../../url";
-
+import queryGraphQl from "../../shared/query-graphql/index";
 export default function Id(props) {
   const context = useContext(AuthContext);
   const [text, setText] = useState("");
   const [rate, setRate] = useState(0);
-  const [comments, setComments] = useState(props.data.data.book.comments);
+  const [comments, setComments] = useState(props.data.book.comments);
   const router = useRouter();
   const { _id } = router.query;
   const NumericRate = parseInt(rate);
   const array = [];
-  for (let i = 0; i < props.data.data.book.ratingStar; i++) {
-    array.push(<span key={props.data.data.book._id}>&#9734;</span>);
+  for (let i = 0; i < props.data.book.ratingStar; i++) {
+    array.push(<span key={props.data.book._id}>&#9734;</span>);
   }
   async function handleSubmit(event) {
     event.preventDefault();
@@ -71,19 +71,16 @@ export default function Id(props) {
         <section className="ebook-showcase">
           <div className="showcase-content">
             <h1>
-              {props.data.data.book.title}
+              {props.data.book.title}
               <br />
             </h1>
-            <span className="author"> {props.data.data.book.author}</span>
+            <span className="author"> {props.data.book.author}</span>
             <div className="card--rating">{array}</div>
             <div className="add-book">
               <div className="add-book--box">
                 <a href="#">افزودن به کتابخانه</a>
               </div>
-              <span className="price">
-                {" "}
-                {props.data.data.book.price}000 ريال
-              </span>
+              <span className="price"> {props.data.book.price}000 ريال</span>
             </div>
             <div className="book-sample">
               <a className="book-sample--link" href="#">
@@ -91,12 +88,12 @@ export default function Id(props) {
               </a>
             </div>
             <p className="sell-description">
-              فقط برای مدت محدود {props.data.data.book.price}000 ریال <br />
+              فقط برای مدت محدود {props.data.book.price}000 ریال <br />
               با خرید شما با شرایط و ضوابط موافقت می کنید
             </p>
           </div>
           <div className="ebook-showcase--image">
-            <img src={props.data.data.book.image} alt="s" />
+            <img src={props.data.book.image} alt="s" />
           </div>
         </section>
 
@@ -167,7 +164,7 @@ export default function Id(props) {
                 );
               })}
 
-              {/* {props.data.data.book.comments.map((e) => {
+              {/* {props.data.book.comments.map((e) => {
               //   return (
 
               //   );
@@ -180,102 +177,51 @@ export default function Id(props) {
   );
 }
 
-// Call an external API endpoint to get posts
-// export async function getStaticPaths() {
-//   //   const res = await fetch(`${BaseUrl}/api/graphql`, {
-//   //     method: "POST",
-//   //     headers: { "Content-Type": "application/json" },
-//   //     body: JSON.stringify({
-//   //       query: `
-//   //     query {
-//   //     books{
-//   //      _id
-
-//   //   }
-//   // }`,
-//   //     }),
-//   //   });
-//   //   const data11 = await res.json();
-//   return {
-//     paths: [
-//       { params: { _id: "5fccf9191ef7dc210c8205b6" } },
-//       { params: { _id: "5fa85dbeae4337bd0925c2b5" } },
-//       { params: { _id: "5fa85dbeae4337bd0925c2b3" } },
-//       { params: { _id: "5fa85dbeae4337bd0925c2b0" } },
-//     ],
-//     fallback: true, // See the "fallback" section below
-//   };
-// }
-
 export const getStaticPaths = async () => {
-  const res = await fetch(`${BaseUrl}/api/graphql`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      query: `
-          query {
-          books{
-           _id
+  const dataQQ = await queryGraphQl(`query {
+    books{
+     _id
 
-        }
-      }`,
-    }),
-  });
-  const data11 = await res.json();
+  }
+}`);
   // Get the paths we want to pre-render based on posts
-  const paths = data11.data.books.map((e) => ({
+  const paths = dataQQ.books.map((e) => ({
     params: {
       _id: e._id,
     },
   }));
-  // console.log(paths);
-  // const paths = data11.data.books.map((book) => `/book/${book._id}`);
-  // console.log(paths);
-  // console.log(paths);
-  // { params: { id: '5fa85dbeae4337bd0925c2b5' } },
-  // We'll pre-render only these paths at build time.
-  // { fallback: false } means other routes should 404.
   return { paths: paths, fallback: false };
 };
 
 export const getStaticProps = async ({ params: { _id } }) => {
-  const res = await fetch(`${BaseUrl}/api/graphql`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      query: `
-      query {
-        book(_id:"${_id}") {
-          title,
-      image,
-      group,
-      author,
-      publication
-      price
-      ratingStar,
-      comments{
-        text
-        _id
-        date
-        rate
-        creator{
-          username
-        }
-      }
+  const dataQQ = await queryGraphQl(`
+  query {
+    book(_id:"${_id}") {
+      title,
+  image,
+  group,
+  author,
+  publication
+  price
+  ratingStar,
+  comments{
+    text
+    _id
+    date
+    rate
+    creator{
+      username
     }
-  }`,
-    }),
-  });
-  const data11 = await res.json();
+  }
+  }
+  }
+  `);
 
   return {
-    props: { data: data11 },
+    props: { data: dataQQ },
   };
 };
-// https://realpython.com/instagram-bot-python-instapy/
-// https://dev.to/danijelajs/javascript-instagram-bot-3nmk
-// https://medium.com/@EsteveSegura/how-to-automate-an-instagram-account-without-being-discovered-with-javascript-9f14c160dcdc
-// https://www.npmjs.com/package/tools-for-instagramd
+
 // export const getServerSideProps = async ({ params: { _id } }) => {
 //   const res = await fetch(`${BaseUrl}/api/graphql`, {
 //     method: "POST",
