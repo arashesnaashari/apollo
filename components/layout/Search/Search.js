@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-
+import BaseUrl from '../../../url'
 const Search = () => {
   const [data, setData] = useState(null);
   const [html, setHtml] = useState();
