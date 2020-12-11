@@ -206,27 +206,7 @@ export default function Id(props) {
 //     fallback: true, // See the "fallback" section below
 //   };
 // }
-export async function getServerSideProps(context) {
-  const res = await fetch(`${BaseUrl}/api/graphql`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      query: `
-  query {
-    books {
-             title
-             image
-             _id
-         }
-  }`,
-    }),
-  });
-  const data11 = await res.json();
 
-  return {
-    props: { data: data11 },
-  };
-}
 // export const getStaticPaths = async () => {
 //   const res = await fetch(`${BaseUrl}/api/graphql`, {
 //     method: "POST",
@@ -236,7 +216,7 @@ export async function getServerSideProps(context) {
 //           query {
 //           books{
 //            _id
-    
+
 //         }
 //       }`,
 //     }),
