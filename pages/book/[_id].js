@@ -206,38 +206,97 @@ export default function Id(props) {
 //     fallback: true, // See the "fallback" section below
 //   };
 // }
-export const getStaticPaths = async () => {
+export async function getServerSideProps(context) {
   const res = await fetch(`${BaseUrl}/api/graphql`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       query: `
-          query {
-          books{
-           _id
-    
-        }
-      }`,
+  query {
+    books {
+             title
+             image
+             _id
+         }
+  }`,
     }),
   });
   const data11 = await res.json();
-  // Get the paths we want to pre-render based on posts
-  const paths = data11.data.books.map((e) => ({
-    params: {
-      _id: e._id,
-    },
-  }));
-  // console.log(paths);
-  // const paths = data11.data.books.map((book) => `/book/${book._id}`);
-  // console.log(paths);
-  // console.log(paths);
-  // { params: { id: '5fa85dbeae4337bd0925c2b5' } },
-  // We'll pre-render only these paths at build time.
-  // { fallback: false } means other routes should 404.
-  return { paths: paths, fallback: false };
-};
 
-export const getStaticProps = async ({ params: { _id } }) => {
+  return {
+    props: { data: data11 },
+  };
+}
+// export const getStaticPaths = async () => {
+//   const res = await fetch(`${BaseUrl}/api/graphql`, {
+//     method: "POST",
+//     headers: { "Content-Type": "application/json" },
+//     body: JSON.stringify({
+//       query: `
+//           query {
+//           books{
+//            _id
+    
+//         }
+//       }`,
+//     }),
+//   });
+//   const data11 = await res.json();
+//   // Get the paths we want to pre-render based on posts
+//   const paths = data11.data.books.map((e) => ({
+//     params: {
+//       _id: e._id,
+//     },
+//   }));
+//   // console.log(paths);
+//   // const paths = data11.data.books.map((book) => `/book/${book._id}`);
+//   // console.log(paths);
+//   // console.log(paths);
+//   // { params: { id: '5fa85dbeae4337bd0925c2b5' } },
+//   // We'll pre-render only these paths at build time.
+//   // { fallback: false } means other routes should 404.
+//   return { paths: paths, fallback: false };
+// };
+
+// export const getStaticProps = async ({ params: { _id } }) => {
+//   const res = await fetch(`${BaseUrl}/api/graphql`, {
+//     method: "POST",
+//     headers: { "Content-Type": "application/json" },
+//     body: JSON.stringify({
+//       query: `
+//       query {
+//         book(_id:"${_id}") {
+//           title,
+//       image,
+//       group,
+//       author,
+//       publication
+//       price
+//       ratingStar,
+//       comments{
+//         text
+//         _id
+//         date
+//         rate
+//         creator{
+//           username
+//         }
+//       }
+//     }
+//   }`,
+//     }),
+//   });
+//   const data11 = await res.json();
+
+//   return {
+//     props: { data: data11 },
+//   };
+// };
+// https://realpython.com/instagram-bot-python-instapy/
+// https://dev.to/danijelajs/javascript-instagram-bot-3nmk
+// https://medium.com/@EsteveSegura/how-to-automate-an-instagram-account-without-being-discovered-with-javascript-9f14c160dcdc
+// https://www.npmjs.com/package/tools-for-instagramd
+export const getServerSideProps = async ({ params: { _id } }) => {
   const res = await fetch(`${BaseUrl}/api/graphql`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -271,7 +330,3 @@ export const getStaticProps = async ({ params: { _id } }) => {
     props: { data: data11 },
   };
 };
-// https://realpython.com/instagram-bot-python-instapy/
-// https://dev.to/danijelajs/javascript-instagram-bot-3nmk
-// https://medium.com/@EsteveSegura/how-to-automate-an-instagram-account-without-being-discovered-with-javascript-9f14c160dcdc
-// https://www.npmjs.com/package/tools-for-instagramd
