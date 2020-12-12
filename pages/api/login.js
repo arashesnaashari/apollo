@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 dbConnect();
 export default async function handler(req, res) {
-  if (req.method === "POST") {
+ 
     try {
         const Ouser = await User.findOne({ username: req.body.username });
       if (!Ouser) {
@@ -32,8 +32,5 @@ export default async function handler(req, res) {
     } catch (error) {
       res.status(400).json({ msg: error });
     }
-  } else {
-    res.setHeader("Allow", ["GET", "PUT"]);
-    res.status(405).end(`Method ${method} Not Allowed`);
-  }
-}
+  } 
+
