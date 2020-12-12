@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import AuthContext from "../../context/auth-context";
-import BaseUrl from "../../url";
+
 function Form() {
   const context = useContext(AuthContext);
 
@@ -23,69 +23,42 @@ function Form() {
       };
       try {
         console.log("client" + JSON.stringify(body));
-        // const res = await fetch(`${BaseUrl}/api/graphql`, {
-        //   method: "POST",
-        //   headers: { "Content-Type": "application/json" },
-        //   body: JSON.stringify({
-        //     query: `mutation {
-        //       signIn(input:{username:"${username}",password:"${password}",phone:"${phone}"}){
-        //        username,
-        //         phone
-        //       }
-        //     }`,
-        //   }),
-        // });
-        // const data11 = await res.json();
-        // setisLogin(!isLogin);
-        // console.log(data11);
-        // return data11;
-        const res = await fetch("http://localhost:3000/api/signUp", {
+        const res = await fetch("/api/signup", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+        });
+        const data = await res.json();
+        setisLogin(!isLogin);
+        console.log(data);
+      } catch (error) {
+        alert(error);
+      }
+    }
+    if (isLogin == true) {
+      const body = {
+        username: username,
+        phone: phone,
+        password: password,
+      };
+      try {
+        const res = await fetch("/api/login", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(body),
         });
         const data = await res.json();
 
-        console.log(data);
-        return data;
-      } catch (error) {
-        alert(error);
-      }
-    }
-    if (isLogin == true) {
-      try {
-        const res = await fetch(`${BaseUrl}/api/graphql`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            query: `query {
-              login(username:"${username}",password:"${password}"){
-                userId,
-                token,
-                tokenExpire
-
-              }
-            }`,
-          }),
-        });
-        const data11 = await res.json();
-        console.log(data11.data.login.tokenExpire);
-
-        if (data11.data.login.token) {
-          context.login(
-            data11.data.login.userId,
-            data11.data.login.token,
-            data11.data.login.tokenExpire
-          );
+        console.log(data.msg);
+        if (data.msg.token) {
+          context.login(data.msg.userId, data.msg.token, data.msg.tokenExpire);
         }
-
-        return data11;
       } catch (error) {
         setErr("erroooor");
+        console.log(error);
       }
     }
   }
-  console.log(context);
 
   return (
     <div className="sign-up">
