@@ -181,8 +181,6 @@ export const getStaticPaths = async () => {
   const dataQQ = await queryGraphQl(`query {
     books{
      _id
-     title
-author
 
   }
 }`);
