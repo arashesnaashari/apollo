@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import AuthContext from "../../context/auth-context";
+import fetch from "isomorphic-unfetch";
 
 function Form() {
   const context = useContext(AuthContext);
@@ -44,7 +45,11 @@ function Form() {
         const query = {
           query: `
             query {
-              login(username:"${username}",password:${password})
+              login(username:"${username}",password:"${password}"){
+                token
+    userId
+    tokenExpire
+              }
             }
           `,
         };
@@ -55,11 +60,15 @@ function Form() {
         });
         const data = await res.json();
 
-        console.log("errorCL" + data);
-        if (data.msg.token) {
-          context.login(data.msg.userId, data.msg.token, data.msg.tokenExpire);
+        console.log(data.login);
+        if (data.login.token) {
+          context.login(
+            data.login.userId,
+            data.login.token,
+            data.login.tokenExpire
+          );
         }
-        console.log();
+        // console.log();
       } catch (error) {
         setErr("erroooor");
         console.log("error " + error);
