@@ -38,34 +38,24 @@ function Form() {
     if (isLogin == true) {
       const body = {
         username: username,
-        phone: phone,
         password: password,
       };
-      const query = {
-        query: `query {
-          login(username:"${username}",password:"${password}"){
-            token
-            userId
-            tokenExpire
-          }
-        }`,
-      };
       try {
-        const res = await fetch("https://bookgram.vercel.app/api/graphql", {
+        const res = await fetch("/api/login", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(query),
+          body: JSON.stringify(body),
         });
         const data = await res.json();
 
-        // console.log("error client" + data.msg.error);
-        // if (data.msg.token) {
-        //   context.login(data.msg.userId, data.msg.token, data.msg.tokenExpire);
-        // }
-        console.log(data);
+        console.log("error client" + data.msg.error);
+        if (data.msg.token) {
+          context.login(data.msg.userId, data.msg.token, data.msg.tokenExpire);
+        }
+        console.log();
       } catch (error) {
         setErr("erroooor");
-        console.log("error CL" + error);
+        console.log("error " + error);
       }
     }
   }
