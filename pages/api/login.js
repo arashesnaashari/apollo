@@ -5,15 +5,16 @@ const jwt = require("jsonwebtoken");
 dbConnect();
 export default async function handler(req, res) {
   try {
-    // res.setHeader("Allow", "POST");
-    // const Ouser = await User.findOne({ username: req.body.username });
-    // if (!Ouser) {
-    //   res.status(400).json({ msg: "we havent you" });
-    // }
-    // const isEqual = await bcrypt.compare(req.body.password, Ouser.password);
-    // if (!isEqual) {
-    //   res.status(400).json({ msg: "password wrong" });
-    // }
+    res.setHeader("Allow", "POST");
+    const Ouser = await User.findOne({ username: req.body.username });
+    if (!Ouser) {
+      res.status(400).json({ msg: "we havent you" });
+    }
+    const isEqual = await bcrypt.compare(req.body.password, Ouser.password);
+    if (!isEqual) {
+      res.status(400).json({ msg: "password wrong" });
+    }
+
     // const token = jwt.sign(
     //   { userId: Ouser.id, username: Ouser.username },
     //   "somSuperKey",
@@ -27,7 +28,7 @@ export default async function handler(req, res) {
     //   tokenExpire: 1,
     // };
 
-    res.status(200).json({ msg: req.body });
+    res.status(201).json({ msg: Ouser });
   } catch (error) {
     res.status(400).json({ msg: error });
   }
