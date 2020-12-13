@@ -21,7 +21,7 @@ export default async function handler(req, res) {
 
     const result = await user.save();
 
-    res.status(200).json({ msg: result });
+    res.status(201).json({ msg: result });
   } catch (error) {
     res.status(400).json({ msg: error });
   }
