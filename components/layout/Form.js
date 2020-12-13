@@ -22,6 +22,7 @@ function Form() {
         phone: phone,
         password: password,
       };
+      console.log(typeof body.password, typeof body.phone, typeof body.phone);
       try {
         console.log("client" + JSON.stringify(body));
         const res = await fetch("/api/signup", {
@@ -59,16 +60,14 @@ function Form() {
           body: JSON.stringify(query),
         });
         const data = await res.json();
-
-        console.log(data.login);
-        if (data.login.token) {
+        console.log(typeof body.password);
+        if (data.data.login.token) {
           context.login(
-            data.login.userId,
-            data.login.token,
-            data.login.tokenExpire
+            data.data.login.userId,
+            data.data.login.token,
+            data.data.login.tokenExpire
           );
         }
-        // console.log();
       } catch (error) {
         setErr("erroooor");
         console.log("error " + error);
