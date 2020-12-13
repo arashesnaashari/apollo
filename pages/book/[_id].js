@@ -20,7 +20,7 @@ export default function Id(props) {
   async function handleSubmit(event) {
     event.preventDefault();
     try {
-      const res = await fetch(`${BaseUrl}/api/graphql`, {
+      const res = await fetch(`/api/graphql`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -219,6 +219,7 @@ export const getStaticProps = async ({ params: { _id } }) => {
 
   return {
     props: { data: dataQQ },
+    revalidate: 1,
   };
 };
 
