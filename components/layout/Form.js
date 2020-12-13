@@ -38,6 +38,7 @@ function Form() {
     if (isLogin == true) {
       const body = {
         username: username,
+        phone: phone,
         password: password,
       };
       try {
