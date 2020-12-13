@@ -48,7 +48,7 @@ function Form() {
         });
         const data = await res.json();
 
-        console.log("error client" + data.msg.error);
+        console.log("error client" + data);
         if (data.msg.token) {
           context.login(data.msg.userId, data.msg.token, data.msg.tokenExpire);
         }
