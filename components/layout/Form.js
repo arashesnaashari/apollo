@@ -49,13 +49,13 @@ function Form() {
         });
         const data = await res.json();
 
-        console.log('error client' + data.msg);
+        console.log("error client" + data.msg.token);
         if (data.msg.token) {
           context.login(data.msg.userId, data.msg.token, data.msg.tokenExpire);
         }
       } catch (error) {
         setErr("erroooor");
-        console.log('error ' + error);
+        console.log("error " + error);
       }
     }
   }
