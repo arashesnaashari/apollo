@@ -4,9 +4,8 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 dbConnect();
 export default async function handler(req, res) {
- 
   switch (req.method) {
-    case 'POST':
+    case "POST":
       const Ouser = await User.findOne({ username: req.body.username });
       if (!Ouser) {
         res.status(400).json({ msg: "we havent you" });
@@ -15,25 +14,23 @@ export default async function handler(req, res) {
       if (!isEqual) {
         res.status(400).json({ msg: "password wrong" });
       }
-  
-      const token = jwt.sign(
-        { userId: Ouser.id, username: Ouser.username },
-        "somSuperKey",
-        {
-          expiresIn: "1h",
-        }
-      );
+
+      // const token = jwt.sign(
+      //   { userId: Ouser.id, username: Ouser.username },
+      //   "somSuperKey",
+      //   {
+      //     expiresIn: "1h",
+      //   }
+      // );
       const data = {
         userId: Ouser.id,
-        token: token,
-        tokenExpire: 1,
       };
-  
-      res.status(201).json({ msg: Ouser });
+
+      res.status(201).json({ msg: data });
       break;
-  
+
     default:
-      res.setHeader('Allow', 'POST')
-      res.status(405).end(`Method ${method} Not Allowed`)
+      res.setHeader("Allow", "POST");
+      res.status(405).end(`Method $ Not Allowed`);
   }
 }
