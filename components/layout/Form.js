@@ -41,18 +41,20 @@ function Form() {
         phone: phone,
         password: password,
       };
-      const query = `query {
-        login(username:"${username}",password:"${password}"){
-          token
-          userId
-          tokenExpire
-        }
-      }`;
+      const query = {
+        query: `query {
+          login(username:"${username}",password:"${password}"){
+            token
+            userId
+            tokenExpire
+          }
+        }`,
+      };
       try {
         const res = await fetch("/api/graphql", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ query }),
+          body: JSON.stringify(query),
         });
         const data = await res.json();
 
@@ -63,7 +65,7 @@ function Form() {
         console.log(data);
       } catch (error) {
         setErr("erroooor");
-        console.log("error " + error);
+        console.log("error CL" + error);
       }
     }
   }
