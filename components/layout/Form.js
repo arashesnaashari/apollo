@@ -41,11 +41,18 @@ function Form() {
         phone: phone,
         password: password,
       };
+      const query = `query {
+        login(username:"${username}",password:"${password}"){
+          token
+          userId
+          tokenExpire
+        }
+      }`;
       try {
-        const res = await fetch("/api/login", {
+        const res = await fetch("/api/graphql", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body),
+          body: JSON.stringify({ query }),
         });
         const data = await res.json();
 
