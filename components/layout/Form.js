@@ -41,14 +41,21 @@ function Form() {
         password: password,
       };
       try {
-        const res = await fetch("/api/login", {
+        const query = {
+          query: `
+            query {
+              login(username:"${username}",password:${password})
+            }
+          `,
+        };
+        const res = await fetch("/api/graphql", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body),
+          body: JSON.stringify(query),
         });
         const data = await res.json();
 
-        console.log("error client" + data);
+        console.log("errorCL" + data);
         if (data.msg.token) {
           context.login(data.msg.userId, data.msg.token, data.msg.tokenExpire);
         }
