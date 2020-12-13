@@ -38,7 +38,6 @@ function Form() {
     if (isLogin == true) {
       const body = {
         username: username,
-        phone: phone,
         password: password,
       };
       try {
@@ -49,10 +48,11 @@ function Form() {
         });
         const data = await res.json();
 
-        console.log("error client" + data.msg.error);
-        if (data.msg.token) {
-          context.login(data.msg.userId, data.msg.token, data.msg.tokenExpire);
-        }
+        // console.log("error client" + data.msg.error);
+        // if (data.msg.token) {
+        //   context.login(data.msg.userId, data.msg.token, data.msg.tokenExpire);
+        // }
+        console.log(data);
       } catch (error) {
         setErr("erroooor");
         console.log("error " + error);
