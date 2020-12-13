@@ -40,7 +40,7 @@ const Navbar = (props) => {
       </div>
 
       <div className="serach-box">
-        <Search data={props.search}/>
+        <Search data={props.search} />
       </div>
       <Link href="/">
         <a href="#" className="logo">
@@ -76,8 +76,6 @@ const Navbar = (props) => {
         )}
         {!context.token && Modal && <Form />}
       </nav>
-
-   
     </header>
   );
 };

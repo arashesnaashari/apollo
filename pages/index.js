@@ -1,8 +1,13 @@
-import fetch from "isomorphic-unfetch";
+import { useContext } from "react";
 import Layout from "../components/layout/Layout";
 import Books from "../components/Book/Book_All/booksContainer";
 import queryGraphQl from "../shared/query-graphql/index";
+import BooksContext from "../context/books-context";
+
 export default function propssing(props) {
+  const context = useContext(BooksContext);
+  context.books = props.data.books;
+
   return (
     <>
       <Layout navbar={props.data.books}>

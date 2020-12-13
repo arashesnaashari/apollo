@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Link from "next/link";
 import BaseUrl from "../../../url";
+import BooksContext from "../../../context/books-context";
 
 const Search = (props) => {
-  const [data, setData] = useState(props.data);
+  const context = useContext(BooksContext);
+  const [data, setData] = useState(context.books);
   const [html, setHtml] = useState();
   const inputEvent = (e) => {
     let complitedResul;
