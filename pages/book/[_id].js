@@ -65,7 +65,7 @@ export default function Id(props) {
     return <div>Loading...</div>;
   }
   return (
-    <Layout>
+    <Layout navbar={props.data.books}>
       <main className="ebook-landing-grid">
         {/* Book Info */}
         <section className="ebook-showcase">

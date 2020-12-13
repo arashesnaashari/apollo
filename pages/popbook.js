@@ -7,7 +7,7 @@ import Books from "../components/Book/Book_All/PopularBooks";
 export default function propssing(props) {
   return (
     <>
-      <Layout>
+      <Layout navbar={props.data.books}>
         <Books data={props.data.books}></Books>
       </Layout>
     </>

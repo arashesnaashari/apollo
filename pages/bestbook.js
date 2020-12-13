@@ -7,7 +7,7 @@ import queryGraphQl from "../shared/query-graphql/index";
 export default function propssing(props) {
   return (
     <>
-      <Layout>
+      <Layout navbar={props.data.books}>
         <Books data={props.data.books}></Books>
       </Layout>
     </>
