@@ -49,7 +49,7 @@ function Form() {
         });
         const data = await res.json();
 
-        console.log("error client" + data.msg.token);
+        console.log("error client" + data.msg.error);
         if (data.msg.token) {
           context.login(data.msg.userId, data.msg.token, data.msg.tokenExpire);
         }
