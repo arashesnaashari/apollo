@@ -173,7 +173,7 @@ export default function Id(props) {
                       <span>
                         {array1}
                         {comment.creator._id == context.userId && (
-                          <button onClick={(event) => {
+                          <button onClick={async(event) => {
                             event.preventDefault();
    
       const res = await fetch(`/api/graphql`, {
