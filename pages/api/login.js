@@ -2,11 +2,8 @@ import dbConnect from "../../utils/dbConnect";
 import User from "../../models/user";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import AuthContext from "../../context/auth-context";
-import { useContext } from "react";
 dbConnect();
 export default async function handler(req, res) {
-  const context = useContext(AuthContext);
   try {
     const Ouser = await User.findOne({ username: req.body.username });
     if (!Ouser) {
@@ -30,15 +27,8 @@ export default async function handler(req, res) {
       token: token,
       tokenExpire: 1,
     };
-    if (data.token) {
-      context.login(
-        data.userId,
-        data.token,
-        data.tokenExpire
-      );
-    }
 
-    res.status(201).json({ msg: "Successd" });
+    res.status(201).json({ msg: data });
   } catch (error) {
     res.status(400).json({ msg: error });
   }

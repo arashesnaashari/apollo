@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import AuthContext from "../../context/auth-context";
+import AuthContext from "../context/auth-context";
 import fetch from "isomorphic-unfetch";
 function Form() {
   const context = useContext(AuthContext);
@@ -21,17 +21,21 @@ function Form() {
         phone: phone,
         password: password,
       };
-      console.log(typeof body.password, typeof body.phone, typeof body.phone);
       try {
-        console.log("client" + JSON.stringify(body));
-        const res = await fetch("/api/signup", {
+        fetch("/api/signup", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(body),
-        });
-        const data = await res.json();
-        console.log(data.status);
-        setisLogin(!isLogin);
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.msg == "404") {
+              console.log("40404");
+              return;
+            }
+            setisLogin(!isLogin);
+          })
+          .catch((err) => console.log(err));
       } catch (error) {
         alert(error);
       }
@@ -59,13 +63,9 @@ function Form() {
           body: JSON.stringify(body),
         });
         const data = await res.json();
-
-        if (data.data.login.token) {
-          context.login(
-            data.data.login.userId,
-            data.data.login.token,
-            data.data.login.tokenExpire
-          );
+        console.log(data);
+        if (data.msg.token) {
+          context.login(data.msg.userId, data.msg.token, data.msg.tokenExpire);
         }
       } catch (error) {
         setErr("erroooor");
@@ -93,7 +93,6 @@ function Form() {
               </>
             )}
           </div>
-          {console.log(isLogin)}
           {!clozeModal && (
             <form onSubmit={handleSubmit}>
               <input

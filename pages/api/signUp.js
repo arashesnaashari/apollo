@@ -8,8 +8,8 @@ export default async function handler(req, res) {
       phone: req.body.phone,
     });
     if (existingUser) {
-      res.status(400).json({ msg: "this acccount has been used" });
-      return
+      res.status(404).json({ msg: "404" });
+      return;
     }
     const hashedPassword = await bcrypt.hash(req.body.password, 12);
 
@@ -20,15 +20,10 @@ export default async function handler(req, res) {
     });
 
     const result = await user.save();
+   
 
-    res.status(201).json({ msg: 'Success' });
+    res.status(201).json({ msg: 'Succ' });
   } catch (error) {
     res.status(400).json({ msg: error });
   }
 }
-
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
