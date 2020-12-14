@@ -11144,7 +11144,7 @@ const interval = () => {
 
     btnTime.addEventListener("click", (e) => {
       document.cookie = "times=0";
-
+      
       e.preventDefault();
       if (!state) {
         confirm("شروع / ادامه خواندن ؟");

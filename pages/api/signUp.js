@@ -1,7 +1,6 @@
 import dbConnect from "../../utils/dbConnect";
-const User = require("../../models/user");
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
+import User from "../../models/user";
+import bcrypt from "bcrypt";
 dbConnect();
 export default async function handler(req, res) {
   try {
@@ -10,6 +9,7 @@ export default async function handler(req, res) {
     });
     if (existingUser) {
       res.status(400).json({ msg: "this acccount has been used" });
+      return
     }
     const hashedPassword = await bcrypt.hash(req.body.password, 12);
 
@@ -21,7 +21,7 @@ export default async function handler(req, res) {
 
     const result = await user.save();
 
-    res.status(201).json({ msg: user });
+    res.status(201).json({ msg: 'Success' });
   } catch (error) {
     res.status(400).json({ msg: error });
   }

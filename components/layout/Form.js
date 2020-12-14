@@ -21,7 +21,6 @@ function Form() {
         phone: phone,
         password: password,
       };
-      console.log(typeof body.password, typeof body.phone, typeof body.phone);
       try {
         console.log("client" + JSON.stringify(body));
         const res = await fetch("/api/signup", {
@@ -42,31 +41,25 @@ function Form() {
         password: password,
       };
       try {
-        const query = {
-          query: `
-            query {
-              login(username:"${username}",password:"${password}"){
-                token
-                userId
-                tokenExpire
-              }
-            }
-          `,
-        };
-        const res = await fetch("/api/graphql", {
+        // const query = {
+        //   query: `
+        //     query {
+        //       login(username:"${username}",password:"${password}"){
+        //         token
+        //         userId
+        //         tokenExpire
+        //       }
+        //     }
+        //   `,
+        // };
+        const res = await fetch("/api/login", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(query),
+          body: JSON.stringify(body),
         });
         const data = await res.json();
-        console.log(typeof body.password);
-        if (data.data.login.token) {
-          context.login(
-            data.data.login.userId,
-            data.data.login.token,
-            data.data.login.tokenExpire
-          );
-        }
+        console.log(data);
+        
       } catch (error) {
         setErr("erroooor");
         console.log("error " + error);
