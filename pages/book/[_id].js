@@ -43,24 +43,25 @@ export default function Id(props) {
         }),
       });
       const data = await res.json();
-      const newComment = {
-        text: text,
-        rate: NumericRate,
-        date: data.date,
-        _id: data._id,
-        creator: {
-          username: data.creator.username,
-        },
-      };
-      setComments([...comments, newComment]);
+
+      // const newComment = {
+      //   text: text,
+      //   rate: NumericRate,
+      //   date: data.date,
+      //   _id: data._id,
+      //   creator: {
+      //     username: data.creator.username,
+      //   },
+      // };
+      // setComments([...comments, newComment]);
       console.log(data);
-      console.log(comments);
 
       // console.log(data.createComment);
     } catch (error) {
       console.log(error);
     }
   }
+
   if (router.isFallback) {
     return <div>Loading...</div>;
   }
@@ -115,6 +116,7 @@ export default function Id(props) {
         </section>
         {/* Form */}
         {!context.token && <h5>برای نظر دادن وارد شوید</h5>}
+
         {context.token && (
           <form onSubmit={handleSubmit}>
             <input
@@ -142,7 +144,18 @@ export default function Id(props) {
           <h1 className="comments--title">نظرهای کاربران</h1>
           <div className="comments--right">
             <div className="comment">
-              {comments.map((comment) => {
+              {comments.map((comment, i) => {
+                let rates = comment.rate;
+                let array1 = [];
+
+                for (let i = 0; i < rates; i++) {
+                  array1.push(
+                    <span key={props.data.book._id} style={{ color: "gold" }}>
+                      &#9734;
+                    </span>
+                  );
+                }
+
                 return (
                   <div key={comment._id}>
                     <div className="comment--title">
@@ -157,18 +170,35 @@ export default function Id(props) {
                       {/* <svg className="icon-comments">
                         <use xlinkHref="../img/symbol-defs.svg#icon-comments"></use>
                       </svg> */}
-                      <span>{comment.rate}</span>
+                      <span>
+                        {array1}
+                        {comment.creator._id == context.userId && (
+                          <button onClick={(event) => {
+                            event.preventDefault();
+   
+      const res = await fetch(`/api/graphql`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          query: `
+          mutation {
+            deleteComment(commentId:"${comment._id}"){
+              _id
+            }
+          }
+          `,
+        }),
+      });
+      const data = await res.json();
+      console.log(data);
+                          }}>X</button>
+                        )}
+                      </span>
                     </div>
                     <p className="comment--text">{comment.text}</p>
                   </div>
                 );
               })}
-
-              {/* {props.data.book.comments.map((e) => {
-              //   return (
-
-              //   );
-              // })} */}
             </div>
           </div>
         </section>
@@ -211,6 +241,7 @@ export const getStaticProps = async ({ params: { _id } }) => {
     rate
     creator{
       username
+      _id
     }
   }
   }

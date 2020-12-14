@@ -26,9 +26,3 @@ export default async function handler(req, res) {
     res.status(400).json({ msg: error });
   }
 }
-
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};

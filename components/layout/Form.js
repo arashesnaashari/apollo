@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 import AuthContext from "../../context/auth-context";
 import fetch from "isomorphic-unfetch";
-
 function Form() {
   const context = useContext(AuthContext);
 
@@ -48,8 +47,8 @@ function Form() {
             query {
               login(username:"${username}",password:"${password}"){
                 token
-    userId
-    tokenExpire
+                userId
+                tokenExpire
               }
             }
           `,

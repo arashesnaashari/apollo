@@ -11105,169 +11105,179 @@ let totalpage;
       });
   },
 });
-//wait for page
-setTimeout(() => {
-  //get all iframe
-  let iframes = document.querySelectorAll("iframe");
-  //create new btn
-  const parent = document.querySelector("#bibi-menu-r");
 
-  const btn = document.createElement("ul");
-  btn.classList.add("bibi-buttongroup");
-  btn.innerHTML =
-    "<li class='bibi-buttonbox bibi-buttonbox-toggle' style='background-color: khaki;'><span class='bibi-button bibi-button-toggle default' title='تغییر تم' style='background-color: khaki;'><span class='bibi-button-iconbox' style='background-color: khaki;'><span class='bibi-icon bibi-icon-theme' style='background-color: khaki;'></span></span><span class='bibi-button-label' style='background-color: khaki;'>تغییر تم</span></span></li>";
-  const btnSave = document.createElement("ul");
-  btnSave.classList.add("bibi-buttongroup");
-  btnSave.innerHTML =
-    "<li class='bibi-buttonbox bibi-buttonbox-toggle' style='background-color: khaki;'><span class='bibi-button bibi-button-toggle default' title='ذخیره' style='background-color: khaki;'><span class='bibi-button-iconbox' style='background-color: khaki;'><span class='bibi-icon bibi-icon-save' style='background-color: khaki;'></span></span><span class='bibi-button-label' style='background-color: khaki;'>ذخیره</span></span></li>";
-  const btnTime = document.createElement("ul");
-  btnTime.classList.add("bibi-buttongroup");
-  btnTime.innerHTML =
-    "<li class='bibi-buttonbox bibi-buttonbox-toggle' style='background-color: khaki;'><span class='bibi-button bibi-button-toggle default' title='زمان بندی' style='background-color: khaki;'><span class='bibi-button-iconbox' style='background-color: khaki;'><span class='bibi-icon bibi-icon-timer' style='background-color: khaki;'></span></span><span class='bibi-button-label' style='background-color: khaki;'>ذخیره</span></span></li>";
+const interval = () => {
+  if (document.body.contains(document.querySelector("iframe"))) {
+    let iframes = document.querySelectorAll("iframe");
+    //create new btn
+    const parent = document.querySelector("#bibi-menu-r");
 
-  parent.appendChild(btn);
-  parent.appendChild(btnTime);
-  parent.appendChild(btnSave);
+    const btn = document.createElement("ul");
+    btn.classList.add("bibi-buttongroup");
+    btn.innerHTML =
+      "<li class='bibi-buttonbox bibi-buttonbox-toggle' style='background-color: khaki;'><span class='bibi-button bibi-button-toggle default' title='تغییر تم' style='background-color: khaki;'><span class='bibi-button-iconbox' style='background-color: khaki;'><span class='bibi-icon bibi-icon-theme' style='background-color: khaki;'></span></span><span class='bibi-button-label' style='background-color: khaki;'>تغییر تم</span></span></li>";
+    const btnSave = document.createElement("ul");
+    btnSave.classList.add("bibi-buttongroup");
+    btnSave.innerHTML =
+      "<li class='bibi-buttonbox bibi-buttonbox-toggle' style='background-color: khaki;'><span class='bibi-button bibi-button-toggle default' title='ذخیره' style='background-color: khaki;'><span class='bibi-button-iconbox' style='background-color: khaki;'><span class='bibi-icon bibi-icon-save' style='background-color: khaki;'></span></span><span class='bibi-button-label' style='background-color: khaki;'>ذخیره</span></span></li>";
+    const btnTime = document.createElement("ul");
+    btnTime.classList.add("bibi-buttongroup");
+    btnTime.innerHTML =
+      "<li class='bibi-buttonbox bibi-buttonbox-toggle' style='background-color: khaki;'><span class='bibi-button bibi-button-toggle default' title='زمان بندی' style='background-color: khaki;'><span class='bibi-button-iconbox' style='background-color: khaki;'><span class='bibi-icon bibi-icon-timer' style='background-color: khaki;'></span></span><span class='bibi-button-label' style='background-color: khaki;'>ذخیره</span></span></li>";
 
-  let state = null;
-  let tens = "" || parseInt(document.cookie.replace(/[^0-9\.]+/g, ""));
-  let Interval;
-  let date = new Date();
-  date.setTime(date.getTime() + (24 - date.getHours()) * 3600 * 1000);
+    parent.appendChild(btn);
+    parent.appendChild(btnTime);
+    parent.appendChild(btnSave);
 
-  btnTime.addEventListener("click", (e) => {
-    document.cookie = "times=0";
-
-    e.preventDefault();
-    if (!state) {
-      confirm("شروع / ادامه خواندن ؟");
-      clearInterval(Interval);
-      Interval = setInterval(startTimer, 1000);
-      function startTimer() {
-        tens++;
-        console.log(tens, typeof tens);
-        if (Interval) {
-          setInterval(() => {
-            console.log("times is" + tens);
-            document.cookie = `times=${tens}; expires=${date}`;
-          }, 3000);
-        }
-      }
-      state = "clicked";
-    } else {
-      confirm("متوقف کردن خواندن ؟");
-
-      clearInterval(Interval);
-      state = null;
+    let state = null;
+    let tens = "";
+    //     parseInt(document.cookie.replace(/[^0-9\.]+/g, "")
+    if (
+      document.cookie.split("")[6] !== "N" &&
+      document.cookie.split("")[6] !== "0"
+    ) {
+      tens = parseInt(document.cookie.replace(/[^0-9\.]+/g, ""));
     }
-  });
-  if (!state) {
-    setTimeout(() => {
-      alert("نمی خوای زمان سج رو روشن کنی ؟");
-    }, 20000);
-  }
-  btnSave.addEventListener("click", async (e) => {
-    e.preventDefault();
-    let percent = document.querySelector(
-      "div#bibi-nombre span.bibi-nombre-percent"
-    ).innerText;
-    percent = percent.replace(/[^0-9\.]+/g, "");
-    var url_string = window.location.href;
-    var url = new URL(url_string);
-    var book = url.searchParams.get("bookId");
-    var userId = url.searchParams.get("userId");
-    const res = await fetch(`${BaseUrl}/api/graphql`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        query: `
+    let Interval;
+    let date = new Date();
+    date.setTime(date.getTime() + (24 - date.getHours()) * 3600 * 1000);
+
+    btnTime.addEventListener("click", (e) => {
+      document.cookie = "times=0";
+
+      e.preventDefault();
+      if (!state) {
+        confirm("شروع / ادامه خواندن ؟");
+        clearInterval(Interval);
+        Interval = setInterval(startTimer, 1000);
+        function startTimer() {
+          tens++;
+          console.log(tens, typeof tens);
+          if (Interval) {
+            setInterval(() => {
+              console.log("times is" + tens);
+              document.cookie = `times=${tens}; expires=${date}`;
+            }, 3000);
+          }
+        }
+        state = "clicked";
+      } else {
+        confirm("متوقف کردن خواندن ؟");
+
+        clearInterval(Interval);
+        state = null;
+      }
+    });
+    if (state) {
+      setTimeout(() => {
+        alert("نمی خوای زمان سج رو روشن کنی ؟");
+      }, 20000);
+    }
+    btnSave.addEventListener("click", async (e) => {
+      e.preventDefault();
+      let percent = document.querySelector(
+        "div#bibi-nombre span.bibi-nombre-percent"
+      ).innerText;
+      percent = percent.replace(/[^0-9\.]+/g, "");
+      var url_string = window.location.href;
+      var url = new URL(url_string);
+      var book = url.searchParams.get("bookId");
+      var userId = url.searchParams.get("userId");
+      const res = await fetch(`http://localhost:3000/api/graphql`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          query: `
         mutation {
           read(input:{time:${tens},pages:${percent},userId:"${userId}",book:"${book}"}){
             _id
           }
         }
         `,
-      }),
-    });
-    const data11 = await res.json();
-    console.log(data11);
-    alert("ذخیره");
-  });
-
-  for (let i = 0; i < iframes.length; i++) {
-    //get elements from iframe
-    let pes = iframes[i].contentWindow.document.querySelectorAll("p");
-    let body = iframes[i].contentWindow.document.querySelectorAll("div");
-    let all = document.querySelectorAll("*");
-
-    // change theme by click btn
-    let state2 = null;
-    btn.addEventListener("click", (e) => {
-      e.preventDefault();
-      if (!state2) {
-        document.body.style.filter = null;
-
-        for (let i = 0; i < all.length; i++) {
-          all[i].style.backgroundColor = "#121212";
-          all[i].style.color = "white";
-        }
-        for (let i = 0; i < body.length; i++) {
-          body[i].style.color = "white";
-          body[i].style.borderColor = "gray";
-          body[i].style.direction = "rtl";
-        }
-        state2 = "clicked";
-      } else {
-        document.body.style.filter = "sepia(100%)";
-
-        for (let i = 0; i < all.length; i++) {
-          all[i].style.backgroundColor = "khaki";
-        }
-        for (let i = 0; i < body.length; i++) {
-          body[i].style.color = "brown";
-          body[i].style.borderColor = "brown";
-          body[i].style.direction = "rtl";
-        }
-        state2 = null;
-      }
+        }),
+      });
+      const data11 = await res.json();
+      console.log(data11);
+      alert("ذخیره");
     });
 
-    for (let i = 0; i < all.length; i++) {
-      all[i].style.backgroundColor = "khaki";
-    }
+    for (let i = 0; i < iframes.length; i++) {
+      //get elements from iframe
+      let pes = iframes[i].contentWindow.document.querySelectorAll("p");
+      let body = iframes[i].contentWindow.document.querySelectorAll("div");
+      let all = document.querySelectorAll("*");
 
-    // rtl after change font
-    let radios = document.querySelectorAll(".bibi-buttonbox-radio");
-    for (let i = 0; i < radios.length; i++) {
-      radios[i].addEventListener("click", () => {
-        setTimeout(() => {
+      // change theme by click btn
+      let state2 = null;
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (!state2) {
+          document.body.style.filter = null;
+
+          for (let i = 0; i < all.length; i++) {
+            all[i].style.backgroundColor = "#121212";
+            all[i].style.color = "white";
+          }
           for (let i = 0; i < body.length; i++) {
+            body[i].style.color = "white";
+            body[i].style.borderColor = "gray";
             body[i].style.direction = "rtl";
           }
-        }, 1000);
+          state2 = "clicked";
+        } else {
+          document.body.style.filter = "sepia(100%)";
+
+          for (let i = 0; i < all.length; i++) {
+            all[i].style.backgroundColor = "khaki";
+          }
+          for (let i = 0; i < body.length; i++) {
+            body[i].style.color = "brown";
+            body[i].style.borderColor = "brown";
+            body[i].style.direction = "rtl";
+          }
+          state2 = null;
+        }
       });
-    }
 
-    // rtl after change zoom
-
-    window.addEventListener("resize", function () {
-      for (let i = 0; i < pes.length; i++) {
-        pes[i].style.direction = "rtl";
+      for (let i = 0; i < all.length; i++) {
+        all[i].style.backgroundColor = "khaki";
       }
-    });
 
-    //deafult   rtl color  lineHight
-    for (let i = 0; i < body.length; i++) {
-      body[i].style.direction = "rtl";
-      body[i].style.color = "brown";
-      body[i].style.fontFamily = "system-ui";
+      // rtl after change font
+      let radios = document.querySelectorAll(".bibi-buttonbox-radio");
+      for (let i = 0; i < radios.length; i++) {
+        radios[i].addEventListener("click", () => {
+          setTimeout(() => {
+            for (let i = 0; i < body.length; i++) {
+              body[i].style.direction = "rtl";
+            }
+          }, 1000);
+        });
+      }
+
+      // rtl after change zoom
+
+      window.addEventListener("resize", function () {
+        for (let i = 0; i < pes.length; i++) {
+          pes[i].style.direction = "rtl";
+        }
+      });
+
+      //deafult   rtl color  lineHight
+      for (let i = 0; i < body.length; i++) {
+        body[i].style.direction = "rtl";
+        body[i].style.color = "brown";
+        body[i].style.fontFamily = "system-ui";
+      }
+      for (let i = 0; i < pes.length; i++) {
+        pes[i].style.lineHeight = "3";
+        //pes[i].style.fontSize  = '100px';
+      }
     }
-    for (let i = 0; i < pes.length; i++) {
-      pes[i].style.lineHeight = "3";
-      //pes[i].style.fontSize  = '100px';
-    }
+    clearInterval(timing);
   }
-}, 2000);
+};
+const timing = setInterval(interval, 2000);
 
 // console.log(
 //   document.querySelector("div#bibi-nombre span.bibi-nombre-percent").innerText //curent page

@@ -173,30 +173,52 @@ const resolvers = {
       }
     },
     createComment: async (parent, args) => {
-      const comment = new Comment({
-        text: args.input.text,
-        rate: args.input.rate,
+      const createdComment = await Comment.findOne({
         creator: args.input.userId,
         book: args.input.bookId,
-        date: faDate,
       });
-      let createdComment;
+
+      if (createdComment) {
+        throw new Error(
+          "فقط یک بار می توانید نظر دهید ؛ می توانید نظر قبلی خود را حذف کنید"
+        );
+      } else {
+        const comment = new Comment({
+          text: args.input.text,
+          rate: args.input.rate,
+          creator: args.input.userId,
+          book: args.input.bookId,
+          date: faDate,
+        });
+        let createdComment;
+        try {
+          const result = await comment.save();
+          createdComment = {
+            ...result._doc,
+            _id: result._doc._id,
+            book: result._doc.bookId,
+            creator: result._doc.creator,
+            date: result._doc.date,
+          };
+
+          const book = await Book.findById(args.input.bookId);
+
+          book.comments.push(comment);
+          await book.save();
+
+          return createdComment;
+        } catch (err) {
+          console.log(err);
+        }
+      }
+    },
+    deleteComment: async (parent, args) => {
       try {
-        const result = await comment.save();
-        createdComment = {
-          ...result._doc,
-          _id: result._doc._id,
-          book: result._doc.bookId,
-          creator: result._doc.creator,
-          date: result._doc.date,
-        };
+        const deletedComment = await Comment.findByIdAndDelete({
+          _id: args.commentId,
+        });
 
-        const book = await Book.findById(args.input.bookId);
-
-        book.comments.push(comment);
-        await book.save();
-
-        return createdComment;
+        return deletedComment;
       } catch (err) {
         console.log(err);
       }
