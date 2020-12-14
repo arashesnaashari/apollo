@@ -21,17 +21,21 @@ function Form() {
         phone: phone,
         password: password,
       };
-      console.log(typeof body.password, typeof body.phone, typeof body.phone);
       try {
-        console.log("client" + JSON.stringify(body));
-        const res = await fetch("/api/signup", {
+        fetch("/api/signup", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(body),
-        });
-        const data = await res.json();
-        console.log(data.status);
-        setisLogin(!isLogin);
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.msg == "404") {
+              console.log("40404");
+              return;
+            }
+            setisLogin(!isLogin);
+          })
+          .catch((err) => console.log(err));
       } catch (error) {
         alert(error);
       }
