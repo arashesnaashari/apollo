@@ -29,9 +29,7 @@ function Form() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(body),
         })
-          .then((res) => {
-            return res.json();
-          })
+          .then((res) => res.json())
           .then((data) => {
             setLoading(false);
             console.log(data);
@@ -118,7 +116,7 @@ function Form() {
                 placeholder="رمز عبور"
                 type="password"
               />
-              <button type="submit">{loading ? "loading" : "ثبت"}</button>
+              <button type="submit">{loading ? "a" : "ثبت"}</button>
 
               {err && <span>{err}</span>}
             </form>

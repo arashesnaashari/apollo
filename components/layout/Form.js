@@ -5,6 +5,7 @@ function Form() {
   const context = useContext(AuthContext);
 
   const [username, setUser] = React.useState("");
+  const [loading, setLoading] = React.useState(false);
   const [isLogin, setisLogin] = React.useState(true);
   const [clozeModal, setClozeModal] = React.useState(false);
   const [phone, setphone] = React.useState("");
@@ -22,13 +23,18 @@ function Form() {
         password: password,
       };
       try {
+        setLoading(true);
         fetch("/api/signup", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(body),
         })
-          .then((res) => res.json())
+          .then((res) => {
+            return res.json();
+          })
           .then((data) => {
+            setLoading(false);
+            console.log(data);
             if (data.msg == "404") {
               console.log("40404");
               return;
