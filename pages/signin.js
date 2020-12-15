@@ -24,7 +24,7 @@ function Form() {
       };
       try {
         setLoading(true);
-        fetch("/api/signup", {
+        fetch("/api/cors", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(body),
