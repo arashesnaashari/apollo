@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import AuthContext from "../context/auth-context";
-import fetch from "isomorphic-unfetch";
+import axios from "axios";
 function Form() {
   const context = useContext(AuthContext);
 
@@ -22,27 +22,10 @@ function Form() {
         phone: phone,
         password: password,
       };
-      try {
-        setLoading(true);
-        fetch("/api/cors", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            setLoading(false);
-            console.log(data);
-            if (data.msg == "404") {
-              console.log("40404");
-              return;
-            }
-            setisLogin(!isLogin);
-          })
-          .catch((err) => console.log(err));
-      } catch (error) {
-        alert(error);
-      }
+      setLoading(true);
+      const result = await axios.post("/api/cors", body);
+      console.log(result);
+      setLoading(false);
     }
     if (isLogin == true) {
       const body = {

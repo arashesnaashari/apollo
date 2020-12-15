@@ -21,14 +21,9 @@ const Navbar = (props) => {
           </svg>
         </a>
         {!context.token && (
-          <a href="#">
-            <svg
-              className="icon icon-user-plus"
-              onClick={() => SetModal(!Modal)}
-            >
-              <use xlinkHref="img/symbol-defs.svg#icon-user-plus"></use>
-            </svg>
-          </a>
+          <svg className="icon icon-user-plus" onClick={() => SetModal(!Modal)}>
+            <use xlinkHref="img/symbol-defs.svg#icon-user-plus"></use>
+          </svg>
         )}
         {context.token && (
           <Link href="#">

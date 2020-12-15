@@ -35,8 +35,8 @@ export default async function handler(req, res) {
 
     await user.save();
 
-    res.status(200).json({ msg: user.toObject() });
+    res.status(200).json({ msg: req.body });
   } catch (error) {
-    res.status(400).json({ msg: error });
+    res.status(400).json({ msg: `error ${error}` });
   }
 }

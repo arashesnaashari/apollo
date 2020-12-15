@@ -24,52 +24,42 @@ function Form() {
       };
       try {
         setLoading(true);
-        fetch("/api/signup", {
+        const res = await fetch("/api/graphql", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body),
-        })
-          .then((res) => {
-            return res.json();
-          })
-          .then((data) => {
-            setLoading(false);
-            console.log(data);
-            if (data.msg == "404") {
-              console.log("40404");
-              return;
+          body: JSON.stringify({
+            query: `mutation {
+            signIn(input:{username:"${username}",password:"${password}",phone:"${phone}"}){
+              _id
             }
-            setisLogin(!isLogin);
-          })
-          .catch((err) => console.log(err));
+          }`,
+          }),
+        });
+        const data = await res.json();
+        console.log(data);
+        setLoading(false);
+        setisLogin(!isLogin);
       } catch (error) {
-        alert(error);
+        console.log(error);
       }
     }
     if (isLogin == true) {
-      const body = {
-        username: username,
-        password: password,
-      };
       try {
-        // const query = {
-        //   query: `
-        //     query {
-        //       login(username:"${username}",password:"${password}"){
-        //         token
-        //         userId
-        //         tokenExpire
-        //       }
-        //     }
-        //   `,
-        // };
-        const res = await fetch("/api/login", {
+        const res = await fetch("/api/graphql", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body),
+          body: JSON.stringify({
+            query: `query {
+            login(username:"${username}",password:"${password}"){
+              token
+              tokenExpire
+              userId
+            }
+          }`,
+          }),
         });
         const data = await res.json();
-
+        console.log(data);
         if (data.data.login.token) {
           context.login(
             data.data.login.userId,
