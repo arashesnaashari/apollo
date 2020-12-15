@@ -33,9 +33,9 @@ export default async function handler(req, res) {
       password: hashedPassword, //3333333
     });
 
-    const result = await user.save();
+    await user.save();
 
-    res.status(201).json({ msg: "Succ" });
+    res.status(200).json({ msg: user.toObject() });
   } catch (error) {
     res.status(400).json({ msg: error });
   }
