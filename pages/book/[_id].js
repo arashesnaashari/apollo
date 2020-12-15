@@ -3,13 +3,26 @@ import fetch from "isomorphic-unfetch";
 import { useRouter } from "next/router";
 import AuthContext from "../../context/auth-context";
 import Layout from "../../components/layout/Layout";
-import BaseUrl from "../../url";
 import queryGraphQl from "../../shared/query-graphql/index";
+
+import useSWR, { mutate } from "swr";
+
+const fetcher = (query) =>
+  fetch("/api/graphql", {
+    method: "POST",
+    headers: {
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify({ query }),
+  })
+    .then((res) => res.json())
+    .then((json) => json.data);
+
 export default function Id(props) {
   const context = useContext(AuthContext);
   const [text, setText] = useState("");
   const [rate, setRate] = useState(0);
-  const [comments, setComments] = useState(props.data.book.comments);
+  // const [comments, setComments] = useState(props.data.book.comments);
   const router = useRouter();
   const { _id } = router.query;
   const NumericRate = parseInt(rate);
@@ -55,11 +68,49 @@ export default function Id(props) {
       // };
       // setComments([...comments, newComment]);
       console.log(data);
-
+      mutate(`query {
+        book(_id:"${props.data.book._id}"){
+         comments{
+          text
+          _id
+          date
+          rate
+          creator{
+            username
+            _id
+          }
+        }
+        }
+      }`);
       // console.log(data.createComment);
     } catch (error) {
       console.log(error);
     }
+  }
+
+  const { data, error } = useSWR(
+    `query {
+    book(_id:"${props.data.book._id}"){
+     comments{
+      text
+      _id
+      date
+      rate
+      creator{
+        username
+        _id
+      }
+    }
+    }
+  }`,
+    fetcher
+  );
+  // if (!data) return "I am loading...";
+
+  // const [comments, setComments] = useState(data.book.comments);
+  let comments;
+  if (data) {
+    comments = data.book.comments;
   }
 
   if (router.isFallback) {
@@ -140,68 +191,91 @@ export default function Id(props) {
         <div className="midline"></div>
 
         {/* Comments */}
-        <section className="comments">
-          <h1 className="comments--title">نظرهای کاربران</h1>
-          <div className="comments--right">
-            <div className="comment">
-              {comments.map((comment, i) => {
-                let rates = comment.rate;
-                let array1 = [];
 
-                for (let i = 0; i < rates; i++) {
-                  array1.push(
-                    <span key={props.data.book._id} style={{ color: "gold" }}>
-                      &#9734;
-                    </span>
-                  );
-                }
+        {comments && (
+          <section className="comments">
+            <h1 className="comments--title">نظرهای کاربران</h1>
+            <div className="comments--right">
+              <div className="comment">
+                {comments.map((comment, i) => {
+                  let rates = comment.rate;
+                  let array1 = [];
 
-                return (
-                  <div key={comment._id}>
-                    <div className="comment--title">
-                      <div className="comment--title__content">
-                        <img src="../img/comment-3.png" alt="comment" />
-                        <div className="comment--title__text">
-                          <h1>{comment.creator.username}</h1>
-                          <span className="time">{comment.date}</span>
+                  for (let i = 0; i < rates; i++) {
+                    array1.push(
+                      <span key={props.data.book._id} style={{ color: "gold" }}>
+                        &#9734;
+                      </span>
+                    );
+                  }
+
+                  return (
+                    <div key={comment._id}>
+                      <div className="comment--title">
+                        <div className="comment--title__content">
+                          <img src="../img/comment-3.png" alt="comment" />
+                          <div className="comment--title__text">
+                            <h1>{comment.creator.username}</h1>
+                            <span className="time">{comment.date}</span>
+                          </div>
                         </div>
-                      </div>
 
-                      {/* <svg className="icon-comments">
+                        {/* <svg className="icon-comments">
                         <use xlinkHref="../img/symbol-defs.svg#icon-comments"></use>
                       </svg> */}
-                      <span>
-                        {array1}
-                        {comment.creator._id == context.userId && (
-                          <button onClick={async(event) => {
-                            event.preventDefault();
-   
-      const res = await fetch(`/api/graphql`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          query: `
-          mutation {
-            deleteComment(commentId:"${comment._id}"){
-              _id
-            }
-          }
-          `,
-        }),
-      });
-      const data = await res.json();
-      console.log(data);
-                          }}>X</button>
-                        )}
-                      </span>
+                        <span>
+                          {array1}
+                          {comment.creator._id == context.userId && (
+                            <button
+                              onClick={async (event) => {
+                                event.preventDefault();
+
+                                const res = await fetch(`/api/graphql`, {
+                                  method: "POST",
+                                  headers: {
+                                    "Content-Type": "application/json",
+                                  },
+                                  body: JSON.stringify({
+                                    query: `
+                                      mutation {
+                                        deleteComment(commentId:"${comment._id}"){
+                                          _id
+                                        }
+                                      }
+                                      `,
+                                  }),
+                                });
+                                const data = await res.json();
+                                console.log(data);
+                                mutate(`query {
+                                  book(_id:"${props.data.book._id}"){
+                                   comments{
+                                    text
+                                    _id
+                                    date
+                                    rate
+                                    creator{
+                                      username
+                                      _id
+                                    }
+                                  }
+                                  }
+                                }`);
+                              }}
+                            >
+                              X
+                            </button>
+                          )}
+                        </span>
+                      </div>
+                      <p className="comment--text">{comment.text}</p>
                     </div>
-                    <p className="comment--text">{comment.text}</p>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        )}
       </main>
     </Layout>
   );
@@ -234,16 +308,7 @@ export const getStaticProps = async ({ params: { _id } }) => {
   publication
   price
   ratingStar,
-  comments{
-    text
-    _id
-    date
-    rate
-    creator{
-      username
-      _id
-    }
-  }
+  _id
   }
   }
   `);
