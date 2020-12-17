@@ -105,7 +105,27 @@ export default function Id(props) {
   }`,
     fetcher
   );
-  // if (!data) return "I am loading...";
+  async function addToBookShelf(event) {
+    event.preventDefault();
+    try {
+      const res = await fetch(`/api/graphql`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          query: `
+          mutation {
+            addToShelf(input:{book:"${props.data.book._id}",userId:"${context.userId}"}){
+              _id
+            }
+          }`,
+        }),
+      });
+      const data = await res.json();
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   // const [comments, setComments] = useState(data.book.comments);
   let comments;
@@ -130,7 +150,7 @@ export default function Id(props) {
             <div className="card--rating">{array}</div>
             <div className="add-book">
               <div className="add-book--box">
-                <a href="#">افزودن به کتابخانه</a>
+                <button onClick={addToBookShelf}>افزودن به کتابخانه</button>
               </div>
               <span className="price"> {props.data.book.price}000 ريال</span>
             </div>
@@ -165,89 +185,92 @@ export default function Id(props) {
             در
           </p>
         </section>
-        {/* Form */}
-        {!context.token && <h5>برای نظر دادن وارد شوید</h5>}
 
-        {context.token && (
-          <form onSubmit={handleSubmit}>
-            <input
-              placeholder="text .. "
-              type="text"
-              required
-              onChange={(event) => setText(event.target.value)}
-            />
-            <input
-              placeholder="rate"
-              type="number"
-              min="1"
-              max="5"
-              required
-              onChange={(event) => setRate(event.target.value)}
-            />
-            <button type="submit">Submit</button>
-            <div className="midline"></div>
-          </form>
-        )}
-        <div className="midline"></div>
-
-        {/* Comments */}
+        {/* Comments && form */}
 
         {comments && (
-          <section className="comments">
-            <h1 className="comments--title">نظرهای کاربران</h1>
-            <div className="comments--right">
-              <div className="comment">
-                {comments.map((comment, i) => {
-                  let rates = comment.rate;
-                  let array1 = [];
+          <>
+            {!context.token && <h5>برای نظر دادن وارد شوید</h5>}
 
-                  for (let i = 0; i < rates; i++) {
-                    array1.push(
-                      <span key={props.data.book._id} style={{ color: "gold" }}>
-                        &#9734;
-                      </span>
-                    );
-                  }
+            {context.token && (
+              <form onSubmit={handleSubmit}>
+                <input
+                  placeholder="text .. "
+                  type="text"
+                  required
+                  onChange={(event) => setText(event.target.value)}
+                />
+                <input
+                  placeholder="rate"
+                  type="number"
+                  min="1"
+                  max="5"
+                  required
+                  onChange={(event) => setRate(event.target.value)}
+                />
+                <button type="submit">Submit</button>
+                <div className="midline"></div>
+              </form>
+            )}
+            <div className="midline"></div>
+            <section className="comments">
+              <h1 className="comments--title">نظرهای کاربران</h1>
+              <div className="comments--right">
+                <div className="comment">
+                  {comments.map((comment, i) => {
+                    let rates = comment.rate;
+                    let array1 = [];
 
-                  return (
-                    <div key={comment._id}>
-                      <div className="comment--title">
-                        <div className="comment--title__content">
-                          <img src="../img/comment-3.png" alt="comment" />
-                          <div className="comment--title__text">
-                            <h1>{comment.creator.username}</h1>
-                            <span className="time">{comment.date}</span>
+                    for (let i = 0; i < rates; i++) {
+                      array1.push(
+                        <span
+                          key={props.data.book._id}
+                          style={{ color: "gold" }}
+                        >
+                          &#9734;
+                        </span>
+                      );
+                    }
+
+                    return (
+                      <div key={comment._id}>
+                        <div className="comment--title">
+                          <div className="comment--title__content">
+                            <img src="../img/comment-3.png" alt="comment" />
+                            <div className="comment--title__text">
+                              <h1>{comment.creator.username}</h1>
+                              <span className="time">{comment.date}</span>
+                            </div>
                           </div>
-                        </div>
 
-                        {/* <svg className="icon-comments">
+                          {/* <svg className="icon-comments">
                         <use xlinkHref="../img/symbol-defs.svg#icon-comments"></use>
                       </svg> */}
-                        <span>
-                          {array1}
-                          {comment.creator._id == context.userId && (
-                            <button
-                              onClick={async (event) => {
-                                event.preventDefault();
+                          <span>
+                            {array1}
+                            {comment.creator._id == context.userId && (
+                              <button
+                                onClick={async (event) => {
+                                  event.preventDefault();
 
-                                const res = await fetch(`/api/graphql`, {
-                                  method: "POST",
-                                  headers: {
-                                    "Content-Type": "application/json",
-                                  },
-                                  body: JSON.stringify({
-                                    query: `
+                                  const res = await fetch(`/api/graphql`, {
+                                    method: "POST",
+                                    headers: {
+                                      "Content-Type": "application/json",
+                                    },
+                                    body: JSON.stringify({
+                                      query: `
                                       mutation {
                                         deleteComment(commentId:"${comment._id}"){
                                           _id
                                         }
                                       }
                                       `,
-                                  }),
-                                });
-                                const data = await res.json();
-                                console.log(data);
-                                mutate(`query {
+                                    }),
+                                  });
+                                  const data = await res.json();
+                                  console.log(data);
+                                  mutate(`query {
                                   book(_id:"${props.data.book._id}"){
                                    comments{
                                     text
@@ -261,20 +284,21 @@ export default function Id(props) {
                                   }
                                   }
                                 }`);
-                              }}
-                            >
-                              X
-                            </button>
-                          )}
-                        </span>
+                                }}
+                              >
+                                X
+                              </button>
+                            )}
+                          </span>
+                        </div>
+                        <p className="comment--text">{comment.text}</p>
                       </div>
-                      <p className="comment--text">{comment.text}</p>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
+                </div>
               </div>
-            </div>
-          </section>
+            </section>
+          </>
         )}
       </main>
     </Layout>

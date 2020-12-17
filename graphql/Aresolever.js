@@ -8,6 +8,8 @@ const Read = require("../models/reader");
 const Comment = require("../models/comment");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const fs = require("fs");
+const path = require("path");
 dbConnect();
 
 var xxx = new Date();
@@ -293,6 +295,20 @@ const resolvers = {
         console.log(err);
       }
     },
+    singleUpload: async (parent, args ) => {
+      return args.file.then(file => {
+        const stream = file.createReadStream();
+        const pathName = path.join(__dirname, `public/uploads/${filename}`);
+        await stream.pipe(fs.createWriteStream(pathName));
+        return file
+      })
+      // const { createReadStream, filename } = await file;
+      
+      
+      // return {
+      //   url: `http://localhost:3000/ssssssss/${filename}`,
+      // };
+    },
     read: async (parent, args) => {
       const createdEvent = await Reader.findOne({
         userId: args.input.userId,
@@ -345,3 +361,6 @@ module.exports = [resolvers];
 // USER = 5fba7c7f637eca2ba0e4e39e
 // BOOK = 5fa85dbeae4337bd0925c2b0   5fa85dbeae4337bd0925c2b5
 // POST =5fbe7823ed88c62fd4859a83
+
+//url : String!
+// const file = e.target.files[0] ==> pass to mutate
