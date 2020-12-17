@@ -295,20 +295,6 @@ const resolvers = {
         console.log(err);
       }
     },
-    singleUpload: async (parent, args ) => {
-      return args.file.then(file => {
-        const stream = file.createReadStream();
-        const pathName = path.join(__dirname, `public/uploads/${filename}`);
-        await stream.pipe(fs.createWriteStream(pathName));
-        return file
-      })
-      // const { createReadStream, filename } = await file;
-      
-      
-      // return {
-      //   url: `http://localhost:3000/ssssssss/${filename}`,
-      // };
-    },
     read: async (parent, args) => {
       const createdEvent = await Reader.findOne({
         userId: args.input.userId,

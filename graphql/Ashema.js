@@ -92,11 +92,6 @@ const typeDefs = gql`
     pages: Int!
     time: Int!
   }
-  type File {
-    filename: String!
-    mimetype: String!
-    encoding: String!
-  }
   input addToShelfInput {
     userId: String!
     book: String!
@@ -123,7 +118,6 @@ const typeDefs = gql`
     read(input: ReadInput): Reader
     addToShelf(input: addToShelfInput): User
     setting(input: SettingInput): User
-    singleUpload(file: Upload!): File!
   }
 `;
 
