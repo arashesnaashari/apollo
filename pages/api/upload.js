@@ -1,7 +1,3 @@
-import dbConnect from "../../utils/dbConnect";
-import User from "../../models/user";
-import bcrypt from "bcrypt";
-dbConnect();
 const multer = require("multer");
 const path = require("path");
 
@@ -23,7 +19,7 @@ const upload = multer({
   fileFilter: function (req, file, cb) {
     checkFileType(file, cb);
   },
-}).single("myImage");
+}).single("myFile");
 
 // Check File Type
 function checkFileType(file, cb) {
@@ -41,6 +37,8 @@ function checkFileType(file, cb) {
   }
 }
 
+const uploadStorage = multer({ storage: storage });
+
 export default async function handler(req, res) {
   upload(req, res, (err) => {
     if (err) {
@@ -52,10 +50,9 @@ export default async function handler(req, res) {
         });
       } else {
         res.json({
-          msg: "File Uploaded!",
           file: `uploads/${req.file.filename}`,
         });
-        console.log(req.file);
+        // console.log(req.file);
       }
     }
   });

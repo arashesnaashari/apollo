@@ -1,32 +1,27 @@
-import { useContext } from "react";
+import { useState } from "react";
 import Layout from "../components/layout/Layout";
 
 export default function propssing(props) {
-  const UploadToServer = async (e) => {
-    const [file] = e.target.files;
-    // const res = await fetch(`/api/graphql`, {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify({
-    //     query: `
-    //     mutation {
-    //         singleUpload(file:"${file}"){
-    //           url
-    //         }
-    //       }`,
-    //   }),
-    // });
-    // const data = await res.json();
-    // console.log(data);
-    console.log(file);
+  const [img, setImg] = useState("");
+  const Upload = (e) => {
+    const formData = new FormData();
+    formData.append("myFile", e.target.files[0]);
+    console.log(formData);
+    fetch("/api/upload", {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((data) => setImg(data.file))
+      .catch((err) => console.log(err));
   };
   return (
     <>
-      <form action="/api/upload" method="POST" encType="multipart/form-data">
-        <input name="myImage" type="file" />
-        {/* <input type="text" /> */}
-        <input type="submit" value="Upload a file" />
+      <form>
+        <input type="file" name="upload" onChange={Upload} />
+        <input type="submit" value="Upload" />
       </form>
+      {img && <img src={`http://localhost:3000/${img}`} />}
     </>
   );
 }

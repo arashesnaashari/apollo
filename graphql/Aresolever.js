@@ -25,6 +25,14 @@ const { year, literal, month, day, weekday } = Object.fromEntries(
 );
 const faDate = `${weekday}${literal}${day} ${month} ${year}`;
 
+const storeUpload = ({ stream, filename }) =>
+  new Promise((resolve, reject) =>
+    stream
+      .pipe(createWriteStream(filename))
+      .on("finish", () => resolve())
+      .on("error", reject)
+  );
+
 const resolvers = {
   Query: {
     async books() {
@@ -339,6 +347,11 @@ const resolvers = {
           console.log(err);
         }
       }
+    },
+    uploadFile: async (parent, { file }) => {
+      const { stream, filename } = await file;
+      await storeUpload({ stream, filename });
+      return file;
     },
   },
 };

@@ -100,6 +100,11 @@ const typeDefs = gql`
     userId: String!
     book: String!
   }
+  type File {
+    filename: String!
+    mimetype: String!
+    encoding: String!
+  }
   type Query {
     users: [User!]
     books: [Book!]
@@ -118,6 +123,7 @@ const typeDefs = gql`
     read(input: ReadInput): Reader
     addToShelf(input: addToShelfInput): User
     setting(input: SettingInput): User
+    uploadFile(file: Upload!): File!
   }
 `;
 
