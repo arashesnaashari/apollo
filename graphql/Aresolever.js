@@ -8,9 +8,14 @@ const Read = require("../models/reader");
 const Comment = require("../models/comment");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const fs = require("fs");
+const { createWriteStream, existsSync, mkdirSync } = require("fs");
 const path = require("path");
 dbConnect();
+
+const { GraphQLUpload } = require("graphql-upload");
+// export const customScalarResolver = {
+//   Upload: GraphQLUpload,
+// };
 
 var xxx = new Date();
 const { year, literal, month, day, weekday } = Object.fromEntries(
@@ -25,13 +30,13 @@ const { year, literal, month, day, weekday } = Object.fromEntries(
 );
 const faDate = `${weekday}${literal}${day} ${month} ${year}`;
 
-const storeUpload = ({ stream, filename }) =>
-  new Promise((resolve, reject) =>
-    stream
-      .pipe(createWriteStream(filename))
-      .on("finish", () => resolve())
-      .on("error", reject)
-  );
+// const storeUpload = ({ stream, filename }) =>
+//   new Promise((resolve, reject) =>
+//     stream
+//       .pipe(createWriteStream(filename))
+//       .on("finish", () => resolve())
+//       .on("error", reject)
+//   );
 
 const resolvers = {
   Query: {
@@ -349,11 +354,21 @@ const resolvers = {
       }
     },
     uploadFile: async (parent, { file }) => {
-      const { stream, filename } = await file;
-      await storeUpload({ stream, filename });
-      return file;
+      const { createReadStream, filename } = await file;
+
+      await new Promise((res) =>
+        createReadStream()
+          .pipe(
+            createWriteStream(path.join(__dirname, "/public/uploads", filename))
+          )
+          .on("close", res)
+      );
+      // console.log("s");
+
+      return true;
     },
   },
+  // Upload: GraphQLUploa d,
 };
 module.exports = [resolvers];
 

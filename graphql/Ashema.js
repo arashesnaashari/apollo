@@ -62,7 +62,11 @@ const typeDefs = gql`
     token: String!
     tokenExpire: Int!
   }
-
+  type File {
+    filename: String!
+    mimetype: String!
+    encoding: String!
+  }
   input UserInput {
     username: String!
     password: String!
@@ -99,11 +103,6 @@ const typeDefs = gql`
   input SettingInput {
     userId: String!
     book: String!
-  }
-  type File {
-    filename: String!
-    mimetype: String!
-    encoding: String!
   }
   type Query {
     users: [User!]

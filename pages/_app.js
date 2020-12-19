@@ -1,7 +1,13 @@
-import '../css/style.css'
+import "../css/style.css";
 import AuthContext from "../context/auth-context";
 import { useState, useEffect, useContext } from "react";
-function MyApp({ Component, pageProps }) {
+
+
+
+function MyApp({
+  Component,
+  pageProps,
+}) {
   let storagedToken;
   let storagedUserId;
 
@@ -24,18 +30,19 @@ function MyApp({ Component, pageProps }) {
     setUserID(null);
     localStorage.clear();
   };
+  // const apolloClient = useApollo(pageProps.initialApolloState);
   return (
     <>
-      <AuthContext.Provider
-        value={{
-          token: token,
-          userId: userId,
-          login: login,
-          logout: logout,
-        }}
-      >
-        <Component {...pageProps} />
-      </AuthContext.Provider>
+        <AuthContext.Provider
+          value={{
+            token: token,
+            userId: userId,
+            login: login,
+            logout: logout,
+          }}
+        >
+          <Component {...pageProps} />
+        </AuthContext.Provider>
     </>
   );
 }
