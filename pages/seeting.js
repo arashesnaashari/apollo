@@ -14,28 +14,22 @@ class SimpleReactFileUpload extends React.Component {
   onFormSubmit(e) {
     e.preventDefault();
     this.fileUpload(this.state.file).then((response) => {
-      console.log(response);
+      console.log(response.data);
     });
   }
   onChange(e) {
     this.setState({ file: e.target.files[0] });
   }
-  async fileUpload(file) {
-    // const url = "/api/upload";
+  fileUpload(file) {
+    const url = "/api/upload";
     const formData = new FormData();
     formData.append("file", file);
-    // const config = {
-    //   headers: {
-    //     "content-type": "multipart/form-data",
-    //   },
-    // };
-    await fetch("/api/upload", {
-      method: "POST",
-      credentials: "same-origin",
-      body: formData,
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data));
+    const config = {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    };
+    return post(url, formData, config);
   }
 
   render() {
