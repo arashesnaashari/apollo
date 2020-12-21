@@ -76,7 +76,7 @@ async function endpoint(req, res) {
       if (err) return reject(err);
       res.status(200).send({ msg: files.file.path });
 
-      resolve({ fields, files })
+      resolve({ fields, files });
     });
   });
 }
