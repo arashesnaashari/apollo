@@ -64,18 +64,25 @@
 // };
 
 import formidable from "formidable";
+import micro from "micro";
 
+async function endpoint(req, res) {
+  const data = await new Promise(function (resolve, reject) {
+    const form = new formidable.IncomingForm({
+      keepExtensions: true,
+      uploadDir: "./public/uploads",
+    });
+    form.parse(req, function (err, fields, files) {
+      if (err) return reject(err);
+      res.status(200).json({ msg: files.file.path });
+
+      resolve({ fields, files });
+    });
+  });
+}
 export const config = {
   api: {
     bodyParser: false,
   },
 };
-
-export default async (req, res) => {
-  const form = new formidable.IncomingForm();
-  form.uploadDir = "./public/uploads";
-  form.keepExtensions = true;
-  form.parse(req, (err, fields, files) => {
-    res.status(200).json({ msg: "files.file.path" });
-  });
-};
+export default micro(endpoint);
