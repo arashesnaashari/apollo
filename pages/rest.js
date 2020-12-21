@@ -3,8 +3,9 @@ const Rest = () => {
     const file = e.target.files[0];
     const formData = new FormData();
     formData.append("profilePicture", file);
-    const res = await fetch("/api/rest", {
+    const res = await fetch("https://bookgram.vercel.app/api/rest", {
       method: "POST",
+      // credentials: "same-origin",
       headers: { Accept: "application/json" },
       body: formData,
     });
