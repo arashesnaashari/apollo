@@ -1,7 +1,7 @@
 import { gql } from "apollo-server-micro";
 
 const typeDefs = gql`
-  scalar Upload
+scalar Upload
   type Book {
     _id: ID!
     title: String!
@@ -62,10 +62,8 @@ const typeDefs = gql`
     token: String!
     tokenExpire: Int!
   }
-  type File {
+  type FileStats {
     filename: String!
-    mimetype: String!
-    encoding: String!
   }
   input UserInput {
     username: String!
@@ -122,7 +120,7 @@ const typeDefs = gql`
     read(input: ReadInput): Reader
     addToShelf(input: addToShelfInput): User
     setting(input: SettingInput): User
-    uploadFile(file: Upload!): Boolean!
+    submitAFile(file: Upload!): FileStats!
   }
 `;
 

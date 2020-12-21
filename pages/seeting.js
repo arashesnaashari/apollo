@@ -44,3 +44,4 @@ class SimpleReactFileUpload extends React.Component {
 }
 
 export default SimpleReactFileUpload;
+

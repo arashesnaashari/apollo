@@ -75,7 +75,7 @@ async function endpoint(req, res) {
     form.parse(req, function (err, fields, files) {
       if (err) return reject(err);
       res.status(200).json({ msg: files.file.path });
-
+      console.log(req);
       resolve({ fields, files });
     });
   });

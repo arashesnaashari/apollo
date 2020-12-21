@@ -12,11 +12,7 @@ const { createWriteStream, existsSync, mkdirSync } = require("fs");
 const path = require("path");
 dbConnect();
 import formidable from "formidable";
-
-const { GraphQLUpload } = require("graphql-upload");
-// export const customScalarResolver = {
-//   Upload: GraphQLUpload,
-// };
+import { GraphQLUpload } from "graphql-upload";
 
 var xxx = new Date();
 const { year, literal, month, day, weekday } = Object.fromEntries(
@@ -38,8 +34,23 @@ const faDate = `${weekday}${literal}${day} ${month} ${year}`;
 //       .on("finish", () => resolve())
 //       .on("error", reject)
 //   );
-
+// const getFileDetails = (file) =>
+//   new Promise(async (resolves, rejects) => {
+//     const { filename, createReadStream } = await file;
+//     let filesize = 0;
+//     let stream = createReadStream();
+//     stream.on("data", (chunk) => {
+//       filesize += chunk.length;
+//     });
+//     stream.once("end", () =>
+//       resolves({
+//         filename,
+//       })
+//     );
+//     stream.on("error", rejects);
+//   });
 const resolvers = {
+  Upload: GraphQLUpload,
   Query: {
     async books() {
       try {
@@ -354,17 +365,14 @@ const resolvers = {
         }
       }
     },
-    uploadFile: async (parent, { file }) => {
-      const form = new formidable.IncomingForm();
-      form.uploadDir = "./public/uploads";
-      form.keepExtensions = true;
-      form.parse(file, (err, fields, files) => {
-        console.log(err, fields, files);
-        return true;
-      });
+    submitAFile: async (parent, { file }) => {
+      const { filename, mimetype, createReadStream } = await file;
+      // console.log(createReadStream);
+      return {
+        filename: "DSad",
+      };
     },
   },
-  // Upload: GraphQLUpload,
 };
 module.exports = [resolvers];
 
