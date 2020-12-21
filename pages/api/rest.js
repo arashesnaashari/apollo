@@ -15,29 +15,29 @@ const storage = multer.diskStorage({
 const upload = multer({
   storage: storage,
   limits: { fileSize: 1000000 },
-}).single("profilePicture");
+});
 const handler = nc();
 
-handler.post((req, res) => {
-  upload(req, res, (err) => {
-    if (err) {
-      res.json({
-        msg: err,
-      });
-    } else {
-      if (req.file == undefined) {
-        res.json({
-          msg: "Error: No File Selected!",
-        });
-      } else {
-        res.json({
-          msg: "File Uploaded!",
-          file: `uploads/${req.file.filename}`,
-        });
-        // console.log(req.file);
-      }
-    }
-  });
+handler.post(upload.single("profilePicture"), (req, res) => {
+  //   upload(req, res, (err) => {
+  //     if (err) {
+  //       res.json({
+  //         msg: err,
+  //       });
+  //     } else {
+  //       if (req.file == undefined) {
+  //         res.json({
+  //           msg: "Error: No File Selected!",
+  //         });
+  //       } else {
+  //         res.json({
+  //           msg: "File Uploaded!",
+  //           file: `uploads/${req.file.filename}`,
+  //         });
+  console.log(req.file);
+  //   }
+  // }
+  //   });
 });
 export const config = {
   api: {

@@ -1,7 +1,7 @@
 import { gql } from "apollo-server-micro";
 
 const typeDefs = gql`
-scalar Upload
+  scalar Upload
   type Book {
     _id: ID!
     title: String!
@@ -63,7 +63,7 @@ scalar Upload
     tokenExpire: Int!
   }
   type FileStats {
-    filename: String!
+    path: String!
   }
   input UserInput {
     username: String!
