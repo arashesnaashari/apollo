@@ -64,7 +64,7 @@
 // };
 
 import formidable from "formidable";
-import micro from "micro";
+// import micro from "micro";
 
 async function endpoint(req, res) {
   const data = await new Promise(function (resolve, reject) {
@@ -85,4 +85,4 @@ export const config = {
     bodyParser: false,
   },
 };
-export default micro(endpoint);
+export default endpoint;
