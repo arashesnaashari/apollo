@@ -122,7 +122,7 @@ const typeDefs = gql`
     read(input: ReadInput): Reader
     addToShelf(input: addToShelfInput): User
     setting(input: SettingInput): User
-    uploadFile(file: Upload!): File!
+    uploadFile(file: Upload!): Boolean!
   }
 `;
 

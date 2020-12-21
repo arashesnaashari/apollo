@@ -11,6 +11,7 @@ const jwt = require("jsonwebtoken");
 const { createWriteStream, existsSync, mkdirSync } = require("fs");
 const path = require("path");
 dbConnect();
+import formidable from "formidable";
 
 const { GraphQLUpload } = require("graphql-upload");
 // export const customScalarResolver = {
@@ -354,21 +355,16 @@ const resolvers = {
       }
     },
     uploadFile: async (parent, { file }) => {
-      const { createReadStream, filename } = await file;
-
-      await new Promise((res) =>
-        createReadStream()
-          .pipe(
-            createWriteStream(path.join(__dirname, "/public/uploads", filename))
-          )
-          .on("close", res)
-      );
-      // console.log("s");
-
-      return true;
+      const form = new formidable.IncomingForm();
+      form.uploadDir = "./public/uploads";
+      form.keepExtensions = true;
+      form.parse(file, (err, fields, files) => {
+        console.log(err, fields, files);
+        return true;
+      });
     },
   },
-  // Upload: GraphQLUploa d,
+  // Upload: GraphQLUpload,
 };
 module.exports = [resolvers];
 

@@ -11,6 +11,6 @@ export const schema = makeExecutableSchema({ typeDefs, resolvers });
 //   },
 // };
 
-export default new ApolloServer({ schema, uploads: false }).createHandler({
+export default new ApolloServer({ schema }).createHandler({
   path: "/api/graphql",
 });

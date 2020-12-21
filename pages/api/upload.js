@@ -72,11 +72,10 @@ export const config = {
 };
 
 export default async (req, res) => {
-  // const form = new formidable.IncomingForm();
-  // form.uploadDir = "./public/uploads";
-  // form.keepExtensions = true;
-  // form.parse(req, (err, fields, files) => {
-  //   console.log(err, fields, files);
-  // });
-  res.json("090");
+  const form = new formidable.IncomingForm();
+  form.uploadDir = "./public/uploads";
+  form.keepExtensions = true;
+  form.parse(req, (err, fields, files) => {
+    res.status(200).json({ msg: "files.file.path" });
+  });
 };
