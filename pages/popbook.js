@@ -1,6 +1,5 @@
 import fetch from "isomorphic-unfetch";
 import Layout from "../components/layout/Layout";
-import BaseUrl from "../url";
 import queryGraphQl from "../shared/query-graphql/index";
 
 import Books from "../components/Book/Book_All/PopularBooks";

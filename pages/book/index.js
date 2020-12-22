@@ -1,7 +1,6 @@
 import fetch from "isomorphic-unfetch";
 import Layout from "../../components/layout/Layout";
 import Books from "../../components/Book/Book_All/booksContainer";
-import BaseUrl from "../../url";
 import queryGraphQl from "../../shared/query-graphql/index";
 
 export default function propssing(props) {

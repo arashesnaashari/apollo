@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
 import Link from "next/link";
-import BaseUrl from "../../../url";
 import BooksContext from "../../../context/books-context";
 
 const Search = (props) => {

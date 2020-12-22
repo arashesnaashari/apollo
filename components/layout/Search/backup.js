@@ -5,7 +5,7 @@ const Search = () => {
   const [data, setData] = useState([]);
   const [html, setHtml] = useState();
 
-  fetch(`${BaseUrl}/api/graphql`, {
+  fetch(`/api/graphql`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
