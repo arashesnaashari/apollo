@@ -1,3 +1,8 @@
 {
-  "alias": "bookgram.vercel.app"
+  "functions": {
+    "api/test.js": {
+      "memory": 3008,
+      "maxDuration": 60
+    }
+  }
 }
