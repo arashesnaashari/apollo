@@ -6,7 +6,8 @@ const Rest = () => {
     formData.append("profilePicture", file);
     const res = await fetch("/api/rest", {
       method: "POST",
-      // credentials: "same-origin",
+      mode: "same-origin",
+      credentials: "same-origin",
       headers: { Accept: "application/json" },
       body: formData,
     });
