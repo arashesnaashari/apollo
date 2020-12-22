@@ -63,7 +63,7 @@ const typeDefs = gql`
     tokenExpire: Int!
   }
   type FileStats {
-     path: String!
+    path: String!
   }
   input UserInput {
     username: String!
