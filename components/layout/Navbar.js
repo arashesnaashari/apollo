@@ -17,12 +17,12 @@ const Navbar = (props) => {
         </a>
         <a href="">
           <svg className="icon icon-heart">
-            <use xlinkHref="img/symbol-defs.svg#icon-heart"></use>
+            <use xlinkHref="/img/symbol-defs.svg#icon-heart"></use>
           </svg>
         </a>
         {!context.token && (
           <svg className="icon icon-user-plus" onClick={() => SetModal(!Modal)}>
-            <use xlinkHref="img/symbol-defs.svg#icon-user-plus"></use>
+            <use xlinkHref="/img/symbol-defs.svg#icon-user-plus"></use>
           </svg>
         )}
         {context.token && (
@@ -54,7 +54,7 @@ const Navbar = (props) => {
           <a href="./pages/category.html">دسته بندی</a>
           <a href="#light-box">
             <svg className="icon icon-keyboard_arrow_down">
-              <use xlinkHref="img/symbol-defs.svg#icon-keyboard_arrow_down"></use>
+              <use xlinkHref="/img/symbol-defs.svg#icon-keyboard_arrow_down"></use>
             </svg>
           </a>
         </div>

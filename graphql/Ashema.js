@@ -88,6 +88,11 @@ const typeDefs = gql`
     body: String!
     image: String!
   }
+  input fileInput {
+    name: String!
+    size: Int!
+    type: String!
+  }
   input ReadInput {
     userId: String!
     book: String!
@@ -120,7 +125,7 @@ const typeDefs = gql`
     read(input: ReadInput): Reader
     addToShelf(input: addToShelfInput): User
     setting(input: SettingInput): User
-    submitAFile(file: Upload!): FileStats!
+    submitAFile(file: fileInput): FileStats!
   }
 `;
 

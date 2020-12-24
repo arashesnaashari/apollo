@@ -121,7 +121,7 @@ function Form() {
         </div>
 
         <div className="sign-up--image">
-          <img src="img/signup-image.png" alt="Trulli" />
+          <img src="/img/signup-image.png" alt="Trulli" />
           <div className="sign-up--image__caption">کتابخانه خودت را بساز</div>
         </div>
       </div>

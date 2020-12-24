@@ -11111,7 +11111,6 @@ const interval = () => {
     let iframes = document.querySelectorAll("iframe");
     //create new btn
     const parent = document.querySelector("#bibi-menu-r");
-
     const btn = document.createElement("ul");
     btn.classList.add("bibi-buttongroup");
     btn.innerHTML =
@@ -11130,21 +11129,19 @@ const interval = () => {
     parent.appendChild(btnSave);
 
     let state = null;
-    let tens = "";
-    //     parseInt(document.cookie.replace(/[^0-9\.]+/g, "")
-    if (
-      document.cookie.split("")[6] !== "N" &&
-      document.cookie.split("")[6] !== "0"
-    ) {
+    let tens = 0;
+    if (document.cookie.replace(/[^0-9\.]+/g, "")) {
       tens = parseInt(document.cookie.replace(/[^0-9\.]+/g, ""));
     }
+    console.log(tens);
+
     let Interval;
     let date = new Date();
     date.setTime(date.getTime() + (24 - date.getHours()) * 3600 * 1000);
 
     btnTime.addEventListener("click", (e) => {
-      document.cookie = "times=0";
-      
+      console.log("2n", tens);
+
       e.preventDefault();
       if (!state) {
         confirm("شروع / ادامه خواندن ؟");
@@ -11168,37 +11165,57 @@ const interval = () => {
         state = null;
       }
     });
-    if (state) {
+    if (!state) {
       setTimeout(() => {
-        alert("نمی خوای زمان سج رو روشن کنی ؟");
-      }, 20000);
+        let conf = confirm("نمی خوای زمان سج رو روشن کنی ؟");
+        if (conf == true) {
+          clearInterval(Interval);
+          Interval = setInterval(startTimer, 1000);
+          function startTimer() {
+            tens++;
+            console.log(tens, typeof tens);
+            if (Interval) {
+              setInterval(() => {
+                console.log("times is" + tens);
+                document.cookie = `times=${tens}; expires=${date}`;
+              }, 3000);
+            }
+          }
+          state = "clicked";
+        }
+      }, 5000);
     }
     btnSave.addEventListener("click", async (e) => {
       e.preventDefault();
+      clearInterval(Interval);
+      state = null;
       let percent = document.querySelector(
         "div#bibi-nombre span.bibi-nombre-percent"
       ).innerText;
       percent = percent.replace(/[^0-9\.]+/g, "");
       var url_string = window.location.href;
       var url = new URL(url_string);
+
       var book = url.searchParams.get("bookId");
       var userId = url.searchParams.get("userId");
-      const res = await fetch(`http://localhost:3000/api/graphql`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          query: `
-        mutation {
-          read(input:{time:${tens},pages:${percent},userId:"${userId}",book:"${book}"}){
-            _id
+      if (book && userId) {
+        const res = await fetch(`/api/graphql`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            query: `
+          mutation {
+            read(input:{time:${tens},pages:${percent},userId:"${userId}",book:"${book}"}){
+              _id
+            }
           }
-        }
-        `,
-        }),
-      });
-      const data11 = await res.json();
-      console.log(data11);
-      alert("ذخیره");
+          `,
+          }),
+        });
+        const data11 = await res.json();
+        console.log(data11);
+        alert("ذخیره");
+      }
     });
 
     for (let i = 0; i < iframes.length; i++) {
@@ -11206,6 +11223,16 @@ const interval = () => {
       let pes = iframes[i].contentWindow.document.querySelectorAll("p");
       let body = iframes[i].contentWindow.document.querySelectorAll("div");
       let all = document.querySelectorAll("*");
+      pes.map((p) => {
+        p.addEventListener("mousemove", (e) => {
+          let selectedText = document.selection.createRange().text;
+          console.log(selectedText);
+
+          if (selectedText.length > 40) {
+            console.log("error" + selectedText);
+          }
+        });
+      });
 
       // change theme by click btn
       let state2 = null;

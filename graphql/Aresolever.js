@@ -9,10 +9,8 @@ const Comment = require("../models/comment");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { createWriteStream, existsSync, mkdirSync } = require("fs");
-const path = require("path");
 dbConnect();
 import formidable from "formidable";
-import { GraphQLUpload } from "graphql-upload";
 
 var xxx = new Date();
 const { year, literal, month, day, weekday } = Object.fromEntries(
@@ -49,8 +47,8 @@ const faDate = `${weekday}${literal}${day} ${month} ${year}`;
 //     );
 //     stream.on("error", rejects);
 //   });
+
 const resolvers = {
-  Upload: GraphQLUpload,
   Query: {
     async books() {
       try {
@@ -365,11 +363,10 @@ const resolvers = {
         }
       }
     },
-    submitAFile: async (parent, { file }) => {
-      const { filename, mimetype, createReadStream } = await file;
-      // console.log(createReadStream);
+    submitAFile: async (parent, args) => {
+      
       return {
-        filename: "DSad",
+        path: "dsfhjdskfdskj",
       };
     },
   },
@@ -382,3 +379,5 @@ module.exports = [resolvers];
 
 //url : String!
 // const file = e.target.files[0] ==> pass to mutate
+
+//multer    formidble   busboy
