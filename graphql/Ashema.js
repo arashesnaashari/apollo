@@ -103,9 +103,11 @@ const typeDefs = gql`
     userId: String!
     book: String!
   }
-  input SettingInput {
+  input updateInput {
     userId: String!
-    book: String!
+    username:String!
+    phone:String!
+    
   }
   type Query {
     users: [User!]
@@ -124,7 +126,7 @@ const typeDefs = gql`
     createView(input: viewsToPost): View
     read(input: ReadInput): Reader
     addToShelf(input: addToShelfInput): User
-    setting(input: SettingInput): User
+    update(input: updateInput): User
     submitAFile(file: fileInput): FileStats!
   }
 `;

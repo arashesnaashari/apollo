@@ -2,7 +2,7 @@ const cloudinary = require("cloudinary").v2;
 cloudinary.config({
   cloud_name: "bookgram",
   api_key: "364325366326891",
-  api_secret: "364325366326891",
+  api_secret: "7sHNddcFjZQOVZaWJCg2NUfx2Lo",
 });
 
 module.exports = { cloudinary };
@@ -21,12 +21,7 @@ module.exports = { cloudinary };
 
 // https://medium.com/javascript-in-plain-english/uploading-files-using-multer-on-server-in-nodejs-and-expressjs-5f4e621ccc67
 
-
 // https://www.youtube.com/watch?v=KQ_ty4A6Nsc
-
-
-
-
 
 // https://miro.medium.com/max/2880/1*0Tm_TqZ9vk54nckLSy_GTw.png
 

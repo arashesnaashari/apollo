@@ -8,7 +8,6 @@ const Layout = (props) => {
   const context = useContext(AuthContext);
   return (
     <>
-      {!context.token && <Form />}
       {context.token && (
         <>
           {/* Side Top */}
@@ -19,6 +18,7 @@ const Layout = (props) => {
           <SideRight />
         </>
       )}
+      {!context.token && <Form />}
     </>
   );
 };

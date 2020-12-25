@@ -1,9 +1,11 @@
 import LayOut from "../../components/DashBoared/LayOut";
-
+import Form from "../../components/DashBoared/setting/index";
 const Setting = () => {
   return (
     <>
-      <LayOut><h1>Setting</h1></LayOut>
+      <LayOut>
+        <Form />
+      </LayOut>
     </>
   );
 };

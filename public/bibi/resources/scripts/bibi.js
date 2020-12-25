@@ -11223,16 +11223,6 @@ const interval = () => {
       let pes = iframes[i].contentWindow.document.querySelectorAll("p");
       let body = iframes[i].contentWindow.document.querySelectorAll("div");
       let all = document.querySelectorAll("*");
-      pes.map((p) => {
-        p.addEventListener("mousemove", (e) => {
-          let selectedText = document.selection.createRange().text;
-          console.log(selectedText);
-
-          if (selectedText.length > 40) {
-            console.log("error" + selectedText);
-          }
-        });
-      });
 
       // change theme by click btn
       let state2 = null;
@@ -11314,3 +11304,12 @@ const timing = setInterval(interval, 2000);
 //   console.log(totalpage);
 // });
 //div#bibi-nombre span.bibi-nombre-percent  69%
+
+// p.addEventListener("mousemove", (e) => {
+//   let selectedText = document.selection.createRange().text;
+//   console.log(selectedText);
+
+//   if (selectedText.length > 40) {
+//     console.log("error" + selectedText);
+//   }
+// });

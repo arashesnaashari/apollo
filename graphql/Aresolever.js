@@ -364,10 +364,35 @@ const resolvers = {
       }
     },
     submitAFile: async (parent, args) => {
-      
       return {
         path: "dsfhjdskfdskj",
       };
+    },
+    update: async (parent, args) => {
+      const UpdatedUser = await User.findByIdAndUpdate(args.input.userId, {
+        $set: {
+          username: args.input.username,
+          phone: args.input.phone,
+        },
+      });
+      try {
+        const result = await UpdatedUser.save();
+        const createdPost = {
+          ...result._doc,
+          _id: result._doc._id,
+          phone: result._doc.phone,
+          username: result._doc.username,
+        };
+
+        // const user = await User.findById(args.input.userId);
+
+        // user.posts.push(post);
+        // await user.save();
+
+        return createdPost;
+      } catch (err) {
+        console.log(err);
+      }
     },
   },
 };
