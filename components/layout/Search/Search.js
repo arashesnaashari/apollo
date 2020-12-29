@@ -4,13 +4,36 @@ import BooksContext from "../../../context/books-context";
 
 const Search = (props) => {
   const context = useContext(BooksContext);
-  const [data, setData] = useState(context.books);
+  const [Data, setData] = useState(context.books);
+  if (!Data) {
+    fetch(`http://localhost:3000/api/graphql`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        query: `
+        query {
+          books {
+                   title
+                   _id
+                   author
+               }
+        }`,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        context.books = data.data.books;
+        setData(context.books);
+      })
+      .catch((err) => console.log(err));
+  }
+
   const [html, setHtml] = useState();
   const inputEvent = (e) => {
     let complitedResul;
 
     if (e) {
-      complitedResul = data.filter((book) => {
+      complitedResul = Data.filter((book) => {
         return (
           book.title.toLowerCase().trim().includes(e) ||
           book.author.toLowerCase().trim().includes(e)
@@ -18,11 +41,9 @@ const Search = (props) => {
       });
 
       complitedResul = complitedResul.map((book) => (
-        <Link href={`/book/${book._id}`}>
-          <p>
-            {book.title} | {book.author}
-          </p>
-        </Link>
+        <a href={`/book/${book._id}`}>
+          {book.title} | {book.author}
+        </a>
       ));
 
       setHtml(complitedResul);
@@ -35,7 +56,7 @@ const Search = (props) => {
 
   return (
     <>
-      {!data && (
+      {!Data && (
         <div className="search-box">
           <input placeholder="جستوجو کنید ...  " disabled id="search" />
           <a href="#">
@@ -45,7 +66,7 @@ const Search = (props) => {
           </a>
         </div>
       )}{" "}
-      {data && (
+      {Data && (
         <div className="search-box">
           <input
             placeholder="جستوجو کنید ...  "

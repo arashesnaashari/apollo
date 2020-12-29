@@ -11237,6 +11237,7 @@ const interval = () => {
           }
           for (let i = 0; i < body.length; i++) {
             body[i].style.color = "white";
+            body[i].style.userSelect = "none";
             body[i].style.borderColor = "gray";
             body[i].style.direction = "rtl";
           }
@@ -11251,6 +11252,7 @@ const interval = () => {
             body[i].style.color = "brown";
             body[i].style.borderColor = "brown";
             body[i].style.direction = "rtl";
+            body[i].style.userSelect = "none";
           }
           state2 = null;
         }
@@ -11288,7 +11290,8 @@ const interval = () => {
       }
       for (let i = 0; i < pes.length; i++) {
         pes[i].style.lineHeight = "3";
-        //pes[i].style.fontSize  = '100px';
+            pes[i].style.userSelect = "none";
+            //pes[i].style.fontSize  = '100px';
       }
     }
     clearInterval(timing);

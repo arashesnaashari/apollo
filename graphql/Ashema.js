@@ -23,6 +23,7 @@ const typeDefs = gql`
     comments: [Comment!]
     books: [Book!]
     reader: [Reader!]
+    profileURL:String!
   }
   type Comment {
     _id: ID!
@@ -105,9 +106,8 @@ const typeDefs = gql`
   }
   input updateInput {
     userId: String!
-    username:String!
-    phone:String!
-    
+    username: String!
+    phone: String!
   }
   type Query {
     users: [User!]
@@ -127,7 +127,6 @@ const typeDefs = gql`
     read(input: ReadInput): Reader
     addToShelf(input: addToShelfInput): User
     update(input: updateInput): User
-    submitAFile(file: fileInput): FileStats!
   }
 `;
 

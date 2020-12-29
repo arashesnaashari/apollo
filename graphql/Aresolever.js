@@ -24,29 +24,8 @@ const { year, literal, month, day, weekday } = Object.fromEntries(
     .map((item) => [item.type, item.value])
 );
 const faDate = `${weekday}${literal}${day} ${month} ${year}`;
+const { cloudinary } = require("../utils/cloadinary");
 
-// const storeUpload = ({ stream, filename }) =>
-//   new Promise((resolve, reject) =>
-//     stream
-//       .pipe(createWriteStream(filename))
-//       .on("finish", () => resolve())
-//       .on("error", reject)
-//   );
-// const getFileDetails = (file) =>
-//   new Promise(async (resolves, rejects) => {
-//     const { filename, createReadStream } = await file;
-//     let filesize = 0;
-//     let stream = createReadStream();
-//     stream.on("data", (chunk) => {
-//       filesize += chunk.length;
-//     });
-//     stream.once("end", () =>
-//       resolves({
-//         filename,
-//       })
-//     );
-//     stream.on("error", rejects);
-//   });
 
 const resolvers = {
   Query: {
@@ -363,25 +342,29 @@ const resolvers = {
         }
       }
     },
-    submitAFile: async (parent, args) => {
-      return {
-        path: "dsfhjdskfdskj",
-      };
-    },
     update: async (parent, args) => {
-      const UpdatedUser = await User.findByIdAndUpdate(args.input.userId, {
-        $set: {
-          username: args.input.username,
-          phone: args.input.phone,
-        },
-      });
       try {
+        // const uploadResponse = await cloudinary.uploader.upload(
+        //   args.input.profile,
+        //   {
+        //     upload_preset: "ml_default",
+        //   }
+        // );
+        const UpdatedUser = await User.findByIdAndUpdate(args.input.userId, {
+          $set: {
+            username: args.input.username,
+            phone: args.input.phone,
+            // profileURL: uploadResponse.url,
+          },
+        });
         const result = await UpdatedUser.save();
+
         const createdPost = {
           ...result._doc,
           _id: result._doc._id,
           phone: result._doc.phone,
           username: result._doc.username,
+          // profileURL: uploadResponse.url,
         };
 
         // const user = await User.findById(args.input.userId);

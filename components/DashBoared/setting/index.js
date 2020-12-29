@@ -69,8 +69,6 @@ export default function Upload() {
   const [fileInputState, setFileInputState] = useState("");
   const [previewSource, setPreviewSource] = useState("");
   const [selectedFile, setSelectedFile] = useState();
-  const [successMsg, setSuccessMsg] = useState("");
-  const [errMsg, setErrMsg] = useState("");
   const handleFileInputChange = (e) => {
     const file = e.target.files[0];
     previewFile(file);
@@ -101,24 +99,35 @@ export default function Upload() {
   };
 
   const uploadImage = async (base64EncodedImage) => {
-    try {
-      await fetch("/api/upload", {
-        method: "POST",
-        body: JSON.stringify({ data: base64EncodedImage }),
-        headers: { "Content-Type": "application/json" },
-      });
-      setFileInputState("");
-      setPreviewSource("");
-      setSuccessMsg("Image uploaded successfully");
-    } catch (err) {
-      console.error(err);
-      setErrMsg("Something went wrong!");
-    }
+    console.log(base64EncodedImage);
+    // try {
+    //   await fetch("/api/upload", {
+    //     method: "POST",
+    //     body: JSON.stringify({ data: base64EncodedImage }),
+    //     headers: { "Content-Type": "application/json" },
+    //   });
+    //   setFileInputState("");
+    //   setPreviewSource("");
+    //   setSuccessMsg("Image uploaded successfully");
+    // } catch (err) {
+    //   console.error(err);
+    //   setErrMsg("Something went wrong!");
+    // }
   };
   return (
     <div>
       <h1 className="title">Upload an Image</h1>
       <form onSubmit={handleSubmitFile} className="form">
+        <input
+          onChange={(event) => setUser(event.target.value)}
+          placeholder="نام کاربری"
+          type="text"
+        />
+        <input
+          onChange={(event) => setphone(event.target.value)}
+          placeholder="شماره همراه"
+          type="text"
+        />
         <input
           id="fileInput"
           type="file"

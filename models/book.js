@@ -14,9 +14,9 @@ const bookSchema = new Schema({
     type: String,
     required: true,
   },
-  ratingStar:{
-    type:Number,
-    required:false
+  ratingStar: {
+    type: Number,
+    required: false,
   },
   publication: {
     type: String,

@@ -15,8 +15,9 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  profile: {
+  profileURL: {
     type: String,
+    default:"sssssssssss",
     required: false,
   },
   posts: [
