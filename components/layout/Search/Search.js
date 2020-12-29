@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import Link from "next/link";
 import BooksContext from "../../../context/books-context";
+import fetch from "isomorphic-unfetch";
 
 const Search = (props) => {
   const context = useContext(BooksContext);
@@ -58,7 +59,7 @@ const Search = (props) => {
     <>
       {!Data && (
         <div className="search-box">
-          <input placeholder="جستوجو کنید ...  " disabled id="search" />
+          <input placeholder="درحال بارگیری ...  " disabled id="search" />
           <a href="#">
             <svg className="icon icon-search">
               <use xlinkHref="img/symbol-defs.svg#icon-search"></use>
