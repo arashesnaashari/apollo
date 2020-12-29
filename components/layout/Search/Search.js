@@ -6,7 +6,7 @@ const Search = (props) => {
   const context = useContext(BooksContext);
   const [Data, setData] = useState(context.books);
   if (!Data) {
-    fetch(`http://localhost:3000/api/graphql`, {
+    fetch(`https://bookgram.vercel.app/api/graphql`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
