@@ -5,8 +5,8 @@ import queryGraphQl from "../shared/query-graphql/index";
 import BooksContext from "../context/books-context";
 
 export default function propssing(props) {
-  // const context = useContext(BooksContext);
-  // context.books = props.data.books;
+  const context = useContext(BooksContext);
+  context.books = props.data.books;
 
   return (
     <>

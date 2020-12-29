@@ -6,28 +6,45 @@ import fetch from "isomorphic-unfetch";
 const Search = (props) => {
   const context = useContext(BooksContext);
   const [Data, setData] = useState(context.books);
-  if (!Data) {
-    fetch(`/api/graphql`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        query: `
-        query {
-          books {
-                   title
-                   _id
-                   author
-               }
-        }`,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        context.books = data.data.books;
-        setData(context.books);
-      })
-      .catch((err) => console.log(err));
-  }
+  // async function AAA() {
+  //   const res = await fetch(`/api/graphql`, {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify({
+  //       query: `
+  // query {
+  //   books {
+  //     title
+  //     _id
+  //     author
+  //        }
+  // }`,
+  //     }),
+  //   });
+  //   const data11 = await res.json();
+  // }
+  // if (!Data) {
+  //   fetch(`/api/graphql`, {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify({
+  //       query: `
+  //       query {
+  //         books {
+  //                  title
+  //                  _id
+  //                  author
+  //              }
+  //       }`,
+  //     }),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       context.books = data.data.books;
+  //       setData(context.books);
+  //     })
+  //     .catch((err) => console.log(err));
+  // }
 
   const [html, setHtml] = useState();
   const inputEvent = (e) => {
