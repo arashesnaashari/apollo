@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import fetch from "isomorphic-unfetch";
 import { useRouter } from "next/router";
 import AuthContext from "../../context/auth-context";
+import BooksContext from "../../context/books-context";
 import Layout from "../../components/layout/Layout";
 import queryGraphQl from "../../shared/query-graphql/index";
 
@@ -20,6 +21,8 @@ const fetcher = (query) =>
 
 export default function Id(props) {
   const context = useContext(AuthContext);
+  const contextBooks = useContext(BooksContext);
+  contextBooks.books = props.dataBooks.books;
   const [text, setText] = useState("");
   const [rate, setRate] = useState(0);
   // const [comments, setComments] = useState(props.data.book.comments);
