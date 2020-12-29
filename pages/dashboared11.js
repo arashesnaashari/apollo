@@ -41,7 +41,7 @@
 // };
 
 // export default Dashboared;
-import AuthContext from "../../../context/auth-context";
+// import AuthContext from "../../../context/auth-context";
 import { useState, useContext } from "react";
 
 export default function Upload() {
