@@ -136,7 +136,6 @@ export default function Id(props) {
   if (router.isFallback) {
     return <div>Loading...</div>;
   }
-  console.log(props.dataBooks.books);
   return (
     <Layout navbar={props.dataBooks.books}>
       <main className="ebook-landing-grid">
