@@ -136,8 +136,9 @@ export default function Id(props) {
   if (router.isFallback) {
     return <div>Loading...</div>;
   }
+  console.log(props.dataBooks.books);
   return (
-    <Layout navbar={props.data.books}>
+    <Layout navbar={props.dataBooks.books}>
       <main className="ebook-landing-grid">
         {/* Book Info */}
         <section className="ebook-showcase">
@@ -336,9 +337,17 @@ export const getStaticProps = async ({ params: { _id } }) => {
   }
   }
   `);
-
+  const dataQQ1 = await queryGraphQl(`
+  query {
+    books {
+      title,
+  author,
+  _id
+  }
+  }
+  `);
   return {
-    props: { data: dataQQ },
+    props: { data: dataQQ, dataBooks: dataQQ1 },
     revalidate: 1,
   };
 };
