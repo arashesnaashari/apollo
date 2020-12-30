@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import Link from "next/link";
 import BooksContext from "../../../context/books-context";
 import fetch from "isomorphic-unfetch";
+import { useRouter } from "next/router";
 
 const Search = (props) => {
   const context = useContext(BooksContext);
@@ -59,7 +60,7 @@ const Search = (props) => {
       });
 
       complitedResul = complitedResul.map((book) => (
-        <a href={`/book/${book._id}`}>
+        <a onClick={() => router.push(`/book/${book._id}`)}>
           {book.title} | {book.author}
         </a>
       ));
