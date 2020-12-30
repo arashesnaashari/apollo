@@ -35,6 +35,7 @@ class Editor extends React.Component {
     }
 
     this.editor = new EditorJS({
+      placeholder: "ی چیز بنویس...",
       holder: "editorjs",
       logLevel: "ERROR",
       tools: {
@@ -53,7 +54,69 @@ class Editor extends React.Component {
         },
         header: Header,
       },
-
+      i18n: {
+        messages: {
+          ui: {
+            blockTunes: {
+              toggler: {
+                "Click to tune": "تنظیمات بلاک",
+              },
+            },
+            inlineToolbar: {
+              converter: {
+                "Convert to": "تبدیل شدن",
+              },
+            },
+            toolbar: {
+              toolbox: {
+                Add: "اضافه کردن",
+              },
+            },
+          },
+          toolNames: {
+            Image:"عکس",
+            Text: "متن",
+            Heading: "هدینگ",
+            List: "لیست",
+            Warning: "هشدار",
+            Checklist: "چک لیست",
+            Quote: "نظر",
+            Code: "کد",
+            Delimiter: "جدا کننده",
+            "Raw HTML": "HTML-фрагмент",
+            Table: "جدول",
+            Link: "لینک",
+            Marker: "ماژیک",
+            Bold: "بلد",
+            Italic: "ایتالیک",
+            InlineCode: "کد",
+          },
+          tools: {
+            warning: {
+              Title: "هشدار",
+              Message: "هشدار",
+            },
+            link: {
+              "جایگزلری لینک": "جایگزاری لینک",
+            },
+            stub: {
+              "بلاک درست نشان داده نمی شود":
+                "میتوانید ....",
+            },
+          },
+          blockTunes: {
+            delete: {
+              Delete: "حذف",
+            },
+            moveUp: {
+              "Move up": "بره بالا",
+            },
+            moveDown: {
+              "Move down": "بیاد پایین",
+            },
+          },
+        },
+      },
       data: content,
     });
   };

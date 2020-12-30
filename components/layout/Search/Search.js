@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import Link from "next/link";
 import BooksContext from "../../../context/books-context";
-import fetch from "isomorphic-unfetch";
 
 const Search = (props) => {
   const context = useContext(BooksContext);
@@ -59,11 +57,9 @@ const Search = (props) => {
       });
 
       complitedResul = complitedResul.map((book) => (
-        <Link href={`/book/${book._id}`}>
-          <a>
-            {book.title} | {book.author}
-          </a>
-        </Link>
+        <a href={`/book/${book._id}`}>
+          {book.title} | {book.author}
+        </a>
       ));
 
       setHtml(complitedResul);
