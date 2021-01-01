@@ -46,8 +46,44 @@ class Editor extends React.Component {
           class: Image,
           config: {
             uploader: {
-              uploadByFile(file) {
-                console.log(file);
+              async uploadByFile(file) {
+                // var img = new Image();
+                // const canvas = this.refs.canvas;
+                // const context = this.refs.canvas.getContext("2d");
+                // let fileee;
+                // img.onload = function () {
+                //   var iw = img.width;
+                //   var ih = img.height;
+                //   var scale = Math.min(150 / iw, 120 / ih);
+                //   var iwScaled = iw * scale;
+                //   var ihScaled = ih * scale;
+                //   canvas.width = iwScaled;
+                //   canvas.height = ihScaled;
+                //   context.drawImage(
+                //     img,
+                //     0,
+                //     0,
+                //     context.canvas.width,
+                //     context.canvas.height
+                //   );
+                //   console.log(canvas.toDataURL("image/jpeg", 0.8));
+                //   fileee = canvas.toDataURL("image/jpeg", 0.8);
+                // };
+                // img.src = URL.createObjectURL(file);
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                let ii;
+                reader.onloadend = () => {
+                  ii = reader.result;
+                  console.log(reader.result);
+                };
+                console.log(ii);
+                const res = await fetch("/api/upload", {
+                  method: "POST",
+                  body: JSON.stringify({ data: ii }),
+                  headers: { "Content-Type": "application/json" },
+                });
+                const data = res.json();
               },
             },
           },
@@ -74,7 +110,7 @@ class Editor extends React.Component {
             },
           },
           toolNames: {
-            Image:"عکس",
+            Image: "عکس",
             Text: "متن",
             Heading: "هدینگ",
             List: "لیست",
@@ -100,8 +136,7 @@ class Editor extends React.Component {
               "جایگزلری لینک": "جایگزاری لینک",
             },
             stub: {
-              "بلاک درست نشان داده نمی شود":
-                "میتوانید ....",
+              "بلاک درست نشان داده نمی شود": "میتوانید ....",
             },
           },
           blockTunes: {
@@ -129,6 +164,8 @@ class Editor extends React.Component {
   render() {
     return (
       <>
+        <canvas ref="canvas" style={{ display: "none" }} />
+
         <button onClick={(e) => this.onSave(e)}>Save</button>
         <div id={"editorjs"} onChange={(e) => this.onChange(e)}></div>
       </>
