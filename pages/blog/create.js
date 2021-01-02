@@ -70,20 +70,15 @@ class Editor extends React.Component {
                 //   fileee = canvas.toDataURL("image/jpeg", 0.8);
                 // };
                 // img.src = URL.createObjectURL(file);
-                const reader = new FileReader();
-                reader.readAsDataURL(file);
-                let ii;
-                reader.onloadend = () => {
-                  ii = reader.result;
-                  console.log(reader.result);
-                };
-                console.log(ii);
-                const res = await fetch("/api/upload", {
+                const formData = new FormData();
+                formData.append("profilePicture", file);
+                const resFile = await fetch("/api/upload", {
                   method: "POST",
-                  body: JSON.stringify({ data: ii }),
-                  headers: { "Content-Type": "application/json" },
+                  body: formData,
                 });
-                const data = res.json();
+                const dataFile = await resFile.json();
+                console.log(dataFile);
+                return dataFile;
               },
             },
           },

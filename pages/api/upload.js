@@ -12,7 +12,9 @@ handler.post(upload.single("profilePicture"), async (req, res) => {
   });
   res.status(200).json({
     success: 1,
-    url: image.secure_url,
+    file: {
+      url: image.secure_url,
+    },
   });
   // try {
   //   const fileStr = req.body.data;
