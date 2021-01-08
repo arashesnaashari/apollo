@@ -6,3 +6,4 @@ export default React.createContext({
   login: (token, userId, tokenExpiration) => {},
   logout: () => {},
 });
+

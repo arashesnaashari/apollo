@@ -11,7 +11,7 @@ const BookItem = ({ data }) => {
           <img src={data.image} alt="post" width="120" />
         </div>
         <div class="user">
-          <img src="../img/jacob parsson.png" alt="" />
+          <img src={data.creator.profileURL} alt="" />
           <h4>{data.creator.username}</h4>
         </div>
         <div class="midline2"></div>

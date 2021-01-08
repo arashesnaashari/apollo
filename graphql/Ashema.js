@@ -1,7 +1,7 @@
 import { gql } from "apollo-server-micro";
 
 const typeDefs = gql`
-  scalar Upload
+  scalar ObjectPostCreator
   type Book {
     _id: ID!
     title: String!
@@ -23,7 +23,7 @@ const typeDefs = gql`
     comments: [Comment!]
     books: [Book!]
     reader: [Reader!]
-    profileURL:String!
+    profileURL: String!
   }
   type Comment {
     _id: ID!
@@ -49,6 +49,7 @@ const typeDefs = gql`
     views: [View!]
     date: String!
     image: String!
+    data: ObjectPostCreator
   }
   type Reader {
     _id: ID!
@@ -88,6 +89,7 @@ const typeDefs = gql`
     title: String!
     body: String!
     image: String!
+    data:ObjectPostCreator
   }
   input fileInput {
     name: String!
@@ -108,6 +110,7 @@ const typeDefs = gql`
     userId: String!
     username: String!
     phone: String!
+    password: String!
   }
   type Query {
     users: [User!]
@@ -126,7 +129,7 @@ const typeDefs = gql`
     createView(input: viewsToPost): View
     read(input: ReadInput): Reader
     addToShelf(input: addToShelfInput): User
-    update(input: updateInput): User
+    update(input: updateInput): Boolean
   }
 `;
 

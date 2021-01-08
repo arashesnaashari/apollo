@@ -8,9 +8,7 @@ const Read = require("../models/reader");
 const Comment = require("../models/comment");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { createWriteStream, existsSync, mkdirSync } = require("fs");
 dbConnect();
-import formidable from "formidable";
 
 var xxx = new Date();
 const { year, literal, month, day, weekday } = Object.fromEntries(
@@ -25,7 +23,6 @@ const { year, literal, month, day, weekday } = Object.fromEntries(
 );
 const faDate = `${weekday}${literal}${day} ${month} ${year}`;
 const { cloudinary } = require("../utils/cloadinary");
-
 
 const resolvers = {
   Query: {
@@ -158,7 +155,10 @@ const resolvers = {
         const existingUser = await User.findOne({
           phone: args.input.phone,
         });
-        if (existingUser) {
+        const existingUserUsername = await User.findOne({
+          username: args.input.username,
+        });
+        if (existingUser || existingUserUsername) {
           throw new Error("User exists already.");
         }
         const hashedPassword = await bcrypt.hash(args.input.password, 12);
@@ -192,7 +192,7 @@ const resolvers = {
           rate: args.input.rate,
           creator: args.input.userId,
           book: args.input.bookId,
-          date: faDate,
+          date: Date.now(),
         });
         let createdComment;
         try {
@@ -233,7 +233,7 @@ const resolvers = {
         rate: args.input.rate,
         creator: args.input.userId,
         post: args.input.postId,
-        date: faDate,
+        date: Date.now(),
       });
       let createdView;
       try {
@@ -262,7 +262,8 @@ const resolvers = {
         body: args.input.body,
         creator: args.input.userId,
         image: args.input.image,
-        date: faDate,
+        data: args.input.data,
+        date: Date.now(),
       });
       let createdPost;
       try {
@@ -344,35 +345,24 @@ const resolvers = {
     },
     update: async (parent, args) => {
       try {
-        // const uploadResponse = await cloudinary.uploader.upload(
-        //   args.input.profile,
-        //   {
-        //     upload_preset: "ml_default",
-        //   }
-        // );
+        const hashedPassword = await bcrypt.hash(args.input.password, 12);
+        const existingUser = await User.findOne({
+          phone: args.input.phone,
+        });
+        if (existingUser && existingUser._id !== args.input.userId) {
+          return false;
+        }
+
         const UpdatedUser = await User.findByIdAndUpdate(args.input.userId, {
           $set: {
             username: args.input.username,
             phone: args.input.phone,
-            // profileURL: uploadResponse.url,
+            password: hashedPassword,
           },
         });
         const result = await UpdatedUser.save();
 
-        const createdPost = {
-          ...result._doc,
-          _id: result._doc._id,
-          phone: result._doc.phone,
-          username: result._doc.username,
-          // profileURL: uploadResponse.url,
-        };
-
-        // const user = await User.findById(args.input.userId);
-
-        // user.posts.push(post);
-        // await user.save();
-
-        return createdPost;
+        return true;
       } catch (err) {
         console.log(err);
       }

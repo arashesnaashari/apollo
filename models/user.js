@@ -17,7 +17,8 @@ const userSchema = new Schema({
   },
   profileURL: {
     type: String,
-    default:"sssssssssss",
+    default:
+      "https://www.seekpng.com/png/full/41-410093_circled-user-icon-user-profile-icon-png.png",
     required: false,
   },
   posts: [

@@ -17,7 +17,7 @@ const viewsSchema = new Schema({
     autopopulate: true,
   },
   date: {
-    type: Number,
+    type: String,
     required: true,
   },
   post: {

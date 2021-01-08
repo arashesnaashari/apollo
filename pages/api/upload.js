@@ -1,15 +1,27 @@
 import nc from "next-connect";
 import multer from "multer";
+import dbConnect from "../../utils/dbConnect";
+import User from "../../models/user";
+
 const upload = multer({ dest: "/tmp" });
 const { cloudinary } = require("../../utils/cloadinary");
 const handler = nc();
 
+dbConnect();
 handler.post(upload.single("profilePicture"), async (req, res) => {
   const image = await cloudinary.uploader.upload(req.file.path, {
     width: 100,
     height: 100,
     crop: "fill",
   });
+  if (req.body.userId) {
+    const UpdatedUser = await User.findByIdAndUpdate(req.body.userId, {
+      $set: {
+        profileURL: image.secure_url,
+      },
+    });
+    const result = await UpdatedUser.save();
+  }
   res.status(200).json({
     success: 1,
     file: {

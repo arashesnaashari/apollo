@@ -45,6 +45,7 @@
     "swr": "^0.3.9"
   },
   "devDependencies": {
+    "@editorjs/delimiter": "^1.2.0",
     "@editorjs/editorjs": "^2.19.1",
     "@editorjs/header": "^2.6.1",
     "@editorjs/image": "^2.6.0",

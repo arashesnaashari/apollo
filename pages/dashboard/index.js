@@ -26,13 +26,14 @@ function Index() {
   let Data;
   if (context.userId) {
     const { data, error } = useSWR(
-      `query{ user(_id:"${context.userId}"){reader { time date book { image title } pages } username  } }`,
+      `query{ user(_id:"${context.userId}"){reader { time date book { image title } pages } username  profileURL} }`,
       fetcher
     );
     if (error) return <div>Failed to load</div>;
     if (data) {
       Data = data;
       contextInfo.info.username = Data.user.username;
+      contextInfo.info.profileURL = Data.user.profileURL;
     }
   }
 
@@ -40,13 +41,12 @@ function Index() {
     <>
       <LayOut>
         {!Data && <h1>Loading</h1>}
-  
-          <>
-            <Compare  />
-            <LastBook />
-            <Perfomence />
-          </>
-      
+
+        <>
+          {/* <Compare  /> */}
+          {/* <LastBook />
+          <Perfomence /> */}
+        </>
       </LayOut>
     </>
   );

@@ -7,7 +7,6 @@ const Setting = () => {
       <span onClick={() => router.push("/dashboard/setting")}>Setting</span>
       <span onClick={() => router.push("/dashboard/library")}>Library</span>
       <span onClick={() => router.push("/dashboard/compare")}>Compare</span>
-      <span onClick={() => router.push("/dashboard/feed")}>Feed</span>
     </>
   );
 };

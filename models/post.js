@@ -20,7 +20,10 @@ const postSchema = new Schema({
     ref: "User",
     autopopulate: true,
   },
-
+  data: {
+    type: Object,
+    required: true,
+  },
   views: [
     {
       type: Schema.Types.ObjectId,
@@ -29,7 +32,7 @@ const postSchema = new Schema({
     },
   ],
   date: {
-    type: Date,
+    type: String,
     required: true,
   },
 });

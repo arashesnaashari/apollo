@@ -1,22 +1,11 @@
-// import Editorjs from "../../components/Blog/creator";
-// import dynamic from "next/dynamic";
-// import { useEffect } from "react";
-// import { use } from "passport";
-// const ReactDOM = dynamic(() => import("react-dom"));
-
-// const Blog1 = () => {
-//   const CompanyIconInHeader = <div id="editorjs">y</div>;
-//   return ReactDOM.render(<Editorjs />, CompanyIconInHeader);
-// };
-
-// export default Blog1;
 import React from "react";
+import AuthContext from "../../context/auth-context";
 class Editor extends React.Component {
+  static contextType = AuthContext;
   constructor(props) {
     super(props);
     this.editor = null;
   }
-
   async componentDidMount() {
     this.initEditor();
   }
@@ -26,8 +15,8 @@ class Editor extends React.Component {
     const Header = require("@editorjs/header");
     const Table = require("@editorjs/table");
     const List = require("@editorjs/list");
-    const LinkTool = require("@editorjs/link");
     const Image = require("@editorjs/image");
+    const Delimiter = require("@editorjs/delimiter");
 
     let content = null;
     if (this.props.data !== undefined) {
@@ -39,37 +28,14 @@ class Editor extends React.Component {
       holder: "editorjs",
       logLevel: "ERROR",
       tools: {
+        delimiter: Delimiter,
         table: Table,
         list: List,
-        linkTool: LinkTool,
         image: {
           class: Image,
           config: {
             uploader: {
               async uploadByFile(file) {
-                // var img = new Image();
-                // const canvas = this.refs.canvas;
-                // const context = this.refs.canvas.getContext("2d");
-                // let fileee;
-                // img.onload = function () {
-                //   var iw = img.width;
-                //   var ih = img.height;
-                //   var scale = Math.min(150 / iw, 120 / ih);
-                //   var iwScaled = iw * scale;
-                //   var ihScaled = ih * scale;
-                //   canvas.width = iwScaled;
-                //   canvas.height = ihScaled;
-                //   context.drawImage(
-                //     img,
-                //     0,
-                //     0,
-                //     context.canvas.width,
-                //     context.canvas.height
-                //   );
-                //   console.log(canvas.toDataURL("image/jpeg", 0.8));
-                //   fileee = canvas.toDataURL("image/jpeg", 0.8);
-                // };
-                // img.src = URL.createObjectURL(file);
                 const formData = new FormData();
                 formData.append("profilePicture", file);
                 const resFile = await fetch("/api/upload", {
@@ -151,18 +117,55 @@ class Editor extends React.Component {
     });
   };
   async onSave(e) {
+    e.preventDefault();
     let data = await this.editor.saver.save();
-
+    const { userId } = this.context;
     console.log(data);
-  }
+    console.log(userId);
+    const title = data.blocks.find((e) => {
+      return e.type == "header";
+    }); // .data.text
+    const body = data.blocks.find((e) => {
+      return e.type == "paragraph";
+    }); //data.text
+    const image = data.blocks.find((e) => {
+      return e.type == "image";
+    }); // data.file.url
 
+    console.log(title);
+    if (title && body) {
+      // console.log(
+      //   `title : ${title.data.text}   body:${body.data.text}   image:${image.data.file.url}`
+      // );
+      //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      console.log(JSON.parse(data));
+      fetch("/api/graphql", {
+        method: "POST",
+        body: JSON.stringify({
+          query: `
+        mutation {
+          createPost(input:{userId:"${userId}",title:"${
+            title.data.text
+          }",body:"${
+            body.data.text
+          }",image:"https://res.cloudinary.com/bookgram/image/upload/v1610145007/p5e8z66hk5vhto0sn3zi.jpg",data:${JSON.parse(
+            data
+          )}}){
+            _id
+          }
+        }
+        `,
+        }),
+      })
+        .then((res) => res.json())
+        .catch((err) => console.log(err));
+    }
+  }
   render() {
     return (
       <>
-        <canvas ref="canvas" style={{ display: "none" }} />
-
-        <button onClick={(e) => this.onSave(e)}>Save</button>
         <div id={"editorjs"} onChange={(e) => this.onChange(e)}></div>
+        <button onClick={(e) => this.onSave(e)}>Save</button>
       </>
     );
   }
