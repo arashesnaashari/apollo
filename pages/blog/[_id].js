@@ -9,14 +9,13 @@ export default function Id(props) {
   const router = useRouter();
   //search component data
   const contextBooks = useContext(BooksContext);
-  contextBooks.books = props.dataBooks.books;
-
-  const context = useContext(AuthContext);
+  // contextBooks.books = props.dataBooks.books;
+  console.log(contextBooks.books);
   if (router.isFallback) {
     return <div>Loading...</div>;
   }
   return (
-    <Layout navbar={props.dataBooks.books}>
+    <Layout>
       <BlogDataShow data={props.data.post.data} />
     </Layout>
   );
@@ -52,15 +51,13 @@ export const getStaticProps = async ({ params: { _id } }) => {
   }
   }
   `);
-  const dataQQ1 = await queryGraphQl(`
-  query {
+  const dataQQ1 = await queryGraphQl(`query {
     books {
-      title,
-  author,
-  _id
-  }
-  }
-  `);
+             title
+             image
+             _id
+         }
+  }`);
   return {
     props: { data: dataQQ, dataBooks: dataQQ1 },
     revalidate: 1,

@@ -138,27 +138,41 @@ class Editor extends React.Component {
       //   `title : ${title.data.text}   body:${body.data.text}   image:${image.data.file.url}`
       // );
       //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      console.log(JSON.parse(data));
+      console.log(
+        JSON.stringify(data)
+          .split("")
+          .map((e) => {
+            if (e == '"') {
+              return "'";
+            } else {
+              return e;
+            }
+          })
+          .join("")
+      );
       fetch("/api/graphql", {
         method: "POST",
         body: JSON.stringify({
           query: `
         mutation {
-          createPost(input:{userId:"${userId}",title:"${
-            title.data.text
-          }",body:"${
-            body.data.text
-          }",image:"https://res.cloudinary.com/bookgram/image/upload/v1610145007/p5e8z66hk5vhto0sn3zi.jpg",data:${JSON.parse(
+          createPost(input:{userId:"5fba7c7f637eca2ba0e4e39e",title:"ttttttt",body:"bbbbbb",image:"https://res.cloudinary.com/bookgram/image/upload/v1610145007/p5e8z66hk5vhto0sn3zi.jpg",data:"${JSON.stringify(
             data
-          )}}){
+          )
+            .split("")
+            .map((e) => {
+              if (e == '"') {
+                return "'";
+              } else {
+                return e;
+              }
+            })
+            .join("")}"}){
             _id
           }
         }
         `,
         }),
-      })
-        .then((res) => res.json())
-        .catch((err) => console.log(err));
+      });
     }
   }
   render() {

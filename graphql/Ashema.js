@@ -89,7 +89,7 @@ const typeDefs = gql`
     title: String!
     body: String!
     image: String!
-    data:ObjectPostCreator
+    data:String!
   }
   input fileInput {
     name: String!

@@ -21,7 +21,7 @@ const postSchema = new Schema({
     autopopulate: true,
   },
   data: {
-    type: Object,
+    type: String,
     required: true,
   },
   views: [

@@ -321,7 +321,7 @@ export const getStaticPaths = async () => {
       _id: e._id,
     },
   }));
-  return { paths: paths, fallback: true };
+  return { paths: paths, fallback: false };
 };
 
 export const getStaticProps = async ({ params: { _id } }) => {
@@ -339,15 +339,13 @@ export const getStaticProps = async ({ params: { _id } }) => {
   }
   }
   `);
-  const dataQQ1 = await queryGraphQl(`
-  query {
+  const dataQQ1 = await queryGraphQl(`query {
     books {
-      title,
-  author,
-  _id
-  }
-  }
-  `);
+             title
+             image
+             _id
+         }
+  }`);
   return {
     props: { data: dataQQ, dataBooks: dataQQ1 },
     revalidate: 1,

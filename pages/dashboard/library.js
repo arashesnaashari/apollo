@@ -37,8 +37,7 @@ function Lib() {
     <>
       <LayOut>
         {!Data && <h1>Loading</h1>}
-        {Data && <Library data={Data.user.books}/>}
-        <Library />
+        {Data && <Library data={Data.user.books} />}
       </LayOut>
     </>
   );
