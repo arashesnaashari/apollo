@@ -11,8 +11,8 @@ function MyApp({ Component, pageProps, router }) {
   if (typeof window !== "undefined") {
     storagedToken = localStorage.getItem("token");
     storagedUserId = localStorage.getItem("userId");
-    storagedProfileURL = localStorage.getItem("username");
-    storagedUsername = localStorage.getItem("profileURL");
+    storagedProfileURL = localStorage.getItem("profileURL");
+    storagedUsername = localStorage.getItem("username");
   }
 
   const [token, setToken] = useState(null || storagedToken);
