@@ -292,8 +292,6 @@ export default function Id(props) {
   );
 }
 
-
-
 export const getStaticProps = async ({ params: { _id } }) => {
   const dataQQ = await queryGraphQl(`
   query {
@@ -345,7 +343,7 @@ export const getStaticPaths = async () => {
       _id: e._id,
     },
   }));
-  return { paths: paths, fallback: blocking };
+  return { paths: paths, fallback: "blocking" };
 };
 // export const getServerSideProps = async ({ params: { _id } }) => {
 //   const res = await fetch(`${BaseUrl}/api/graphql`, {
