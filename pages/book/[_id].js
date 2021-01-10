@@ -292,7 +292,21 @@ export default function Id(props) {
     </Layout>
   );
 }
+export const getStaticPaths = async () => {
+  const dataQQ = await queryGraphQl(`query {
+    books{
+     _id
 
+  }
+}`);
+  // Get the paths we want to pre-render based on posts
+  const paths = dataQQ.books.map((e) => ({
+    params: {
+      _id: e._id,
+    },
+  }));
+  return { paths: paths, fallback: true };
+};
 export const getStaticProps = async ({ params: { _id } }) => {
   const dataQQ = await queryGraphQl(`
   query {
@@ -331,21 +345,7 @@ export const getStaticProps = async ({ params: { _id } }) => {
     revalidate: 1,
   };
 };
-export const getStaticPaths = async () => {
-  const dataQQ = await queryGraphQl(`query {
-    books{
-     _id
 
-  }
-}`);
-  // Get the paths we want to pre-render based on posts
-  const paths = dataQQ.books.map((e) => ({
-    params: {
-      _id: e._id,
-    },
-  }));
-  return { paths: paths, fallback: true };
-};
 // export const getServerSideProps = async ({ params: { _id } }) => {
 //   const res = await fetch(`${BaseUrl}/api/graphql`, {
 //     method: "POST",
