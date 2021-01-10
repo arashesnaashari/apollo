@@ -342,7 +342,7 @@ export const getStaticProps = async ({ params: { _id } }) => {
   }`);
   return {
     props: { data: dataQQ, dataBooks: dataQQ1 },
-    revalidate: 1,
+    unstable_revalidate: 1,
   };
 };
 
