@@ -20,6 +20,7 @@ const fetcher = (query) =>
     .then((json) => json.data);
 
 export default function Id(props) {
+  if (!props.data) return null;
   const context = useContext(AuthContext);
   const contextBooks = useContext(BooksContext);
   contextBooks.books = props.dataBooks.books;
@@ -343,7 +344,7 @@ export const getStaticPaths = async () => {
       _id: e._id,
     },
   }));
-  return { paths: paths, fallback: "blocking" };
+  return { paths: paths, fallback: true };
 };
 // export const getServerSideProps = async ({ params: { _id } }) => {
 //   const res = await fetch(`${BaseUrl}/api/graphql`, {
