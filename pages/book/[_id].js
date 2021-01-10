@@ -21,10 +21,8 @@ const fetcher = (query) =>
 
 export default function Id(props) {
   const context = useContext(AuthContext);
-  // const contextBooks = useContext(BooksContext);
-  // useEffect(() => {
-  //   contextBooks.books = props.dataBooks.books;
-  // }, []);
+  const contextBooks = useContext(BooksContext);
+  contextBooks.books = props.dataBooks.books;
   const [text, setText] = useState("");
   const [rate, setRate] = useState(0);
   const [comments, setComments] = useState(props.data.book.comments);
@@ -132,7 +130,7 @@ export default function Id(props) {
     return <div>صفحه در حال ساخت است لطفا منتظر بمانید ....</div>;
   }
   return (
-    <Layout>
+    <Layout navbar={props.dataBooks.books}>
       <main className="ebook-landing-grid">
         {/* Book Info */}
         <section className="ebook-showcase">
@@ -307,7 +305,7 @@ export const getStaticPaths = async () => {
       _id: e._id,
     },
   }));
-  return { paths: paths, fallback: true };
+  return { paths: paths, fallback: false };
 };
 
 export const getStaticProps = async ({ params: { _id } }) => {
