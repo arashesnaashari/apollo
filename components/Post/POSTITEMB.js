@@ -1,7 +1,7 @@
 import Link from "next/link";
 const BookItem = ({ data }) => {
   return (
-    <>
+    <Link href={`/blog/${data._id}`}>
       <div class="blog-post--container">
         <div class="blog-post--wrap">
           <div class="blog-post--content">
@@ -16,7 +16,7 @@ const BookItem = ({ data }) => {
         </div>
         <div class="midline2"></div>
       </div>
-    </>
+    </Link>
   );
 };
 export default BookItem;

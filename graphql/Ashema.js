@@ -61,6 +61,8 @@ const typeDefs = gql`
   }
   type AuthData {
     userId: ID!
+    username: String!
+    profileURL: String!
     token: String!
     tokenExpire: Int!
   }
@@ -89,7 +91,7 @@ const typeDefs = gql`
     title: String!
     body: String!
     image: String!
-    data:String!
+    data: String!
   }
   input fileInput {
     name: String!

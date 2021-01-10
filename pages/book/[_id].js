@@ -6,7 +6,7 @@ import BooksContext from "../../context/books-context";
 import Layout from "../../components/layout/Layout";
 import queryGraphQl from "../../shared/query-graphql/index";
 
-import useSWR, { mutate } from "swr";
+import useSWR, { mutate, trigger } from "swr";
 
 const fetcher = (query) =>
   fetch("/api/graphql", {
@@ -33,62 +33,74 @@ export default function Id(props) {
   for (let i = 0; i < props.data.book.ratingStar; i++) {
     array.push(<span key={props.data.book._id}>&#9734;</span>);
   }
+
+  const Mutation = {
+    query: `mutation {
+      createComment(input:
+        {bookId:"${_id}",
+          userId:"${context.userId}",
+          rate:${NumericRate},text:"${text}"}){
+            text
+            _id
+            date
+            rate
+            creator{
+              username
+            }
+      }
+    }`,
+  };
+  const Query = {
+    query: `query {
+      book(_id:"${props.data.book._id}"){
+       comments{
+        text
+        _id
+        date
+        rate
+        creator{
+          username
+          _id
+          profileURL
+        }
+      }
+      }
+    }`,
+  };
   async function handleSubmit(event) {
     event.preventDefault();
+    mutate(
+      Query.query,
+      {
+        book: [
+          ...data.book.comments,
+          {
+            text: text,
+            _id: "123456789098765432123456",
+            date: Date.now(),
+            rate: rate,
+            creator: {
+              username: context.username,
+              profileURL: context.profileURL,
+              _id: context.userId,
+            },
+          },
+        ],
+      },
+      false
+    );
     try {
       const res = await fetch(`/api/graphql`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          query: `
-          mutation {
-            createComment(input:
-              {bookId:"${_id}",
-                userId:"${context.userId}",
-                rate:${NumericRate},text:"${text}"}){
-                  text
-                  _id
-                  date
-                  rate
-                  creator{
-                    username
-                  }
-            }
-          }
-          `,
-        }),
+        body: JSON.stringify(Mutation),
       });
       const data = await res.json();
-
-      // const newComment = {
-      //   text: text,
-      //   rate: NumericRate,
-      //   date: data.date,
-      //   _id: data._id,
-      //   creator: {
-      //     username: data.creator.username,
-      //   },
-      // };
-      // setComments([...comments, newComment]);
-      console.log(data);
-      mutate(`query {
-        book(_id:"${props.data.book._id}"){
-         comments{
-          text
-          _id
-          date
-          rate
-          creator{
-            username
-            _id
-          }
-        }
-        }
-      }`);
-      // console.log(data.createComment);
+      console.log(data.errors[0].message);
     } catch (error) {
-      console.log(error);
+      console.log(error.errors);
     }
+    trigger(Mutation.query);
   }
 
   const { data, error } = useSWR(
@@ -102,11 +114,13 @@ export default function Id(props) {
       creator{
         username
         _id
+        profileURL
       }
     }
     }
   }`,
-    fetcher
+    fetcher,
+    { initialData: props.data }
   );
   async function addToBookShelf(event) {
     event.preventDefault();
@@ -129,15 +143,17 @@ export default function Id(props) {
       console.log(error);
     }
   }
-
+  if (error) {
+    console.log(error);
+  }
   // const [comments, setComments] = useState(data.book.comments);
   let comments;
   if (data) {
-    comments = data.book.comments;
+    comments = data;
   }
 
   if (router.isFallback) {
-    return <div>Loading...</div>;
+    return <div>صفحه در حال ساخت است لطفا منتظر بمانید ....</div>;
   }
   return (
     <Layout navbar={props.dataBooks.books}>
@@ -191,36 +207,37 @@ export default function Id(props) {
 
         {/* Comments && form */}
 
-        {comments && (
-          <>
-            {!context.token && <h5>برای نظر دادن وارد شوید</h5>}
+        <>
+          {!context.token && <h5>برای نظر دادن وارد شوید</h5>}
 
-            {context.token && (
-              <form onSubmit={handleSubmit}>
-                <input
-                  placeholder="text .. "
-                  type="text"
-                  required
-                  onChange={(event) => setText(event.target.value)}
-                />
-                <input
-                  placeholder="rate"
-                  type="number"
-                  min="1"
-                  max="5"
-                  required
-                  onChange={(event) => setRate(event.target.value)}
-                />
-                <button type="submit">Submit</button>
-                <div className="midline"></div>
-              </form>
-            )}
-            <div className="midline"></div>
-            <section className="comments">
-              <h1 className="comments--title">نظرهای کاربران</h1>
-              <div className="comments--right">
-                <div className="comment">
-                  {comments.map((comment, i) => {
+          {context.token && (
+            <form onSubmit={handleSubmit}>
+              <input
+                placeholder="text .. "
+                type="text"
+                required
+                onChange={(event) => setText(event.target.value)}
+              />
+              <input
+                placeholder="rate"
+                type="number"
+                min="1"
+                max="5"
+                required
+                onChange={(event) => setRate(event.target.value)}
+              />
+              <button type="submit">Submit</button>
+              <div className="midline"></div>
+            </form>
+          )}
+          <div className="midline"></div>
+          <section className="comments">
+            <h1 className="comments--title">نظرهای کاربران</h1>
+            <div className="comments--right">
+              <div className="comment">
+                {console.log(data)}
+                {data &&
+                  data.book.comments.map((comment, i) => {
                     let rates = comment.rate;
                     let array1 = [];
 
@@ -238,24 +255,38 @@ export default function Id(props) {
                     return (
                       <div key={comment._id}>
                         <div className="comment--title">
+                          {/* user Info */}
                           <div className="comment--title__content">
-                            <img src="../img/comment-3.png" alt="comment" />
+                            <img
+                              src={comment.creator.profileURL}
+                              alt="comment"
+                              width="60"
+                            />
                             <div className="comment--title__text">
                               <h1>{comment.creator.username}</h1>
                               <span className="time">{comment.date}</span>
                             </div>
                           </div>
 
-                          {/* <svg className="icon-comments">
-                        <use xlinkHref="../img/symbol-defs.svg#icon-comments"></use>
-                      </svg> */}
+                          {/* delete btn && rate */}
                           <span>
+                            {/* rate */}
                             {array1}
                             {comment.creator._id == context.userId && (
                               <button
                                 onClick={async (event) => {
                                   event.preventDefault();
-
+                                  mutate(
+                                    Query,
+                                    {
+                                      book: [
+                                        data.book.comments.filter(
+                                          (e) => e._id !== comment._id
+                                        ),
+                                      ],
+                                    },
+                                    false
+                                  );
                                   const res = await fetch(`/api/graphql`, {
                                     method: "POST",
                                     headers: {
@@ -273,20 +304,11 @@ export default function Id(props) {
                                   });
                                   const data = await res.json();
                                   console.log(data);
-                                  mutate(`query {
-                                  book(_id:"${props.data.book._id}"){
-                                   comments{
-                                    text
-                                    _id
-                                    date
-                                    rate
-                                    creator{
-                                      username
+                                  trigger(`mutation {
+                                    deleteComment(commentId:"${comment._id}"){
                                       _id
                                     }
-                                  }
-                                  }
-                                }`);
+                                  }`);
                                 }}
                               >
                                 X
@@ -294,15 +316,16 @@ export default function Id(props) {
                             )}
                           </span>
                         </div>
+
+                        {/* comment text */}
                         <p className="comment--text">{comment.text}</p>
                       </div>
                     );
                   })}
-                </div>
               </div>
-            </section>
-          </>
-        )}
+            </div>
+          </section>
+        </>
       </main>
     </Layout>
   );
@@ -336,13 +359,24 @@ export const getStaticProps = async ({ params: { _id } }) => {
   price
   ratingStar,
   _id
+  comments{
+    text
+    _id
+    date
+    rate
+    creator{
+      username
+      _id
+      profileURL
+    }
+  }
   }
   }
   `);
   const dataQQ1 = await queryGraphQl(`query {
     books {
              title
-             image
+             author
              _id
          }
   }`);

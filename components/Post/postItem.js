@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const BookItem = ({ data }) => {
   return (
-    <>
+    <Link href={`/blog/${data._id}`}>
       <div class="post2-container">
         <img src={data.image} alt="post" width="120" />
         <a href="#" class="post2-link">
@@ -16,7 +16,7 @@ const BookItem = ({ data }) => {
           </div>
         </a>
       </div>
-    </>
+    </Link>
   );
 };
 export default BookItem;

@@ -6,16 +6,19 @@ import queryGraphQl from "../../shared/query-graphql/index";
 import BlogDataShow from "../../components/Blog/blog_data_show";
 import { useRouter } from "next/router";
 export default function Id(props) {
-  const router = useRouter();
   //search component data
-  const contextBooks = useContext(BooksContext);
-  // contextBooks.books = props.dataBooks.books;
-  console.log(contextBooks.books);
+
+  const context = useContext(BooksContext);
+  useEffect(() => {
+    context.books = props.dataSearch.books;
+  }, []);
+  const router = useRouter();
+
   if (router.isFallback) {
-    return <div>Loading...</div>;
+    return <div>صفحه در حال ساخت است لطفا منتظر بمانید ....</div>;
   }
   return (
-    <Layout>
+    <Layout navbar={props.dataSearch.books}>
       <BlogDataShow data={props.data.post.data} />
     </Layout>
   );
@@ -51,15 +54,17 @@ export const getStaticProps = async ({ params: { _id } }) => {
   }
   }
   `);
-  const dataQQ1 = await queryGraphQl(`query {
+  const dataSearch = await queryGraphQl(`
+  query {
     books {
-             title
-             image
-             _id
-         }
-  }`);
+      _id
+      title
+      author
+    }
+  }
+  `);
   return {
-    props: { data: dataQQ, dataBooks: dataQQ1 },
+    props: { data: dataQQ, dataSearch: dataSearch },
     revalidate: 1,
   };
 };

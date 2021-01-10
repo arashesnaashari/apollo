@@ -144,6 +144,8 @@ const resolvers = {
       );
       return {
         userId: Ouser.id,
+        username: Ouser.username,
+        profileURL: Ouser.profileURL,
         token: token,
         tokenExpire: 1,
       };

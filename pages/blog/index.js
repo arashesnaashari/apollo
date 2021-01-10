@@ -11,7 +11,6 @@ export default function propssing(props) {
     <>
       <Layout navbar={props.dataSearch.books}>
         <PostContainer data={props.data.posts}></PostContainer>
-     
       </Layout>
     </>
   );
@@ -35,15 +34,16 @@ export async function getStaticProps() {
   }`);
 
   const dataSearch = await queryGraphQl(`query {
-      books {
-        title
-      image
-      _id
-      author
-      }
-    
-  }`);
+    books {
+      title
+    image
+    _id
+    author
+    }
+  
+}`);
   return {
     props: { data: dataQQ, dataSearch: dataSearch },
+    revalidate: 1,
   };
 }

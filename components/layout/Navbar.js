@@ -12,9 +12,16 @@ const Navbar = (props) => {
         <a href="#">
           <span className="select-language">fa</span>
         </a>
-        <a href="#" className="cart">
+        {!context.token && (
+          <a href="#" className="cart">
           0
         </a>
+        )}
+        {context.token && (
+          <a href="/dashboard">
+            <img src={context.profileURL} width="40"></img>
+          </a>
+        )}
         <a href="">
           <svg className="icon icon-heart">
             <use xlinkHref="/img/symbol-defs.svg#icon-heart"></use>
@@ -38,7 +45,7 @@ const Navbar = (props) => {
         <Search data={props.search} />
       </div>
       <Link href="/">
-        <a href="#" className="logo">
+        <a href="/" className="logo">
           <h1>BookGram.io</h1>
         </a>
       </Link>
@@ -60,13 +67,13 @@ const Navbar = (props) => {
         </div>
 
         {context.token && (
-          <Link href="/dashboared">
-            <a href="/dashboared">داشبورد</a>
+          <Link href="/dashboard">
+            <a href="/dashboard">داشبورد</a>
           </Link>
         )}
         {context.token && (
-          <Link href="/dashboared">
-            <a href="/dashboared">کتابخانه من</a>
+          <Link href="/dashboard/library">
+            <a href="/dashboard/library">کتابخانه من</a>
           </Link>
         )}
         {!context.token && Modal && <Form />}

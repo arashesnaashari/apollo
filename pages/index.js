@@ -13,7 +13,6 @@ export default function propssing(props) {
       <Layout navbar={props.data.books}>
         <main className="home-grid">
           <Books data={props.data.books}></Books>
-          <h1>a</h1>
         </main>
       </Layout>
     </>

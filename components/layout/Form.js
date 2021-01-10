@@ -54,6 +54,8 @@ function Form() {
               token
               tokenExpire
               userId
+              username
+              profileURL
             }
           }`,
           }),
@@ -64,7 +66,8 @@ function Form() {
           context.login(
             data.data.login.userId,
             data.data.login.token,
-            data.data.login.tokenExpire
+            data.data.login.username,
+            data.data.login.profileURL
           );
         }
       } catch (error) {
