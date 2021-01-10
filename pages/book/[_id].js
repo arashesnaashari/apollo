@@ -22,9 +22,9 @@ const fetcher = (query) =>
 export default function Id(props) {
   const context = useContext(AuthContext);
   const contextBooks = useContext(BooksContext);
-  useEffect(() => {
-    contextBooks.books = props.dataBooks.books;
-  }, []);
+  // useEffect(() => {
+  //   contextBooks.books = props.dataBooks.books;
+  // }, []);
   const [text, setText] = useState("");
   const [rate, setRate] = useState(0);
   const [comments, setComments] = useState(props.data.book.comments);
