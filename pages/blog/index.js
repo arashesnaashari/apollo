@@ -16,7 +16,7 @@ export default function propssing(props) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const dataQQ = await queryGraphQl(`query {
       posts(limit:0) {
         _id
@@ -44,6 +44,5 @@ export async function getStaticProps() {
 }`);
   return {
     props: { data: dataQQ, dataSearch: dataSearch },
-    revalidate: 1,
   };
 }
