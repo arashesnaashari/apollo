@@ -24,54 +24,25 @@ export default function Id(props) {
   );
 }
 
-// export const getStaticPaths = async () => {
-//   const dataQQ = await queryGraphQl(`query {
-//     posts(limit:1){
-//      _id
+export const getStaticPaths = async () => {
+  const dataQQ = await queryGraphQl(`query {
+    posts(limit:1){
+     _id
 
-//   }
-// }`);
-//   const paths = dataQQ.posts.map((e) => ({
-//     params: {
-//       _id: e._id,
-//     },
-//   }));
-//   return { paths: paths, fallback: true };
-// };
+  }
+}`);
+  const paths = dataQQ.posts.map((e) => ({
+    params: {
+      _id: e._id,
+    },
+  }));
+  return { paths: paths, fallback: true };
+};
 
-// export const getStaticProps = async ({ params: { _id } }) => {
-//   const dataQQ = await queryGraphQl(`
-//   query {
-//     post(_id:"${_id}") {
-//       _id
-//     date
-//     creator {
-//       username
-//       profileURL
-//       _id
-//     }
-//     data
-//   }
-//   }
-//   `);
-//   const dataSearch = await queryGraphQl(`
-//   query {
-//     books(limit:0) {
-//       _id
-//       title
-//       author
-//     }
-//   }
-//   `);
-//   return {
-//     props: { data: dataQQ, dataSearch: dataSearch },
-//     revalidate: 1,
-//   };
-// };
-export async function getServerSideProps({ params }) {
+export const getStaticProps = async ({ params: { _id } }) => {
   const dataQQ = await queryGraphQl(`
   query {
-    post(_id:"${params._id}") {
+    post(_id:"${_id}") {
       _id
     date
     creator {
@@ -92,14 +63,8 @@ export async function getServerSideProps({ params }) {
     }
   }
   `);
-
-  if (!dataQQ) {
-    return {
-      notFound: true,
-    };
-  }
-
   return {
     props: { data: dataQQ, dataSearch: dataSearch },
+    revalidate: 1,
   };
-}
+};
