@@ -5,7 +5,7 @@ import { useContext } from "react";
 // import BooksContext from "../../context/books-context";
 
 export default function propssing() {
-  fetch("/api/graphql", {
+  fetch("https://bookgram.vercel.app/api/graphql", {
     method: "POST",
     body: JSON.stringify({
       query: `
