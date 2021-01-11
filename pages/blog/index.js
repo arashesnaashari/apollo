@@ -18,7 +18,7 @@ export default function propssing(props) {
 
 export async function getStaticProps() {
   const dataQQ = await queryGraphQl(`query {
-      posts {
+      posts(limit:0) {
         _id
     title
     body
@@ -34,7 +34,7 @@ export async function getStaticProps() {
   }`);
 
   const dataSearch = await queryGraphQl(`query {
-    books {
+    books(limit:0) {
       title
     image
     _id

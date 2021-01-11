@@ -26,7 +26,7 @@ export default function Id(props) {
 
 export const getStaticPaths = async () => {
   const dataQQ = await queryGraphQl(`query {
-    posts{
+    posts(limit:1){
      _id
 
   }
@@ -56,7 +56,7 @@ export const getStaticProps = async ({ params: { _id } }) => {
   `);
   const dataSearch = await queryGraphQl(`
   query {
-    books {
+    books(limit:0) {
       _id
       title
       author

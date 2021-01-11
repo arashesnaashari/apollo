@@ -50,7 +50,7 @@ export async function getStaticProps(context) {
   // });
   // const data11 = await res.json();
   const dataQQ = await queryGraphQl(`query {
-    books {
+    books(limit:0) {
              title
              image
              _id
@@ -58,5 +58,6 @@ export async function getStaticProps(context) {
   }`);
   return {
     props: { data: dataQQ },
+    revalidate:1
   };
 }

@@ -26,7 +26,7 @@ export default function Id(props) {
   contextBooks.books = props.dataBooks.books;
   const [text, setText] = useState("");
   const [rate, setRate] = useState(0);
-  const [comments, setComments] = useState(props.data.book.comments);
+  // const [comments, setComments] = useState(props.data.book.comments);
   const router = useRouter();
   const { _id } = router.query;
   const NumericRate = parseInt(rate);
@@ -70,35 +70,59 @@ export default function Id(props) {
   };
   async function handleSubmit(event) {
     event.preventDefault();
-    const historyPost = comments.find((e) => {
-      return e.creator._id == context.userId;
-    });
-    if (!historyPost) {
-      setComments([
-        ...comments,
-        {
-          text: text,
-          _id: "123456789098765432123456",
-          date: Date.now(),
-          rate: rate,
-          creator: {
-            username: context.username,
-            profileURL: context.profileURL,
-            _id: context.userId,
+    mutate(
+      Query.query,
+      {
+        book: [
+          ...data.book.comments,
+          {
+            text: text,
+            _id: "123456789098765432123456",
+            date: Date.now(),
+            rate: rate,
+            creator: {
+              username: context.username,
+              profileURL: context.profileURL,
+              _id: context.userId,
+            },
           },
-        },
-      ]);
+        ],
+      },
+      false
+    );
+    try {
       const res = await fetch(`/api/graphql`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(Mutation),
       });
       const data = await res.json();
-    } else {
-      console.log("nazar dadi !!!");
+      console.log(data.errors[0].message);
+    } catch (error) {
+      console.log(error.errors);
     }
+    trigger(Mutation.query);
   }
 
+  const { data, error } = useSWR(
+    `query {
+    book(_id:"${props.data.book._id}"){
+     comments{
+      text
+      _id
+      date
+      rate
+      creator{
+        username
+        _id
+        profileURL
+      }
+    }
+    }
+  }`,
+    fetcher,
+    { initialData: props.data }
+  );
   async function addToBookShelf(event) {
     event.preventDefault();
     try {
@@ -115,17 +139,18 @@ export default function Id(props) {
         }),
       });
       const data = await res.json();
-      console.log(data);
     } catch (error) {
       console.log(error);
     }
   }
-
+  if (error) {
+    console.log(error);
+  }
   // const [comments, setComments] = useState(data.book.comments);
-  // let comments;
-  // if (data) {
-  //   comments = data;
-  // }
+  let comments;
+  if (data) {
+    comments = data;
+  }
 
   if (router.isFallback) {
     return <div>صفحه در حال ساخت است لطفا منتظر بمانید ....</div>;
@@ -210,8 +235,9 @@ export default function Id(props) {
             <h1 className="comments--title">نظرهای کاربران</h1>
             <div className="comments--right">
               <div className="comment">
-                {comments &&
-                  comments.map((comment, i) => {
+                {console.log(data)}
+                {data &&
+                  data.book.comments.map((comment, i) => {
                     let rates = comment.rate;
                     let array1 = [];
 
@@ -250,11 +276,6 @@ export default function Id(props) {
                               <button
                                 onClick={async (event) => {
                                   event.preventDefault();
-                                  setComments((prev) =>
-                                    prev.filter(
-                                      (cmnt) => cmnt._id !== comment._id
-                                    )
-                                  );
                                   const res = await fetch(`/api/graphql`, {
                                     method: "POST",
                                     headers: {
@@ -271,6 +292,11 @@ export default function Id(props) {
                                     }),
                                   });
                                   const data = await res.json();
+                                  trigger(`mutation {
+                                    deleteComment(commentId:"${comment._id}"){
+                                      _id
+                                    }
+                                  }`);
                                 }}
                               >
                                 X
@@ -292,9 +318,10 @@ export default function Id(props) {
     </Layout>
   );
 }
+
 export const getStaticPaths = async () => {
   const dataQQ = await queryGraphQl(`query {
-    books{
+    books(limit:2){
      _id
 
   }
@@ -307,6 +334,7 @@ export const getStaticPaths = async () => {
   }));
   return { paths: paths, fallback: true };
 };
+
 export const getStaticProps = async ({ params: { _id } }) => {
   const dataQQ = await queryGraphQl(`
   query {
@@ -334,7 +362,7 @@ export const getStaticProps = async ({ params: { _id } }) => {
   }
   `);
   const dataQQ1 = await queryGraphQl(`query {
-    books {
+    books(limit:0) {
              title
              author
              _id
@@ -342,41 +370,6 @@ export const getStaticProps = async ({ params: { _id } }) => {
   }`);
   return {
     props: { data: dataQQ, dataBooks: dataQQ1 },
-    unstable_revalidate: 1,
+    revalidate: 1,
   };
 };
-
-// export const getServerSideProps = async ({ params: { _id } }) => {
-//   const res = await fetch(`${BaseUrl}/api/graphql`, {
-//     method: "POST",
-//     headers: { "Content-Type": "application/json" },
-//     body: JSON.stringify({
-//       query: `
-//       query {
-//         book(_id:"${_id}") {
-//           title,
-//       image,
-//       group,
-//       author,
-//       publication
-//       price
-//       ratingStar,
-//       comments{
-//         text
-//         _id
-//         date
-//         rate
-//         creator{
-//           username
-//         }
-//       }
-//     }
-//   }`,
-//     }),
-//   });
-//   const data11 = await res.json();
-
-//   return {
-//     props: { data: data11 },
-//   };
-// };

@@ -43,7 +43,7 @@ export async function getStaticProps(context) {
 
   const dataQQ = await queryGraphQl(`
   query {
-    books {
+    books(limit:0) {
              title
              image
              _id
@@ -58,6 +58,7 @@ export async function getStaticProps(context) {
 
   return {
     props: { data: dataQQ },
+    revalidate: 1,
   };
 }
 

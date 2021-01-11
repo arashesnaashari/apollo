@@ -116,8 +116,8 @@ const typeDefs = gql`
   }
   type Query {
     users: [User!]
-    books: [Book!]
-    posts: [Post!]
+    books(limit: Int!): [Book!]
+    posts(limit: Int!): [Post!]
     book(_id: ID!): Book
     post(_id: ID!): Post
     user(_id: ID!): User

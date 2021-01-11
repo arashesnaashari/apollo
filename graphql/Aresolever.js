@@ -26,10 +26,15 @@ const { cloudinary } = require("../utils/cloadinary");
 
 const resolvers = {
   Query: {
-    async books() {
+    async books(parent, args) {
       try {
-        const books = await Book.find();
-        return books.map((book) => {
+        let boooks;
+        if (args.limit == 0) {
+          boooks = await Book.find();
+        } else {
+          boooks = await Book.find({}, null, { limit: args.limit });
+        }
+        return boooks.map((book) => {
           let ratingStarFunc = book.comments.map((e) => {
             if (e.rate) {
               return e.rate;
@@ -53,9 +58,14 @@ const resolvers = {
         console.log(err);
       }
     },
-    async posts() {
+    async posts(parent, args) {
       try {
-        const posts = await Post.find();
+        let posts;
+        if (args.limit == 0) {
+          posts = await Post.find();
+        } else {
+          posts = await Post.find({}, null, { limit: args.limit });
+        }
         return posts.map((post) => {
           return {
             ...post._doc,
