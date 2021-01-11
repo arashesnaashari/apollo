@@ -1,12 +1,10 @@
 import Layout from "../../components/layout/Layout";
 import { useContext } from "react";
-import PostContainer from "../../components/Post/postsContainer";
+// import PostContainer from "../../components/Post/postsContainer";
 // import queryGraphQl from "../../shared/query-graphql/index";
-import BooksContext from "../../context/books-context";
+// import BooksContext from "../../context/books-context";
 
-export default function propssing(props) {
-  const context = useContext(BooksContext);
-  context.books = props.dataSearch.books;
+export default function propssing() {
   fetch("/api/graphql", {
     method: "POST",
     body: JSON.stringify({
@@ -26,7 +24,7 @@ export default function propssing(props) {
     .then((data) => console.log(data));
   return (
     <>
-      <Layout navbar={props.dataSearch.books}>
+      <Layout>
         <h1>j</h1>
       </Layout>
     </>
